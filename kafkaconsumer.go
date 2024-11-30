@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
+	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
@@ -10,6 +11,18 @@ import (
 )
 
 func consumeMessages(topic string, server string) {
+
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	logger.Info(
+		"Starting consumer",
+		slog.String("topic", topic),
+		slog.String("server", server),
+	)
+	defer logger.Info(
+		"Stopping consumer",
+		slog.String("topic", topic),
+		slog.String("server", server),
+	)
 
 	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": server,

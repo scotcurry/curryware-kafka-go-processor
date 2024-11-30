@@ -1,0 +1,13 @@
+name: curryware-kafka-go-processor
+on: [push]
+jobs:
+  build-go-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.23
+      - run: go version

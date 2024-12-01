@@ -5,7 +5,9 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"log/slog"
 	"os"
+	"os/signal"
 	"strings"
+	"syscall"
 )
 
 // The documentation for the Kafka libraries are at https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka
@@ -17,6 +19,14 @@ func main() {
 		tracer.WithEnv("prod"))
 
 	defer tracer.Stop()
+
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, syscall.SIGTERM)
+	go func() {
+		<-sigChan
+		tracer.Stop()
+		os.Exit(0)
+	}()
 
 	// Setting up logging.  JSON format.
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))

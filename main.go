@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+	"log"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -16,7 +17,9 @@ func main() {
 	tracer.Start(tracer.WithAgentAddr("localhost:8126"),
 		tracer.WithService("curryware-kafka-go-processor"),
 		tracer.WithServiceVersion("1.0.0"),
-		tracer.WithEnv("prod"))
+		tracer.WithEnv("prod"),
+		tracer.WithTraceEnabled(true),
+	)
 
 	defer tracer.Stop()
 
@@ -28,9 +31,13 @@ func main() {
 		os.Exit(0)
 	}()
 
+	span := tracer.StartSpan("main")
+	defer span.Finish()
+
 	// Setting up logging.  JSON format.
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	logger.Info("Launching curryware-kafka-go-processor")
+	log.Printf("Launching curryware-kafka-go-processor %v\n", span)
 
 	defer logger.Info("Exiting curryware-kafka-go-processor")
 

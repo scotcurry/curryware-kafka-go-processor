@@ -29,7 +29,7 @@ func consumeMessages(topic string, server string) {
 		"bootstrap.servers": server,
 		"group.id":          "curryware-group",
 		"auto.offset.reset": "earliest",
-	})
+	}, ddkafka.WithDataStreams())
 	if err != nil {
 		fmt.Println("Error building consumer")
 		panic(err)

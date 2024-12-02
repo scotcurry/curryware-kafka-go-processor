@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
+	ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -24,7 +25,7 @@ func consumeMessages(topic string, server string) {
 		slog.String("server", server),
 	)
 
-	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
+	consumer, err := ddkafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": server,
 		"group.id":          "curryware-group",
 		"auto.offset.reset": "earliest",
@@ -54,7 +55,7 @@ func consumeMessages(topic string, server string) {
 			lowOffset, highOffSet, err := consumer.QueryWatermarkOffsets(
 				*event.TopicPartition.Topic, event.TopicPartition.Partition, 3000)
 			if err != nil {
-				fmt.Println("Failed to get watermark offsets: %s\n", err)
+				fmt.Printf("Failed to get watermark offsets: %s\n", err)
 			} else {
 				fmt.Printf("Low offset: %d, high offset: %d\n", lowOffset, highOffSet)
 			}

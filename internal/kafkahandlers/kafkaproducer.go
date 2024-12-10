@@ -1,4 +1,4 @@
-package main
+package kafkahandlers
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func produceMessage(topic string, server string) {
+func ProduceMessage(topic string, server string) {
 
 	// Link to the sample code to create a producer - https://developer.confluent.io/get-started/go/#build-producer
 	// Link to the producer documentation - https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka#Producer
@@ -18,6 +18,7 @@ func produceMessage(topic string, server string) {
 	if err != nil {
 		panic(err)
 	}
+
 	// The defer keyword is the equivalent of the using keyword in .NET.  It will run the code when
 	// the produceMessages gets to the end.
 	defer producer.Close()
@@ -36,6 +37,7 @@ func produceMessage(topic string, server string) {
 		Value:          []byte(keyValue),
 		TopicPartition: topicPartition,
 	}, deliveryChan)
+
 	if err != nil {
 		fmt.Println("Failed to produce message:", err)
 		panic(err)

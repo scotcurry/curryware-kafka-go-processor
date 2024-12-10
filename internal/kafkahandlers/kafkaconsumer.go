@@ -1,4 +1,4 @@
-package main
+package kafkahandlers
 
 import (
 	"fmt"
@@ -11,8 +11,9 @@ import (
 	"time"
 )
 
-func consumeMessages(topic string, server string) {
+func ConsumeMessages(topic string, server string) {
 
+	// Logging code for Datadog.
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	logger.Info(
 		"Starting consumer",

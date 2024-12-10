@@ -1,6 +1,7 @@
 package main
 
 import (
+	"curryware-kafka-go-processor/internal/kafkahandlers"
 	"fmt"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"log"
@@ -55,10 +56,10 @@ func main() {
 	// This code is just to make sure that messages can be produced.  This module is set to pull messages off the
 	// topic that are produced by the curryware-yahoo-api service.
 	if debug {
-		topicExists := validateTopicExists(topic, server)
+		topicExists := kafkahandlers.ValidateTopicExists(topic, server)
 		if topicExists {
 			fmt.Println("Topic exists")
-			produceMessage(topic, server)
+			kafkahandlers.ProduceMessage(topic, server)
 		} else {
 			fmt.Println("Topic does not exist")
 			os.Exit(0)
@@ -66,5 +67,5 @@ func main() {
 		fmt.Printf("Topic %s\n", topic)
 	}
 
-	consumeMessages(topic, server)
+	kafkahandlers.ConsumeMessages(topic, server)
 }

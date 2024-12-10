@@ -1,11 +1,11 @@
-package main
+package kafkahandlers
 
 import (
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 )
 
-func validateTopicExists(topic string, server string) bool {
+func ValidateTopicExists(topic string, server string) bool {
 
 	// https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka#NewAdminClient
 	// I'm not sure what the & is for.  Need to research.

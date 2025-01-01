@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"curryware-kafka-go-processor/internal/fantasyclasses"
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
@@ -9,15 +10,69 @@ import (
 	"strconv"
 )
 
-func InsertPlayerRecord(playerId int, playerKey string, playerName string, team string, position string, playerUrl string,
-	playerHeadshot string) {
+func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
 
-	//
+	psqlInfo := getDatabaseInformation()
+	db, err := sql.Open("postgres", psqlInfo)
+	if err != nil {
+		fmt.Println("Error opening postgres connection")
+		panic(err)
+	}
+	defer func(db *sql.DB) {
+		err := db.Close()
+		if err != nil {
+			fmt.Println("Error closing postgres connection")
+		}
+	}(db)
+	sqlStatement := `INSERT INTO player_info (player_id, player_season_key, player_name, player_url, player_team, 
+                         player_bye_week, player_uniform_number, player_position, player_headshot) 
+					VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
+	for counter := 0; counter < len(playerInfo); counter++ {
+
+		playerId := playerInfo[counter].PlayerID
+		playerKey := playerInfo[counter].PlayerSeasonId
+		playerName := playerInfo[counter].PlayerName
+		playerPosition := playerInfo[counter].PlayerPosition
+		playerTeam := playerInfo[counter].PlayerTeam
+		playerByeWeek := playerInfo[counter].PlayerByeWeek
+		playerUniformNumber := playerInfo[counter].PlayerUniformNumber
+		playerUrl := playerInfo[counter].PlayerUrl
+		playerHeadshot := playerInfo[counter].PlayerHeadshot
+
+		res, err := db.Exec(sqlStatement, playerId, playerKey, playerName, playerUrl, playerTeam,
+			playerByeWeek, playerUniformNumber, playerPosition, playerHeadshot)
+		if err != nil {
+			fmt.Println("Error inserting player record")
+			panic(err)
+		} else {
+			count, err := res.RowsAffected()
+			if err != nil {
+				fmt.Println("Error getting rows affected")
+				panic(err)
+			} else {
+				fmt.Println("Rows affected: " + strconv.Itoa(int(count)))
+			}
+		}
+	}
+}
+
+func getDatabaseInformation() string {
+
 	postgresServer := os.Getenv("POSTGRES_SERVER")
 	postgresPort := os.Getenv("POSTGRES_PORT")
 	postgresUser := os.Getenv("POSTGRES_USERNAME")
 	postgresPassword := os.Getenv("POSTGRES_PASSWORD")
 	postgresDb := os.Getenv("POSTGRES_DATABASE")
+
+	portInteger, err := strconv.ParseInt(postgresPort, 10, 64)
+	if err != nil {
+		fmt.Println("Error parsing port")
+		panic(err)
+	}
+
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+		"password=%s dbname=%s sslmode=disable",
+		postgresServer, portInteger, postgresUser, postgresPassword, postgresDb)
 
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	logger.Info("Launching curryware-kafka-go-processor")
@@ -33,43 +88,5 @@ func InsertPlayerRecord(playerId int, playerKey string, playerName string, team 
 		"Stopping curryware-kafka-go-processor",
 	)
 
-	portInteger, err := strconv.ParseInt(postgresPort, 10, 64)
-	if err != nil {
-		fmt.Println("Error parsing port")
-		panic(err)
-	}
-
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
-		postgresServer, portInteger, postgresUser, postgresPassword, postgresDb)
-
-	db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		fmt.Println("Error opening postgres connection")
-		panic(err)
-	}
-	defer func(db *sql.DB) {
-		err := db.Close()
-		if err != nil {
-			fmt.Println("Error closing postgres connection")
-		}
-	}(db)
-
-	sqlStatement := `INSERT INTO player_info (player_id, player_season_key, player_name, player_position, player_team, 
-                         player_url, player_headshot) 
-					VALUES ($1, $2, $3, $4, $5, $6, $7)`
-
-	res, err := db.Exec(sqlStatement, playerId, playerKey, playerName, position, team, playerUrl, playerHeadshot)
-	if err != nil {
-		fmt.Println("Error inserting player record")
-		panic(err)
-	} else {
-		count, err := res.RowsAffected()
-		if err != nil {
-			fmt.Println("Error getting rows affected")
-			panic(err)
-		} else {
-			fmt.Println("Rows affected: " + strconv.Itoa(int(count)))
-		}
-	}
+	return psqlInfo
 }

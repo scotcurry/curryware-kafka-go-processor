@@ -1,6 +1,8 @@
 package kafkahandlers
 
 import (
+	"curryware-kafka-go-processor/internal/jsonhandlers"
+	"curryware-kafka-go-processor/internal/postgreshandlers"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
@@ -26,21 +28,27 @@ func ConsumeMessages(topic string, server string) {
 		slog.String("server", server),
 	)
 
+	// Builds the consumer. Group ID will change for different types of statistics.
 	consumer, err := ddkafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": server,
-		"group.id":          "curryware-group",
-		"auto.offset.reset": "earliest",
+		"bootstrap.servers":  server,
+		"group.id":           "curryware-group",
+		"auto.offset.reset":  "earliest",
+		"enable.auto.commit": "true",
 	}, ddkafka.WithDataStreams())
 	if err != nil {
 		fmt.Println("Error building consumer")
 		panic(err)
 	}
 
-	err = consumer.Subscribe(topic, nil)
+	// List where the last commit happened.  To do this you need to have to pass in the TopicPartitions, so get those
+	// first.
+
+	err = consumer.SubscribeTopics([]string{topic}, nil)
 	signalChannel := make(chan os.Signal, 1)
 	signal.Notify(signalChannel, syscall.SIGINT, syscall.SIGTERM)
 
-	fmt.Println("Jumping int the event loop")
+	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
+	fmt.Println("Jumping into the event loop")
 	run := true
 	for run {
 		select {
@@ -48,21 +56,28 @@ func ConsumeMessages(topic string, server string) {
 			fmt.Printf("Caught signal %v, exiting\n", sig)
 			run = false
 		default:
-			event, eventError := consumer.ReadMessage(1 * time.Second)
+			event, eventError := consumer.ReadMessage(5 * time.Second)
 			if eventError != nil {
 				continue
 			}
-
-			lowOffset, highOffSet, err := consumer.QueryWatermarkOffsets(
-				*event.TopicPartition.Topic, event.TopicPartition.Partition, 3000)
-			if err != nil {
-				fmt.Printf("Failed to get watermark offsets: %s\n", err)
-			} else {
-				fmt.Printf("Low offset: %d, high offset: %d\n", lowOffset, highOffSet)
-			}
-
 			fmt.Printf("Consumed event from topic %s: key = %-10s value = %s\n",
 				event.TopicPartition, string(event.Key), string(event.Value))
+
+			valueAsString := string(event.Value)
+			printValue := valueAsString[10 : 20+60]
+			fmt.Println(printValue)
+			playersToAdd := jsonhandlers.ParseMultiplePlayerInfo(valueAsString)
+			postgreshandlers.InsertPlayerRecord(playersToAdd)
+
+			offsets := []kafka.TopicPartition{
+				{Topic: event.TopicPartition.Topic, Partition: event.TopicPartition.Partition,
+					Offset: event.TopicPartition.Offset + 1},
+			}
+			_, err = consumer.CommitOffsets(offsets)
+			if err != nil {
+				fmt.Printf("Failed to commit offsets: %s\n", err)
+			}
+
 		}
 	}
 

@@ -56,7 +56,7 @@ func ConsumeMessages(topic string, server string) {
 			fmt.Printf("Caught signal %v, exiting\n", sig)
 			run = false
 		default:
-			event, eventError := consumer.ReadMessage(5 * time.Second)
+			event, eventError := consumer.ReadMessage(20 * time.Second)
 			if eventError != nil {
 				continue
 			}

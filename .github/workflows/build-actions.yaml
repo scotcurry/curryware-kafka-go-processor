@@ -24,7 +24,7 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: scotcurry4/curryware-kafka-processor:${{ github.run_number }}
+          tags: scotcurry4/curryware-kafka-go-processor:${{ github.run_number }}
           labels: |
             org.opencontainers.image.source=github.com/scotcurry/curryware-kafka-go-processor
             org.opencontainers.image.revision=${{ github.sha }}

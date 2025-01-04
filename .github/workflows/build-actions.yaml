@@ -47,9 +47,9 @@ jobs:
           echo 'Setting Version: ${{ github.run_number }}'
           sed -i -e 's/version: \"[[:digit:]]*\"/version: \"${{ github.run_number }}\"/g' ${{ github.workspace }}/k8s-manifests/curryware-fantasy/curryware-kafka-go-processor.yaml
           echo 'Updating image version'
-          sed -i -e 's/scotcurry4\/curryware-yahoo-api\:[[:digit:]]*/scotcurry4\/curryware-yahoo-api\:${{ github.run_number }}/g' ${{ github.workspace }}/k8s-manifests/curryware-fantasy/curryware-kafka-go-processor.yaml
+          sed -i -e 's/scotcurry4\/curryware-kafka-go-processor\:[[:digit:]]*/scotcurry4\/curryware-kafka-go-processor\:${{ github.run_number }}/g' ${{ github.workspace }}/k8s-manifests/curryware-fantasy/curryware-kafka-go-processor.yaml
           cat ${{ github.workspace }}/k8s-manifests/curryware-fantasy/curryware-kafka-go-processor.yaml
-          echo "Committed curryware-yahoo-api $(date +"%Y-%m-%d %T") - Short SHA: ${{ github.sha }}" > commit_file.txt
+          echo "Committed curryware-kafka-processor $(date +"%Y-%m-%d %T") - Short SHA: ${{ github.sha }}" > commit_file.txt
           git config user.name "scotcurry"
           git config user.email "scotcurry4@gmail.com"
           git commit -a -F commit_file.txt

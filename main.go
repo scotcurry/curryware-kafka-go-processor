@@ -16,8 +16,7 @@ import (
 func main() {
 
 	// Set up the Datadog Tracer.
-	tracer.Start(tracer.WithAgentAddr("localhost:8126"),
-		tracer.WithService("curryware-kafka-go-processor"),
+	tracer.Start(tracer.WithService("curryware-kafka-go-processor"),
 		tracer.WithServiceVersion("1.0.0"),
 		tracer.WithEnv("prod"),
 		tracer.WithTraceEnabled(true),

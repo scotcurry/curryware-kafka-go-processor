@@ -5,9 +5,9 @@ go 1.23.0
 toolchain go1.23.3
 
 require (
-	github.com/confluentinc/confluent-kafka-go/v2 v2.6.1
+	github.com/confluentinc/confluent-kafka-go/v2 v2.8.0
 	github.com/lib/pq v1.10.9
-	gopkg.in/DataDog/dd-trace-go.v1 v1.70.1
+	gopkg.in/DataDog/dd-trace-go.v1 v1.70.3
 )
 
 require (

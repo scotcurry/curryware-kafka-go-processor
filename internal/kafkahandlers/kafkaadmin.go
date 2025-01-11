@@ -1,6 +1,7 @@
 package kafkahandlers
 
 import (
+	"curryware-kafka-go-processor/internal/logging"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	"os"
@@ -9,6 +10,7 @@ import (
 func ValidateTopicExists(topic string, server string) bool {
 
 	versionInt, libraryVersion := kafka.LibraryVersion()
+	logging.LogInfo("Kafka library version: %s, %d", libraryVersion, versionInt)
 	fmt.Printf("Kafka library version: %s, %d\n", libraryVersion, versionInt)
 
 	// https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka#NewAdminClient
@@ -38,7 +40,9 @@ func ValidateTopicExists(topic string, server string) bool {
 
 func GetKafkaServer() string {
 
-	return os.Getenv("KAFKA_SERVER")
+	kafkaServer := os.Getenv("KAFKA_SERVER")
+	logging.LogInfo("KAFKA_SERVER", kafkaServer)
+	return os.Getenv(kafkaServer)
 }
 
 // CreateTopic This code doesn't work.

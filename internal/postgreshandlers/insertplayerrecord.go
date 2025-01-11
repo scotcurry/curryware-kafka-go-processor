@@ -2,6 +2,7 @@ package postgreshandlers
 
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses"
+	"curryware-kafka-go-processor/internal/logging"
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
@@ -13,6 +14,7 @@ func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
 	psqlInfo := GetDatabaseInformation()
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
+		logging.LogInfo("Error opening postgres connection")
 		fmt.Println("Error opening postgres connection")
 		panic(err)
 	}
@@ -40,14 +42,17 @@ func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
 		res, err := db.Exec(sqlStatement, playerId, playerKey, playerName, playerUrl, playerTeam,
 			playerByeWeek, playerUniformNumber, playerPosition, playerHeadshot)
 		if err != nil {
+			logging.LogError("Error inserting player record")
 			fmt.Println("Error inserting player record")
 			panic(err)
 		} else {
 			count, err := res.RowsAffected()
 			if err != nil {
+				logging.LogError("Error getting rows affected")
 				fmt.Println("Error getting rows affected")
 				panic(err)
 			} else {
+				logging.LogInfo("Rows affected", strconv.Itoa(int(count)))
 				fmt.Println("Rows affected: " + strconv.Itoa(int(count)))
 			}
 		}

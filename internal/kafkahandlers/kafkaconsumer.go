@@ -2,11 +2,11 @@ package kafkahandlers
 
 import (
 	"curryware-kafka-go-processor/internal/jsonhandlers"
+	"curryware-kafka-go-processor/internal/logging"
 	"curryware-kafka-go-processor/internal/postgreshandlers"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
-	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
@@ -16,17 +16,7 @@ import (
 func ConsumeMessages(topic string, server string) {
 
 	// Logging code for Datadog.
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
-	logger.Info(
-		"Starting consumer",
-		slog.String("topic", topic),
-		slog.String("server", server),
-	)
-	defer logger.Info(
-		"Stopping consumer",
-		slog.String("topic", topic),
-		slog.String("server", server),
-	)
+	logging.LogInfo("Launching curryware-kafka-go-processor")
 
 	// Builds the consumer. Group ID will change for different types of statistics.
 	consumer, err := ddkafka.NewConsumer(&kafka.ConfigMap{
@@ -36,13 +26,13 @@ func ConsumeMessages(topic string, server string) {
 		"enable.auto.commit": "true",
 	}, ddkafka.WithDataStreams())
 	if err != nil {
+		logging.LogError("Error building consumer")
 		fmt.Println("Error building consumer")
 		panic(err)
 	}
 
 	// List where the last commit happened.  To do this you need to have to pass in the TopicPartitions, so get those
 	// first.
-
 	err = consumer.SubscribeTopics([]string{topic}, nil)
 	signalChannel := make(chan os.Signal, 1)
 	signal.Notify(signalChannel, syscall.SIGINT, syscall.SIGTERM)
@@ -62,6 +52,8 @@ func ConsumeMessages(topic string, server string) {
 			}
 			fmt.Printf("Consumed event from topic %s: key = %-10s value = %s\n",
 				event.TopicPartition, string(event.Key), string(event.Value))
+			logging.LogInfo("Consumed event from topic %s: key = %-10s value = %s",
+				event.TopicPartition, string(event.Key), string(event.Value))
 
 			valueAsString := string(event.Value)
 			printValue := valueAsString[10 : 20+60]
@@ -75,6 +67,7 @@ func ConsumeMessages(topic string, server string) {
 			}
 			_, err = consumer.CommitOffsets(offsets)
 			if err != nil {
+				logging.LogError("Failed to commit offsets: %s", err)
 				fmt.Printf("Failed to commit offsets: %s\n", err)
 			}
 
@@ -84,6 +77,7 @@ func ConsumeMessages(topic string, server string) {
 	closeError := consumer.Close()
 	if closeError != nil {
 		fmt.Println("Error closing consumer")
+		logging.LogError("Error closing consumer")
 		panic(closeError)
 	}
 }

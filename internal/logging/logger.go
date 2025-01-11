@@ -1,28 +1,35 @@
 package logging
 
-//import (
-//	"log"
-//	"os"
-//)
-//
-//type Logger struct {
-//	logger *log.Logger
-//}
-//
-//func NewLogger(prefix string) *Logger {
-//	return &Logger{
-//		logger: log.New(os.Stdout, prefix, log.Ldate|log.Ltime|log.Lshortfile),
-//	}
-//}
-//
-//func (l *Logger) Info(msg string) {
-//	l.logger.Println("INFO:", msg)
-//}
-//
-//func (l *Logger) Warn(msg string) {
-//	l.logger.Println("WARN:", msg)
-//}
-//
-//func (l *Logger) Error(msg string) {
-//	l.logger.Println("ERROR:", msg)
-//}
+import (
+	"log/slog"
+	"os"
+	"sync"
+)
+
+var (
+	loggerInstance *slog.Logger
+	once           sync.Once
+)
+
+// GetLogger initializes the logger only once and makes it reusable.
+func GetLogger() *slog.Logger {
+	once.Do(func() {
+		loggerInstance = slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	})
+	return loggerInstance
+}
+
+// LogError logs error level messages.
+func LogError(msg string, args ...any) {
+	GetLogger().Error(msg, args...)
+}
+
+// LogInfo logs informational level messages.
+func LogInfo(msg string, args ...any) {
+	GetLogger().Info(msg, args...)
+}
+
+// LogDebug logs debug level messages.
+func LogDebug(msg string, args ...any) {
+	GetLogger().Debug(msg, args...)
+}

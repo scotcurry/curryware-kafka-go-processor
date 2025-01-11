@@ -8,6 +8,10 @@ import (
 	"strings"
 )
 
+// InsertPlayerStats - This does just what it says.  The only thing that makes it unique is that since there are lots
+// (test case pulls 310 stats) is it creates a single values string.  There is something with Go compiler check that
+// case it to throw an error on the insert statement if it isn't complete filled out, so there is code to go pull
+// a template from a file in sqltemplate.txt and use that.
 func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
 
 	psqlInfo := GetDatabaseInformation()

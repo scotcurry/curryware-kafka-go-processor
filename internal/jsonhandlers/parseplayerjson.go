@@ -2,6 +2,7 @@ package jsonhandlers
 
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses"
+	logger "curryware-kafka-go-processor/internal/logging"
 	"encoding/json"
 	"fmt"
 )
@@ -12,6 +13,7 @@ func ParsePlayerInfo(playerInfo string) fantasyclasses.PlayerInfo {
 	err := json.Unmarshal([]byte(playerInfo), &playerInfoStruct)
 	if err != nil {
 		fmt.Println("Error parsing player info")
+		logger.LogError("Error parsing player info: ", err)
 	}
 
 	return playerInfoStruct

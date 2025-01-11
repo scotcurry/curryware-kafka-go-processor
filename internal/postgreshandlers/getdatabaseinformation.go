@@ -1,8 +1,8 @@
 package postgreshandlers
 
 import (
+	logger "curryware-kafka-go-processor/internal/logging"
 	"fmt"
-	"log/slog"
 	"os"
 	"strconv"
 )
@@ -25,19 +25,10 @@ func GetDatabaseInformation() string {
 		"password=%s dbname=%s sslmode=disable",
 		postgresServer, portInteger, postgresUser, postgresPassword, postgresDb)
 
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
-	logger.Info("Launching curryware-kafka-go-processor")
-	logger.Debug(
-		"Environment variables",
-		slog.String("POSTGRES_SERVER", postgresServer),
-		slog.String("POSTGRES_PORT", postgresPort),
-		slog.String("POSTGRES_USERNAME", postgresUser),
-		slog.String("POSTGRES_PASSWORD", postgresPassword),
-		slog.String("POSTGRES_DATABASE", postgresDb),
-	)
-	defer logger.Info(
-		"Stopping curryware-kafka-go-processor",
-	)
+	logger.LogInfo("POSTGRES_SERVER", postgresServer)
+	logger.LogInfo("POSTGRES_PORT", postgresPort)
+	logger.LogInfo("POSTGRES_USERNAME", postgresUser)
+	logger.LogInfo("POSTGRES_DATABASE", postgresDb)
 
 	return psqlInfo
 }

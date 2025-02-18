@@ -76,5 +76,5 @@ func main() {
 	// This code runs in a loop that is always true.  The syscall.SIGTERM above is the handler for breaking out
 	// of this code.
 	logging.LogInfo("Starting Message Consumer for Topic: %s", topic)
-	// kafkahandlers.ConsumeMessages(topic, server)
+	kafkahandlers.ConsumeMessages(topic, server)
 }

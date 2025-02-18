@@ -42,7 +42,7 @@ func GetKafkaServer() string {
 
 	kafkaServer := os.Getenv("KAFKA_SERVER")
 	logging.LogInfo("KAFKA_SERVER", kafkaServer)
-	return os.Getenv(kafkaServer)
+	return kafkaServer
 }
 
 // CreateTopic This code doesn't work.

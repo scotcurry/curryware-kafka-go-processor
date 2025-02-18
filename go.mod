@@ -7,7 +7,7 @@ toolchain go1.23.3
 require (
 	github.com/confluentinc/confluent-kafka-go/v2 v2.8.0
 	github.com/lib/pq v1.10.9
-	gopkg.in/DataDog/dd-trace-go.v1 v1.70.3
+	gopkg.in/DataDog/dd-trace-go.v1 v1.71.1
 )
 
 require (
@@ -20,6 +20,7 @@ require (
 	github.com/google/pprof v0.0.0-20241210010833-40e02aabc2ad // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
+	go.opentelemetry.io/collector/pdata/pprofile v0.104.0 // indirect
 	golang.org/x/oauth2 v0.24.0 // indirect
 	golang.org/x/tools v0.28.0 // indirect
 	google.golang.org/protobuf v1.36.1 // indirect
@@ -30,7 +31,7 @@ require (
 
 require (
 	github.com/DataDog/appsec-internal-go v1.9.0 // indirect
-	github.com/DataDog/datadog-agent/pkg/obfuscate v0.59.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/obfuscate v0.61.0 // indirect
 	github.com/DataDog/datadog-agent/pkg/proto v0.59.0 // indirect
 	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.59.0 // indirect
 	github.com/DataDog/datadog-agent/pkg/trace v0.59.0 // indirect
@@ -38,7 +39,7 @@ require (
 	github.com/DataDog/datadog-agent/pkg/util/scrubber v0.59.0 // indirect
 	github.com/DataDog/datadog-go/v5 v5.6.0 // indirect
 	github.com/DataDog/go-libddwaf/v3 v3.5.1 // indirect
-	github.com/DataDog/go-runtime-metrics-internal v0.0.0-20241106155157-194426bbbd59 // indirect
+	github.com/DataDog/go-runtime-metrics-internal v0.0.4-0.20241206090539-a14610dc22b6 // indirect
 	github.com/DataDog/go-sqllexer v0.0.18 // indirect
 	github.com/DataDog/go-tuf v1.1.0-0.5.2 // indirect
 	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.21.0 // indirect
@@ -74,7 +75,6 @@ require (
 	github.com/secure-systems-lab/go-securesystemslib v0.8.0 // indirect
 	github.com/shirou/gopsutil/v3 v3.24.5 // indirect
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
-	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/tinylib/msgp v1.2.4 // indirect
 	github.com/tklauser/go-sysconf v0.3.14 // indirect
 	github.com/tklauser/numcpus v0.9.0 // indirect

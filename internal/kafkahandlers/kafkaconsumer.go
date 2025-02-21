@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-func ConsumeMessages(topic string, server string) {
+func ConsumeMessages(topics []string, server string) {
 
 	// Logging code for Datadog.
 	logging.LogInfo("Launching curryware-kafka-go-processor")
@@ -25,6 +25,12 @@ func ConsumeMessages(topic string, server string) {
 		"auto.offset.reset":  "earliest",
 		"enable.auto.commit": "true",
 	}, ddkafka.WithDataStreams())
+	defer func(consumer *ddkafka.Consumer) {
+		err := consumer.Close()
+		if err != nil {
+			logging.LogError("Error closing consumer")
+		}
+	}(consumer)
 	if err != nil {
 		logging.LogError("Error building consumer")
 		fmt.Println("Error building consumer")
@@ -33,7 +39,7 @@ func ConsumeMessages(topic string, server string) {
 
 	// List where the last commit happened.  To do this you need to have to pass in the TopicPartitions, so get those
 	// first.
-	err = consumer.SubscribeTopics([]string{topic}, nil)
+	err = consumer.SubscribeTopics(topics, nil)
 	signalChannel := make(chan os.Signal, 1)
 	signal.Notify(signalChannel, syscall.SIGINT, syscall.SIGTERM)
 
@@ -48,36 +54,29 @@ func ConsumeMessages(topic string, server string) {
 		default:
 			event, eventError := consumer.ReadMessage(20 * time.Second)
 			if eventError != nil {
+				logging.LogError("Error reading message: %s", eventError)
 				continue
 			}
-			fmt.Printf("Consumed event from topic %s: key = %-10s value = %s\n",
-				event.TopicPartition, string(event.Key), string(event.Value))
-			logging.LogInfo("Consumed event from topic %s: key = %-10s value = %s",
-				event.TopicPartition, string(event.Key), string(event.Value))
 
-			valueAsString := string(event.Value)
-			printValue := valueAsString[10 : 20+60]
-			fmt.Println(printValue)
-			playersToAdd := jsonhandlers.ParseMultiplePlayerInfo(valueAsString)
-			postgreshandlers.InsertPlayerRecord(playersToAdd)
-
-			offsets := []kafka.TopicPartition{
-				{Topic: event.TopicPartition.Topic, Partition: event.TopicPartition.Partition,
-					Offset: event.TopicPartition.Offset + 1},
+			switch *event.TopicPartition.Topic {
+			case "PlayerStats":
+				statPackage := string(event.Value)
+				statsInfo := jsonhandlers.ParseMultipleStatInfo(statPackage)
+				postgreshandlers.InsertPlayerStats(statsInfo)
+				break
+			case "PlayerTopics2":
+				playerPackage := string(event.Value)
+				playersToAdd := jsonhandlers.ParseMultiplePlayerInfo(playerPackage)
+				postgreshandlers.InsertPlayerRecord(playersToAdd)
+				break
+			default:
+				fmt.Println("Unknown topic")
 			}
-			_, err = consumer.CommitOffsets(offsets)
+
 			if err != nil {
 				logging.LogError("Failed to commit offsets: %s", err)
 				fmt.Printf("Failed to commit offsets: %s\n", err)
 			}
-
 		}
-	}
-
-	closeError := consumer.Close()
-	if closeError != nil {
-		fmt.Println("Error closing consumer")
-		logging.LogError("Error closing consumer")
-		panic(closeError)
 	}
 }

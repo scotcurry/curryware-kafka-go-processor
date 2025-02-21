@@ -39,13 +39,14 @@ func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
 		insertValues = insertValues + valueLine
 	}
 
-	insertTemplate := GetSqlTemplate("multiple_play_stats_input_statement")
+	insertTemplate := GetSqlTemplate("multiple_player_stats_input_statement")
 	sqlStatement := strings.ReplaceAll(insertTemplate, "{insert_values}", insertValues)
 	sqlStatement = sqlStatement[:len(sqlStatement)-1]
 
 	res, err := db.Exec(sqlStatement)
 	if err != nil {
 		fmt.Println("Error inserting player stats")
+		fmt.Println(err.Error())
 		panic(err)
 	} else {
 		count, err := res.RowsAffected()

@@ -7,23 +7,28 @@ toolchain go1.23.3
 require (
 	github.com/confluentinc/confluent-kafka-go/v2 v2.8.0
 	github.com/lib/pq v1.10.9
-	gopkg.in/DataDog/dd-trace-go.v1 v1.71.1
+	gopkg.in/DataDog/dd-trace-go.v1 v1.72.0
 )
 
 require (
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.24 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.24 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.7 // indirect
-	github.com/aws/smithy-go v1.22.1 // indirect
+	github.com/aws/aws-sdk-go-v2 v1.36.2 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
+)
+
+require (
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.33 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.33 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.12.3 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.12.14 // indirect
+	github.com/aws/smithy-go v1.22.3 // indirect
+	// github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/pprof v0.0.0-20241210010833-40e02aabc2ad // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	go.opentelemetry.io/collector/pdata/pprofile v0.104.0 // indirect
-	golang.org/x/oauth2 v0.24.0 // indirect
+	golang.org/x/oauth2 v0.26.0 // indirect
 	golang.org/x/tools v0.28.0 // indirect
-	google.golang.org/protobuf v1.36.1 // indirect
+	google.golang.org/protobuf v1.36.5 // indirect
 	k8s.io/apimachinery v0.32.0 // indirect
 	k8s.io/client-go v0.32.0 // indirect
 	k8s.io/utils v0.0.0-20241104163129-6fe5fd82f078 // indirect
@@ -45,7 +50,6 @@ require (
 	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.21.0 // indirect
 	github.com/DataDog/sketches-go v1.4.6 // indirect
 	github.com/Microsoft/go-winio v0.6.2 // indirect
-	github.com/aws/aws-sdk-go-v2 v1.32.7 // indirect
 	github.com/aws/aws-sdk-go-v2/config v1.28.4 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575 // indirect

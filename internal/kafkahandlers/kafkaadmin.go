@@ -3,52 +3,18 @@ package kafkahandlers
 import (
 	"curryware-kafka-go-processor/internal/logging"
 	"fmt"
-	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 	"os"
 )
 
-func ValidateTopicExists(topic string, server string) bool {
-
-	versionInt, libraryVersion := kafka.LibraryVersion()
-	logging.LogInfo("Kafka library version: %s, %d", libraryVersion, versionInt)
-	fmt.Printf("Kafka library version: %s, %d\n", libraryVersion, versionInt)
-
-	// https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka#NewAdminClient
-	// I'm not sure what the & is for.  Need to research.
-	adminClient, err := kafka.NewAdminClient(&kafka.ConfigMap{
-		"bootstrap.servers": server,
-	})
-
-	if err != nil {
-		fmt.Println("Error building admin client")
-		panic(err)
-	} else {
-		fmt.Println("Admin client created, named - " + adminClient.String())
-		defer adminClient.Close()
-	}
-
-	// Reading the documentation for this call - func (a *AdminClient) GetMetadata(topic *string, allTopics bool, timeoutMs int)
-	// (*Metadata, error)
-	// The last part of the documentation are the return values (metadata, err)
-	var metadata, metaDataErr = adminClient.GetMetadata(nil, true, 10000)
-	if metaDataErr != nil {
-		return false
-	}
-	allTopics := metadata.Topics
-	return topic == allTopics[topic].Topic
-}
-
-func GetKafkaServer() string {
-
-	kafkaServer := os.Getenv("KAFKA_SERVER")
-	logging.LogInfo("KAFKA_SERVER", kafkaServer)
-	return kafkaServer
-}
-
-// CreateTopic This code doesn't work.
-//func CreateTopic(topic string, server string) {
+// This is handled by querying the Kafka server for topics
+//func ValidateTopicExists(topics []string, server string) []string {
 //
-//	// Usual Kafka client creation
+//	versionInt, libraryVersion := kafka.LibraryVersion()
+//	logging.LogInfo("Kafka library version: %s, %d", libraryVersion, versionInt)
+//	fmt.Printf("Kafka library version: %s, %d\n", libraryVersion, versionInt)
+//
+//	// https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka#NewAdminClient
+//	// I'm not sure what the & is for.  Need to research.
 //	adminClient, err := kafka.NewAdminClient(&kafka.ConfigMap{
 //		"bootstrap.servers": server,
 //	})
@@ -61,21 +27,30 @@ func GetKafkaServer() string {
 //		defer adminClient.Close()
 //	}
 //
-//	// To create a topic you have to build this out.
-//	topicSpec := []kafka.TopicSpecification{
-//		{
-//			Topic:             topic,
-//			NumPartitions:     1,
-//			ReplicationFactor: 1,
-//		},
+//	// Reading the documentation for this call - func (a *AdminClient) GetMetadata(topic *string, allTopics bool, timeoutMs int)
+//	// (*Metadata, error)
+//	// The last part of the documentation are the return values (metadata, err)
+//	var existingTopics []string
+//	var metadata, metaDataErr = adminClient.GetMetadata(nil, true, 10000)
+//	if metaDataErr != nil {
+//		return existingTopics
 //	}
 //
-//	// Create the topic.
-//	topics, err := adminClient.CreateTopics(nil, topicSpec)
-//	if err != nil {
-//		return
+//	for _, currentTopic := range topics {
+//		for _, currentMetadataTopic := range metadata.Topics {
+//			if currentTopic == currentMetadataTopic.Topic {
+//				existingTopics = append(existingTopics, currentTopic)
+//				logging.LogInfo("Topic %s exists", currentTopic)
+//			}
+//		}
 //	}
-//	for _, topic := range topics {
-//		fmt.Printf("Topic Created: %s\n", topic.String())
-//	}
+//
+//	return existingTopics
 //}
+
+func GetKafkaServer() string {
+
+	kafkaServer := os.Getenv("KAFKA_SERVER")
+	logging.LogInfo(fmt.Sprintf("KAFKA_SERVER: %s", kafkaServer))
+	return kafkaServer
+}

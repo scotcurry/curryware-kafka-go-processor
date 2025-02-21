@@ -3,11 +3,9 @@ package main
 import (
 	"curryware-kafka-go-processor/internal/kafkahandlers"
 	"curryware-kafka-go-processor/internal/logging"
-	"fmt"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 )
 
@@ -16,7 +14,7 @@ func main() {
 
 	// Set up the Datadog Tracer.
 	tracer.Start(tracer.WithService("curryware-kafka-go-processor"),
-		tracer.WithServiceVersion("1.0.0"),
+		tracer.WithServiceVersion("1.0.1"),
 		tracer.WithEnv("prod"),
 		tracer.WithTraceEnabled(true),
 	)
@@ -40,41 +38,13 @@ func main() {
 
 	// Setting up logging.  JSON format.
 	logging.LogInfo("Launching curryware-kafka-go-processor")
-	logging.LogError("")
-
-	// Code to make sure I can run this code locally with a Kafka Docker image.
-	debug := false
-	if len(os.Args) > 1 {
-		argString := os.Args[1]
-		if "-debug" == strings.ToLower(argString) {
-			debug = true
-		}
-	}
 
 	// This is going to get the servername from the environment variable to make debugging easier.
 	server := kafkahandlers.GetKafkaServer()
-	// This should reflect the type of message we want to receive and how to receive it. CurrywareTopic is for
-	// debugging.
-	topic := "PlayerTopic2"
-
-	// This code is just to make sure that messages can be produced.  This module is set to pull messages off the
-	// topic that are produced by the curryware-yahoo-api service.
-	if debug {
-		logging.LogInfo("DEBUG - Running in debug mode")
-		topicExists := kafkahandlers.ValidateTopicExists(topic, server)
-		if topicExists {
-			fmt.Printf("DEBUG - Topic exists: %s", topic)
-			kafkahandlers.ProduceMessage(topic, server)
-		} else {
-			fmt.Println("Topic does not exist")
-			os.Exit(0)
-		}
-		fmt.Printf("Topic %s\n", topic)
-	}
-	fmt.Printf("Topic %s\n", topic)
 
 	// This code runs in a loop that is always true.  The syscall.SIGTERM above is the handler for breaking out
 	// of this code.
-	logging.LogInfo("Starting Message Consumer for Topic: %s", topic)
-	kafkahandlers.ConsumeMessages(topic, server)
+	// logging.LogInfo("Starting Message Consumer for Topic: %s", topic)
+	topicsToMonitor := kafkahandlers.GetTopicNames("localhost:9092")
+	kafkahandlers.ConsumeMessages(topicsToMonitor, server)
 }

@@ -57,7 +57,6 @@ func ConsumeMessages(topics []string, server string) {
 		default:
 			event, eventError := consumer.ReadMessage(20 * time.Second)
 			if eventError != nil {
-				logging.LogError(fmt.Sprintf("Error reading message: %s", eventError))
 				continue
 			}
 
@@ -67,7 +66,7 @@ func ConsumeMessages(topics []string, server string) {
 				statsInfo := jsonhandlers.ParseMultipleStatInfo(statPackage)
 				postgreshandlers.InsertPlayerStats(statsInfo)
 				break
-			case "PlayerTopics2":
+			case "PlayerTopic2":
 				playerPackage := string(event.Value)
 				playersToAdd := jsonhandlers.ParseMultiplePlayerInfo(playerPackage)
 				postgreshandlers.InsertPlayerRecord(playersToAdd)

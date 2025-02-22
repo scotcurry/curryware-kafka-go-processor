@@ -50,7 +50,7 @@ import (
 
 func GetKafkaServer() string {
 
-	kafkaServer := os.Getenv("KAFKA_SERVER")
-	logging.LogInfo(fmt.Sprintf("KAFKA_SERVER: %s", kafkaServer))
+	kafkaServer := os.Getenv("KAFKA_BOOTSTRAP_SERVER")
+	logging.LogInfo(fmt.Sprintf("KAFKA_BOOTSTRAP_SERVER: %s", kafkaServer))
 	return kafkaServer
 }

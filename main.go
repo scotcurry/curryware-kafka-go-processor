@@ -41,10 +41,13 @@ func main() {
 
 	// This is going to get the servername from the environment variable to make debugging easier.
 	server := kafkahandlers.GetKafkaServer()
+	if server == "" {
+		logging.LogError("Error getting Kafka server from environment variable (KAFKA_BOOTSTRAP_SERVER)")
+		os.Exit(1001)
+	}
 
 	// This code runs in a loop that is always true.  The syscall.SIGTERM above is the handler for breaking out
 	// of this code.
-	// logging.LogInfo("Starting Message Consumer for Topic: %s", topic)
-	topicsToMonitor := kafkahandlers.GetTopicNames("localhost:9092")
+	topicsToMonitor := kafkahandlers.GetTopicNames(server)
 	kafkahandlers.ConsumeMessages(topicsToMonitor, server)
 }

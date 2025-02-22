@@ -70,12 +70,7 @@ func ConsumeMessages(topics []string, server string) {
 				postgreshandlers.InsertPlayerRecord(playersToAdd)
 				break
 			default:
-				fmt.Println("Unknown topic")
-			}
-
-			if err != nil {
-				logging.LogError("Failed to commit offsets: %s", err)
-				fmt.Printf("Failed to commit offsets: %s\n", err)
+				fmt.Println(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
 			}
 		}
 	}

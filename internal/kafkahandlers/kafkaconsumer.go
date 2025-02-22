@@ -54,7 +54,7 @@ func ConsumeMessages(topics []string, server string) {
 		default:
 			event, eventError := consumer.ReadMessage(20 * time.Second)
 			if eventError != nil {
-				logging.LogError("Error reading message: %s", eventError)
+				logging.LogError(fmt.Sprintf("Error reading message: %s", eventError))
 				continue
 			}
 

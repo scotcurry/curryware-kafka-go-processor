@@ -17,6 +17,9 @@ func ConsumeMessages(topics []string, server string) {
 
 	// Logging code for Datadog.
 	logging.LogInfo("Launching curryware-kafka-go-processor")
+	for i := 0; i < len(topics); i++ {
+		fmt.Println(fmt.Sprintf("Consuming Message(s): %s", topics[i]))
+	}
 
 	// Builds the consumer. Group ID will change for different types of statistics.
 	consumer, err := ddkafka.NewConsumer(&kafka.ConfigMap{

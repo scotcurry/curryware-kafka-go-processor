@@ -57,6 +57,7 @@ func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
 			}
 		}
 	}
+	logging.LogInfo(fmt.Sprintf("Done inserting player records. Total records: %s", strconv.Itoa(len(playerInfo))))
 }
 
 //func getDatabaseInformation() string {

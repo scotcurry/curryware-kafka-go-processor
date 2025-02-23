@@ -62,16 +62,19 @@ func ConsumeMessages(topics []string, server string) {
 
 			switch *event.TopicPartition.Topic {
 			case "PlayerStats":
+				logging.LogInfo("Processing PlayerStats")
 				statPackage := string(event.Value)
 				statsInfo := jsonhandlers.ParseMultipleStatInfo(statPackage)
 				postgreshandlers.InsertPlayerStats(statsInfo)
 				break
 			case "PlayerTopic2":
+				logging.LogInfo("Processing PlayerTopic2")
 				playerPackage := string(event.Value)
 				playersToAdd := jsonhandlers.ParseMultiplePlayerInfo(playerPackage)
 				postgreshandlers.InsertPlayerRecord(playersToAdd)
 				break
 			default:
+				logging.LogError(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
 				fmt.Println(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
 			}
 		}

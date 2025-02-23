@@ -25,10 +25,7 @@ func GetDatabaseInformation() string {
 		"password=%s dbname=%s sslmode=disable",
 		postgresServer, portInteger, postgresUser, postgresPassword, postgresDb)
 
-	logger.LogInfo("POSTGRES_SERVER", postgresServer)
-	logger.LogInfo("POSTGRES_PORT", postgresPort)
-	logger.LogInfo("POSTGRES_USERNAME", postgresUser)
-	logger.LogInfo("POSTGRES_DATABASE", postgresDb)
+	logger.LogInfo(fmt.Sprintf("psqlInfo %s", psqlInfo))
 
 	return psqlInfo
 }

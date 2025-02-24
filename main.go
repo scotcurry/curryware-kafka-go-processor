@@ -3,6 +3,7 @@ package main
 import (
 	"curryware-kafka-go-processor/internal/kafkahandlers"
 	"curryware-kafka-go-processor/internal/logging"
+	"fmt"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"os"
 	"os/signal"
@@ -11,6 +12,9 @@ import (
 
 // The documentation for the Kafka libraries are at https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka
 func main() {
+
+	currentPath, _ := os.Getwd()
+	logging.LogInfo(fmt.Sprintf("Current Path: %s", currentPath))
 
 	// Set up the Datadog Tracer.
 	tracer.Start(tracer.WithService("curryware-kafka-go-processor"),

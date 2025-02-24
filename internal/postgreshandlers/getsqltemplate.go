@@ -17,7 +17,7 @@ func GetSqlTemplate(templateName string) string {
 		panic(err)
 	}
 	fmt.Println(currentPath)
-	pathToFile := filepath.Join(currentPath, "/sqltemplates/sqltemplate.txt")
+	pathToFile := filepath.Join(currentPath, "/internal/sqltemplates/sqltemplate.txt")
 	fileData, err := os.Open(pathToFile)
 	if err != nil {
 		logger.LogError(fmt.Sprintf("Error opening sqltemplate.txt.  Current path: %s", currentPath))
@@ -27,7 +27,7 @@ func GetSqlTemplate(templateName string) string {
 	defer func(fileData *os.File) {
 		err := fileData.Close()
 		if err != nil {
-
+			logger.LogInfo(fmt.Sprintf("Closing sqltemplate.txt %s", pathToFile))
 		}
 	}(fileData)
 

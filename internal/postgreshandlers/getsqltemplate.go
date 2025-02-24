@@ -2,6 +2,7 @@ package postgreshandlers
 
 import (
 	"bufio"
+	logger "curryware-kafka-go-processor/internal/logging"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -19,8 +20,9 @@ func GetSqlTemplate(templateName string) string {
 	pathToFile := filepath.Join(currentPath, "/sqltemplates/sqltemplate.txt")
 	fileData, err := os.Open(pathToFile)
 	if err != nil {
-		fmt.Println("Error opening sqltemplate.txt")
-		panic(err)
+		logger.LogError(fmt.Sprintf("Error opening sqltemplate.txt.  Current path: %s", currentPath))
+		logger.LogError(fmt.Sprintf("Path to file: %s", pathToFile))
+		return ""
 	}
 	defer func(fileData *os.File) {
 		err := fileData.Close()

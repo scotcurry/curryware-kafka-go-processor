@@ -2,6 +2,7 @@ package postgreshandlers
 
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses"
+	logger "curryware-kafka-go-processor/internal/logging"
 	"database/sql"
 	"fmt"
 	"strconv"
@@ -40,14 +41,16 @@ func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
 	}
 
 	insertTemplate := GetSqlTemplate("multiple_player_stats_input_statement")
+	logger.LogDebug(fmt.Sprintf("Insert Template: %s\n", insertTemplate))
 	if len(insertTemplate) > 0 {
 		sqlStatement := strings.ReplaceAll(insertTemplate, "{insert_values}", insertValues)
 		sqlStatement = sqlStatement[:len(sqlStatement)-1]
+		logger.LogDebug(fmt.Sprintf("SQL Statement: %s\n", sqlStatement))
 
 		res, err := db.Exec(sqlStatement)
 		if err != nil {
-			fmt.Println("Error inserting player stats")
-			fmt.Println(err.Error())
+			logger.LogError(fmt.Sprintf("Error inserting player stats: SQL Statement: %s\n", sqlStatement))
+			logger.LogError(err.Error())
 			panic(err)
 		} else {
 			count, err := res.RowsAffected()
@@ -55,7 +58,7 @@ func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
 				fmt.Println("Error getting rows affected")
 				panic(err)
 			} else {
-				fmt.Println("Rows affected: " + strconv.Itoa(int(count)))
+				logger.LogInfo(fmt.Sprintf("Rows affected: " + strconv.Itoa(int(count))))
 			}
 		}
 	}

@@ -5,12 +5,21 @@ import (
 	logger "curryware-kafka-go-processor/internal/logging"
 	"fmt"
 	"os"
+	"path"
 	"regexp"
 )
 
 func GetSqlTemplate(templateName string) string {
 
-	pathToFile := "/app/internal/postgreshandlers/sqltemplates/sqltemplate.txt"
+	// Validate that this works in K8s
+	currentDirectory, err := os.Getwd()
+	pathToFile := path.Join(currentDirectory, "internal", "postgreshandlers", "sqltemplates", "sqltemplate.txt")
+	_, err = os.Stat(pathToFile)
+	if os.IsNotExist(err) {
+		logger.LogError(fmt.Sprintf("Path to file: %s", pathToFile))
+		return ""
+	}
+
 	fileData, err := os.Open(pathToFile)
 	if err != nil {
 		logger.LogError(fmt.Sprintf("Path to file: %s", pathToFile))

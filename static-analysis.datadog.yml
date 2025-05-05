@@ -3,3 +3,4 @@ rulesets:
   - go-best-practices
   - go-security
   - docker-best-practices
+  - github-actions

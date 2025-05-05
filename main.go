@@ -23,7 +23,7 @@ func main() {
 	// The explanation for the defer keyword is at https://read.amazon.com/?asin=B0184N7WWS&ref_=kwl_kr_iv_rec_2
 	defer tracer.Stop()
 
-	logging.LogDebug("Debug message just because")
+	logging.LogDebug("Starting curryware-kafka-go-processor...")
 	// Create a channel that looks for all os Signals (https://pkg.go.dev/os/signal)
 	sigChan := make(chan os.Signal, 1)
 	// This limits the notification to the SIGTERM signal
@@ -39,7 +39,7 @@ func main() {
 	defer span.Finish()
 
 	// Setting up logging.  JSON format.
-	logging.LogInfo("Launching curryware-kafka-go-processor")
+	logging.LogInfo("Launching curryware-kafka-go-processor...")
 
 	// This is going to get the servername from the environment variable to make debugging easier.
 	server := kafkahandlers.GetKafkaServer()

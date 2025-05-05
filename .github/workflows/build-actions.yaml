@@ -19,18 +19,16 @@ jobs:
           password: ${{ secrets.DOCKERHUB_AUTH_TOKEN }}
 
       - name: Build and Push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          platforms: linux/amd64
-          push: true
-          tags: scotcurry4/curryware-kafka-go-processor:${{ github.run_number }}
-          labels: |
-            org.opencontainers.image.source=github.com/scotcurry/curryware-kafka-go-processor
-            org.opencontainers.image.revision=${{ github.sha }}
-            tags.datadoghq.com/env=prod
-            tags.datadoghq.com/version=${{ github.run_number }}
-            tags.datadoghq.com/service=curryware-kafka-go-processor
+        uses: docker/setup-buildx-action@v3.10.0
+      - name: Build Docker Image
+        run: |
+          docker buildx build --push -t scotcurry4/curryware-kafka-go-processor:${{ github.run_number }} \
+          --platform linux/amd64 \
+          --build-arg DD_VERSION=${{ github.run_number }} \
+          --build-arg DD_GIT_REPOSITORY_URL="github.com/scotcurry/curryware-kafka-go-processor" \
+          --build-arg DD_GIT_COMMIT_SHA=${{ github.sha }} \
+          -f Dockerfile .
+          
       - name: Get manifest files
         uses: actions/checkout@v4
         with:

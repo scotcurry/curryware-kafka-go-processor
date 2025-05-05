@@ -29,8 +29,8 @@ func ConsumeMessages(topics []string, server string) {
 		"enable.auto.commit": "true",
 	}, ddkafka.WithDataStreams())
 	defer func(consumer *ddkafka.Consumer) {
-		err := consumer.Close()
-		if err != nil {
+		closeErr := consumer.Close()
+		if closeErr != nil {
 			logging.LogError("Error closing consumer")
 		}
 	}(consumer)
@@ -73,6 +73,11 @@ func ConsumeMessages(topics []string, server string) {
 				playersToAdd := jsonhandlers.ParseMultiplePlayerInfo(playerPackage)
 				postgreshandlers.InsertPlayerRecord(playersToAdd)
 				break
+			case "StatTopic":
+				logging.LogInfo("Processing StatTopic")
+				statInfoPackage := string(event.Value)
+				statInfoToAdd := jsonhandlers.ParsLeagueStatInfo(statInfoPackage)
+				postgreshandlers.InsertLeagueStatInfo(statInfoToAdd)
 			default:
 				logging.LogError(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
 				fmt.Println(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))

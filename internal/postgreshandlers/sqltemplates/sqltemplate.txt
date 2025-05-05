@@ -1,1 +1,2 @@
 multiple_player_stats_input_statement          INSERT INTO player_stats (player_key, game_key, week_key, stat_id, stat_value) VALUES {insert_values}
+league_stat_info_insert_statement              INSERT INTO league_scoring_information (league_stat_key, league_stat_id, league_stat_enabled, league_stat_name, league_stat_display_name, league_stat_group, league_stat_abbreviation, league_stat_order, league_stat_position_type, league_stat_sort_position) VALUES {insert_values}

@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func InsertLeagueStatInfo(leagueStatInfo []fantasyclasses.LeagueStatInfo) {
+func InsertLeagueStatInfo(leagueStatInfo []fantasyclasses.LeagueStatInfo) int {
 
 	psqlInfo := GetDatabaseInformation()
 	db, err := sql.Open("postgres", psqlInfo)
@@ -27,7 +27,7 @@ func InsertLeagueStatInfo(leagueStatInfo []fantasyclasses.LeagueStatInfo) {
 	sqlStatement := `INSERT INTO league_scoring_information (league_stat_key, league_stat_id, league_stat_enabled, league_stat_name, 
                                         league_stat_display_name, league_stat_group, league_stat_abbreviation, league_stat_sort_order,
                                         league_stat_position_type, league_stat_sort_position) 
-										VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
+										VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
 
 	for counter := 0; counter < len(leagueStatInfo); counter++ {
 
@@ -42,6 +42,7 @@ func InsertLeagueStatInfo(leagueStatInfo []fantasyclasses.LeagueStatInfo) {
 		leagueStatPositionType := leagueStatInfo[counter].StatPositionType
 		leagueStatSortPosition := leagueStatInfo[counter].StatSortPosition
 
+		logging.LogInfo(fmt.Sprintf("League Stat Key: %d", leagueStatKey))
 		res, err := db.Exec(sqlStatement, leagueStatKey, leagueStatId, leagueStatEnabled, leagueStatName, leagueStatDisplayName,
 			leagueStatGroup, leagueStatAbbreviation, leagueStatSortOrder, leagueStatPositionType, leagueStatSortPosition)
 
@@ -62,4 +63,5 @@ func InsertLeagueStatInfo(leagueStatInfo []fantasyclasses.LeagueStatInfo) {
 		}
 	}
 	logging.LogInfo(fmt.Sprintf("Done inserting player records. Total records: %s", strconv.Itoa(len(leagueStatInfo))))
+	return len(leagueStatInfo)
 }

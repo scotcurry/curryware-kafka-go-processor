@@ -7,9 +7,14 @@ import (
 	"encoding/json"
 )
 
-func ParsLeagueStatInfo(leaguestatisticinfo string) []fantasyclasses.LeagueStatInfo {
+func ParseLeagueStatInfo(leaguestatisticinfo string) []fantasyclasses.LeagueStatInfo {
 
 	decodedBytes, err := base64.StdEncoding.DecodeString(leaguestatisticinfo)
+	if err != nil {
+		logger.LogError("Error parsing player info: ", err)
+	} else {
+		logger.LogInfo("Decoded bytes: ", decodedBytes[:20])
+	}
 	leaguestatisticinfo = string(decodedBytes)
 
 	var leagueinfo []fantasyclasses.LeagueStatInfo

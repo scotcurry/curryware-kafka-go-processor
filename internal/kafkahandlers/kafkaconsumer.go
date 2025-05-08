@@ -76,7 +76,7 @@ func ConsumeMessages(topics []string, server string) {
 			case "StatTopic":
 				logging.LogInfo("Processing StatTopic")
 				statInfoPackage := string(event.Value)
-				statInfoToAdd := jsonhandlers.ParsLeagueStatInfo(statInfoPackage)
+				statInfoToAdd := jsonhandlers.ParseLeagueStatInfo(statInfoPackage)
 				postgreshandlers.InsertLeagueStatInfo(statInfoToAdd)
 			default:
 				logging.LogError(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))

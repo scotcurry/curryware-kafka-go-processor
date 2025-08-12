@@ -3,10 +3,11 @@ package main
 import (
 	"curryware-kafka-go-processor/internal/kafkahandlers"
 	"curryware-kafka-go-processor/internal/logging"
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // The documentation for the Kafka libraries are at https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka
@@ -20,7 +21,7 @@ func main() {
 		tracer.WithEnv("prod"),
 		tracer.WithTraceEnabled(true),
 	)
-	// The explanation for the defer keyword is at https://read.amazon.com/?asin=B0184N7WWS&ref_=kwl_kr_iv_rec_2
+	// The explanation for defer keyword is at https://read.amazon.com/?asin=B0184N7WWS&ref_=kwl_kr_iv_rec_2
 	defer tracer.Stop()
 
 	logging.LogDebug("Starting curryware-kafka-go-processor...")

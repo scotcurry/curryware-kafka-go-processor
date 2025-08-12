@@ -17,7 +17,7 @@
 #-p 127.0.0.1:8126:8126/tcp \
 #gcr.io/datadoghq/agent:7
 
-FROM golang:1.23
+FROM golang:1.24
 WORKDIR /app
 ARG DD_GIT_COMMIT_SHA
 ARG DD_GIT_REPOSITORY_URL

@@ -1,0 +1,17 @@
+package jsonhandlers
+
+import (
+	"encoding/base64"
+	"testing"
+)
+
+func TestParseLeagueStatValueInfo(t *testing.T) {
+
+	leagueStatValueJson := `[{"LeagueStatKey":461134074,"GameId":461,"LeagueId":13407,"StatId":4,"StatValue":0.04},{"LeagueStatKey":461134075,"GameId":461,"LeagueId":13407,"StatId":5,"StatValue":4},{"LeagueStatKey":461134076,"GameId":461,"LeagueId":13407,"StatId":6,"StatValue":-1},{"LeagueStatKey":461134079,"GameId":461,"LeagueId":13407,"StatId":9,"StatValue":0.1},{"LeagueStatKey":4611340710,"GameId":461,"LeagueId":13407,"StatId":10,"StatValue":6},{"LeagueStatKey":4611340711,"GameId":461,"LeagueId":13407,"StatId":11,"StatValue":1},{"LeagueStatKey":4611340712,"GameId":461,"LeagueId":13407,"StatId":12,"StatValue":0.1},{"LeagueStatKey":4611340713,"GameId":461,"LeagueId":13407,"StatId":13,"StatValue":6},{"LeagueStatKey":4611340715,"GameId":461,"LeagueId":13407,"StatId":15,"StatValue":6},{"LeagueStatKey":4611340716,"GameId":461,"LeagueId":13407,"StatId":16,"StatValue":2},{"LeagueStatKey":4611340718,"GameId":461,"LeagueId":13407,"StatId":18,"StatValue":-2},{"LeagueStatKey":4611340757,"GameId":461,"LeagueId":13407,"StatId":57,"StatValue":6},{"LeagueStatKey":4611340719,"GameId":461,"LeagueId":13407,"StatId":19,"StatValue":3},{"LeagueStatKey":4611340720,"GameId":461,"LeagueId":13407,"StatId":20,"StatValue":3},{"LeagueStatKey":4611340721,"GameId":461,"LeagueId":13407,"StatId":21,"StatValue":3},{"LeagueStatKey":4611340722,"GameId":461,"LeagueId":13407,"StatId":22,"StatValue":4},{"LeagueStatKey":4611340723,"GameId":461,"LeagueId":13407,"StatId":23,"StatValue":5},{"LeagueStatKey":4611340724,"GameId":461,"LeagueId":13407,"StatId":24,"StatValue":-4},{"LeagueStatKey":4611340725,"GameId":461,"LeagueId":13407,"StatId":25,"StatValue":-3},{"LeagueStatKey":4611340729,"GameId":461,"LeagueId":13407,"StatId":29,"StatValue":1},{"LeagueStatKey":4611340730,"GameId":461,"LeagueId":13407,"StatId":30,"StatValue":-1},{"LeagueStatKey":4611340732,"GameId":461,"LeagueId":13407,"StatId":32,"StatValue":1},{"LeagueStatKey":4611340733,"GameId":461,"LeagueId":13407,"StatId":33,"StatValue":2},{"LeagueStatKey":4611340734,"GameId":461,"LeagueId":13407,"StatId":34,"StatValue":2},{"LeagueStatKey":4611340735,"GameId":461,"LeagueId":13407,"StatId":35,"StatValue":6},{"LeagueStatKey":4611340736,"GameId":461,"LeagueId":13407,"StatId":36,"StatValue":2},{"LeagueStatKey":4611340737,"GameId":461,"LeagueId":13407,"StatId":37,"StatValue":2},{"LeagueStatKey":4611340750,"GameId":461,"LeagueId":13407,"StatId":50,"StatValue":10},{"LeagueStatKey":4611340751,"GameId":461,"LeagueId":13407,"StatId":51,"StatValue":7},{"LeagueStatKey":4611340752,"GameId":461,"LeagueId":13407,"StatId":52,"StatValue":4},{"LeagueStatKey":4611340753,"GameId":461,"LeagueId":13407,"StatId":53,"StatValue":1},{"LeagueStatKey":4611340754,"GameId":461,"LeagueId":13407,"StatId":54,"StatValue":0},{"LeagueStatKey":4611340755,"GameId":461,"LeagueId":13407,"StatId":55,"StatValue":-1},{"LeagueStatKey":4611340756,"GameId":461,"LeagueId":13407,"StatId":56,"StatValue":-4},{"LeagueStatKey":4611340782,"GameId":461,"LeagueId":13407,"StatId":82,"StatValue":2}]`
+	leagueStatValueBase64 := base64.StdEncoding.EncodeToString([]byte(leagueStatValueJson))
+
+	leagueStatValueClass := ParseLeagueStatValue(leagueStatValueBase64)
+	if leagueStatValueClass[0].LeagueStatId != 461134074 && leagueStatValueClass[0].StatValue != 0.04 {
+		t.Errorf("Expected 0.04, got %.2f", leagueStatValueClass[0].StatValue)
+	}
+}

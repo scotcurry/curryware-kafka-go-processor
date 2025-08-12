@@ -5,12 +5,13 @@ import (
 	"curryware-kafka-go-processor/internal/logging"
 	"curryware-kafka-go-processor/internal/postgreshandlers"
 	"fmt"
-	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
-	ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
+	ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
 )
 
 func ConsumeMessages(topics []string, server string) {
@@ -78,6 +79,13 @@ func ConsumeMessages(topics []string, server string) {
 				statInfoPackage := string(event.Value)
 				statInfoToAdd := jsonhandlers.ParseLeagueStatInfo(statInfoPackage)
 				postgreshandlers.InsertLeagueStatInfo(statInfoToAdd)
+			case "StatValueTopic":
+				logging.LogInfo("Processing StatValueTopic")
+				statValuePackage := string(event.Value)
+				statValuesToAdd := jsonhandlers.ParseLeagueStatValue(statValuePackage)
+				postgreshandlers.InsertLeagueStatValueInfo(statValuesToAdd)
+			case "DatadogValidationTopic":
+				logging.LogInfo("Processing DatadogValidationTopic")
 			default:
 				logging.LogError(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
 				fmt.Println(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))

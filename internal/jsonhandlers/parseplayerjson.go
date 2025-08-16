@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"strconv"
 )
 
 func ParsePlayerInfo(playerInfo string) fantasyclasses.PlayerInfo {
@@ -33,6 +34,7 @@ func ParseMultiplePlayerInfo(playerInfo string) []fantasyclasses.PlayerInfo {
 		fmt.Println("Error parsing player info")
 	}
 
-	logger.LogInfo("Number of players parsed: ", len(multiPlayerInfoStruct))
+	loggingString := "Number of players parsed: %d" + strconv.Itoa(len(multiPlayerInfoStruct))
+	logger.LogInfo(loggingString)
 	return multiPlayerInfoStruct
 }

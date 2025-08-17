@@ -55,10 +55,11 @@ func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
 		} else {
 			count, err := res.RowsAffected()
 			if err != nil {
-				fmt.Println("Error getting rows affected")
+				fmt.Println("Error getting rows affected.")
+				logger.LogError(err.Error())
 				panic(err)
 			} else {
-				logger.LogInfo(fmt.Sprintf("Rows affected: " + strconv.Itoa(int(count))))
+				logger.LogInfo(fmt.Sprintf("Rows affected: %d", count))
 			}
 		}
 	}

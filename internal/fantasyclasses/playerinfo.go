@@ -6,7 +6,7 @@ type PlayerInfo struct {
 	PlayerName          string `json:"FullName"`
 	PlayerUrl           string `json:"URL"`
 	PlayerStatus        string `json:"Status"`
-	PlayerStatusFull    string `json:"StatusFull"`
+	PlayerStatusFull    string `json:"PlayerStatusFull"`
 	PlayerTeam          string `json:"Team"`
 	PlayerByeWeek       int    `json:"ByeWeek"`
 	PlayerUniformNumber int    `json:"UniformNumber"`

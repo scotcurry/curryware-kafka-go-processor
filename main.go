@@ -14,8 +14,8 @@ import (
 func main() {
 
 	// Set up the Datadog Tracer.
-	currentpath, _ := os.Getwd()
-	logging.LogInfo(currentpath)
+	currentPath, _ := os.Getwd()
+	logging.LogInfo(currentPath)
 	tracer.Start(tracer.WithService("curryware-kafka-go-processor"),
 		tracer.WithServiceVersion("1.0.1"),
 		tracer.WithEnv("prod"),

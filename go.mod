@@ -8,27 +8,27 @@ require (
 	gopkg.in/DataDog/dd-trace-go.v1 v1.74.6
 )
 
-require github.com/prometheus/client_golang v1.23.0 // indirect
+require github.com/prometheus/client_golang v1.23.2 // indirect
 
 require (
 	github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 // indirect
 	github.com/DataDog/appsec-internal-go v1.14.0 // indirect
-	github.com/DataDog/datadog-agent/comp/core/tagger/origindetection v0.70.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/obfuscate v0.70.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/proto v0.70.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.70.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/trace v0.70.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/util/log v0.70.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/util/scrubber v0.70.1 // indirect
-	github.com/DataDog/datadog-agent/pkg/version v0.70.1 // indirect
-	github.com/DataDog/datadog-go/v5 v5.7.1 // indirect
+	github.com/DataDog/datadog-agent/comp/core/tagger/origindetection v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/obfuscate v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/proto v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/trace v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/util/log v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/util/scrubber v0.71.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/version v0.71.0 // indirect
+	github.com/DataDog/datadog-go/v5 v5.8.0 // indirect
 	github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka.v2/v2 v2.2.3 // indirect
 	github.com/DataDog/dd-trace-go/v2 v2.2.3 // indirect
 	github.com/DataDog/go-libddwaf/v4 v4.4.0 // indirect
 	github.com/DataDog/go-runtime-metrics-internal v0.0.4-0.20250721125240-fdf1ef85b633 // indirect
 	github.com/DataDog/go-sqllexer v0.1.8 // indirect
 	github.com/DataDog/go-tuf v1.1.1-0.5.2 // indirect
-	github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/attributes v0.32.0 // indirect
 	github.com/DataDog/sketches-go v1.4.7 // indirect
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
 	github.com/Microsoft/go-winio v0.6.2 // indirect

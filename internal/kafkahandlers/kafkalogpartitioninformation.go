@@ -3,6 +3,7 @@ package kafkahandlers
 import (
 	"curryware-kafka-go-processor/internal/logging"
 	"fmt"
+
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 )
 

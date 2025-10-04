@@ -79,13 +79,18 @@ func ConsumeMessages(topics []string, server string) {
 				statInfoPackage := string(event.Value)
 				statInfoToAdd := jsonhandlers.ParseLeagueStatInfo(statInfoPackage)
 				postgreshandlers.InsertLeagueStatInfo(statInfoToAdd)
+				break
 			case "StatValueTopic":
 				logging.LogInfo("Processing StatValueTopic")
 				statValuePackage := string(event.Value)
 				statValuesToAdd := jsonhandlers.ParseLeagueStatValue(statValuePackage)
 				postgreshandlers.InsertLeagueStatValueInfo(statValuesToAdd)
+				break
+			case "PlayerTopicDaily":
+				logging.LogInfo("Processing PlayerTopicDaily")
 			case "DatadogValidationTopic":
 				logging.LogInfo("Processing DatadogValidationTopic")
+				break
 			default:
 				logging.LogError(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
 				fmt.Println(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))

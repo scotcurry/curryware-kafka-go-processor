@@ -88,6 +88,7 @@ func ConsumeMessages(topics []string, server string) {
 				break
 			case "PlayerTopicDaily":
 				logging.LogInfo("Processing PlayerTopicDaily")
+				break
 			case "DatadogValidationTopic":
 				logging.LogInfo("Processing DatadogValidationTopic")
 				break

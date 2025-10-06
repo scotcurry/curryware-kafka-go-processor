@@ -15,7 +15,12 @@ import (
 // a template from a file in sqltemplate.txt and use that.
 func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
 
-	psqlInfo := GetDatabaseInformation()
+	// TODO: This needs to be refactored.
+	psqlInfo, variableError := GetDatabaseInformation()
+	if variableError != nil {
+		logger.LogError("Error getting database information")
+	}
+
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		fmt.Println("Error opening postgres connection")

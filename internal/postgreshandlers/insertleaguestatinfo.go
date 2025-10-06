@@ -10,7 +10,11 @@ import (
 
 func InsertLeagueStatInfo(leagueStatInfo []fantasyclasses.LeagueStatInfo) int {
 
-	psqlInfo := GetDatabaseInformation()
+	psqlInfo, variableError := GetDatabaseInformation()
+	if variableError != nil {
+		logging.LogError("Error getting database information")
+	}
+
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		logging.LogInfo("Error opening postgres connection")

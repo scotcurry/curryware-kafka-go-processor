@@ -10,6 +10,6 @@ type TransactionInfo struct {
 	TransactionId        int                     `json:"TransactionId"`
 	TransactionType      string                  `json:"TransactionType"`
 	TransactionStatus    string                  `json:"TransactionStatus"`
-	TransactionTimestamp int                     `json:"TransactionTimestamp"`
+	TransactionTimestamp int64                   `json:"TransactionTimestamp"`
 	PlayersInvolved      []TransactionPlayerInfo `json:"PlayersInvolved"`
 }

@@ -1,6 +1,7 @@
 package fantasyclasses
 
 type TransactionInfoWithCount struct {
+	LeagueKey        string            `json:"LeagueKey"`
 	TransactionCount int               `json:"TransactionCount"`
 	Transactions     []TransactionInfo `json:"Transactions"`
 }
@@ -10,6 +11,6 @@ type TransactionInfo struct {
 	TransactionId        int                     `json:"TransactionId"`
 	TransactionType      string                  `json:"TransactionType"`
 	TransactionStatus    string                  `json:"TransactionStatus"`
-	TransactionTimestamp int                     `json:"TransactionTimestamp"`
+	TransactionTimestamp int64                   `json:"TransactionTimestamp"`
 	PlayersInvolved      []TransactionPlayerInfo `json:"PlayersInvolved"`
 }

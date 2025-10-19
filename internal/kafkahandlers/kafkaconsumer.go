@@ -59,6 +59,8 @@ func ConsumeMessages(topics []string, server string) {
 			event, eventError := consumer.ReadMessage(20 * time.Second)
 			if eventError != nil {
 				continue
+			} else {
+				logging.LogInfo("Event received %d bytes", len(event.Value))
 			}
 
 			switch *event.TopicPartition.Topic {
@@ -88,9 +90,21 @@ func ConsumeMessages(topics []string, server string) {
 				break
 			case "PlayerTopicDaily":
 				logging.LogInfo("Processing PlayerTopicDaily")
+				playerPackage := string(event.Value)
+				logging.LogInfo("Player package length: ", len(playerPackage))
+				break
 			case "DatadogValidationTopic":
 				logging.LogInfo("Processing DatadogValidationTopic")
+				dataValidationPackage := string(event.Value)
+				logging.LogInfo("Data validation package length: ", len(dataValidationPackage))
 				break
+			case "TransactionTopic":
+				logging.LogInfo("Processing TransactionTopic")
+				transactionPackage := string(event.Value)
+				transactionJson := jsonhandlers.ParseTransactionInfo(transactionPackage)
+				transactionCount := postgreshandlers.ProcessTransactionInfo(transactionJson)
+				logging.LogDebug("NEEDS TO BE UPDATED: Transaction count: ", transactionCount)
+				logging.LogInfo("Transaction package length: ", len(transactionPackage))
 			default:
 				logging.LogError(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
 				fmt.Println(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))

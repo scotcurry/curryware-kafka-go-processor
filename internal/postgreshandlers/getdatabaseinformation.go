@@ -2,18 +2,23 @@ package postgreshandlers
 
 import (
 	logger "curryware-kafka-go-processor/internal/logging"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
 )
 
-func GetDatabaseInformation() string {
+func GetDatabaseInformation() (string, error) {
 
 	postgresServer := os.Getenv("POSTGRES_SERVER")
 	postgresPort := os.Getenv("POSTGRES_PORT")
 	postgresUser := os.Getenv("POSTGRES_USERNAME")
 	postgresPassword := os.Getenv("POSTGRES_PASSWORD")
 	postgresDb := os.Getenv("POSTGRES_DATABASE")
+
+	if postgresServer == "" || postgresPort == "" || postgresUser == "" || postgresPassword == "" || postgresDb == "" {
+		return "", errors.New("missing environment variables")
+	}
 
 	portInteger, err := strconv.ParseInt(postgresPort, 10, 64)
 	if err != nil {
@@ -27,5 +32,5 @@ func GetDatabaseInformation() string {
 
 	logger.LogInfo(fmt.Sprintf("psqlInfo %s", psqlInfo))
 
-	return psqlInfo
+	return psqlInfo, nil
 }

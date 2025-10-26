@@ -17,7 +17,8 @@ import (
 func ConsumeMessages(topics []string, server string) {
 
 	// Logging code for Datadog.
-	logging.LogInfo("Launching curryware-kafka-go-processor")
+	_, err := ValidateDNSResolution(server, "")
+	logging.LogInfo("Launching ConsumeMessages - curryware-kafka-go-processor on server: " + server)
 	for i := 0; i < len(topics); i++ {
 		fmt.Println(fmt.Sprintf("Consuming Message(s): %s", topics[i]))
 	}
@@ -57,6 +58,7 @@ func ConsumeMessages(topics []string, server string) {
 			run = false
 		default:
 			event, eventError := consumer.ReadMessage(20 * time.Second)
+			logging.LogDebug("Executing Event Loop")
 			if eventError != nil {
 				continue
 			} else {

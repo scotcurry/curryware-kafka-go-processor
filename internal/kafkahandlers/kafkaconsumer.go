@@ -50,9 +50,16 @@ func ConsumeMessages(topics []string, server string) {
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
 	fmt.Println("Jumping into the event loop")
+
+	// This is just a timer that will post a log entry so I know the services is running.
+	ticker := time.NewTicker(300 * time.Second)
+	defer ticker.Stop()
+
 	run := true
 	for run {
 		select {
+		case <-ticker.C:
+			logging.LogInfo("Processing event consumer loop")
 		case sig := <-signalChannel:
 			fmt.Printf("Caught signal %v, exiting\n", sig)
 			run = false

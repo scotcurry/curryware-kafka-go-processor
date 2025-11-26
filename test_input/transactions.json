@@ -1,0 +1,4061 @@
+{
+  "LeagueKey" : "461.l.394957",
+  "TransactionCount" : 195,
+  "Transactions" : [ {
+    "TransactionKey" : "461.l.394957.tr.211",
+    "TransactionId" : 211,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1764150410,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41819",
+      "PlayerId" : 41819,
+      "TransactionKey" : "461.l.394957.tr.211",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.40892",
+      "PlayerId" : 40892,
+      "TransactionKey" : "461.l.394957.tr.211",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.210",
+    "TransactionId" : 210,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1764150410,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100024",
+      "PlayerId" : 100024,
+      "TransactionKey" : "461.l.394957.tr.210",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.8795",
+      "PlayerId" : 8795,
+      "TransactionKey" : "461.l.394957.tr.210",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.209",
+    "TransactionId" : 209,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763918018,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100003",
+      "PlayerId" : 100003,
+      "TransactionKey" : "461.l.394957.tr.209",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.208",
+    "TransactionId" : 208,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763918005,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100029",
+      "PlayerId" : 100029,
+      "TransactionKey" : "461.l.394957.tr.208",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.207",
+    "TransactionId" : 207,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763917576,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41062",
+      "PlayerId" : 41062,
+      "TransactionKey" : "461.l.394957.tr.207",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.206",
+    "TransactionId" : 206,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763911704,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40234",
+      "PlayerId" : 40234,
+      "TransactionKey" : "461.l.394957.tr.206",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.41810",
+      "PlayerId" : 41810,
+      "TransactionKey" : "461.l.394957.tr.206",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.205",
+    "TransactionId" : 205,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763696918,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31137",
+      "PlayerId" : 31137,
+      "TransactionKey" : "461.l.394957.tr.205",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.31977",
+      "PlayerId" : 31977,
+      "TransactionKey" : "461.l.394957.tr.205",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.204",
+    "TransactionId" : 204,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763692895,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100030",
+      "PlayerId" : 100030,
+      "TransactionKey" : "461.l.394957.tr.204",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.100024",
+      "PlayerId" : 100024,
+      "TransactionKey" : "461.l.394957.tr.204",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.203",
+    "TransactionId" : 203,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763692864,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40707",
+      "PlayerId" : 40707,
+      "TransactionKey" : "461.l.394957.tr.203",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.40430",
+      "PlayerId" : 40430,
+      "TransactionKey" : "461.l.394957.tr.203",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.202",
+    "TransactionId" : 202,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763580228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41988",
+      "PlayerId" : 41988,
+      "TransactionKey" : "461.l.394957.tr.202",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.6"
+    }, {
+      "PlayerKey" : "461.p.29754",
+      "PlayerId" : 29754,
+      "TransactionKey" : "461.l.394957.tr.202",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.201",
+    "TransactionId" : 201,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763561164,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32843",
+      "PlayerId" : 32843,
+      "TransactionKey" : "461.l.394957.tr.201",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.30614",
+      "PlayerId" : 30614,
+      "TransactionKey" : "461.l.394957.tr.201",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.200",
+    "TransactionId" : 200,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763559086,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100013",
+      "PlayerId" : 100013,
+      "TransactionKey" : "461.l.394957.tr.200",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.100034",
+      "PlayerId" : 100034,
+      "TransactionKey" : "461.l.394957.tr.200",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.199",
+    "TransactionId" : 199,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763546020,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.29235",
+      "PlayerId" : 29235,
+      "TransactionKey" : "461.l.394957.tr.199",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.31107",
+      "PlayerId" : 31107,
+      "TransactionKey" : "461.l.394957.tr.199",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.198",
+    "TransactionId" : 198,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763546020,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100001",
+      "PlayerId" : 100001,
+      "TransactionKey" : "461.l.394957.tr.198",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.100023",
+      "PlayerId" : 100023,
+      "TransactionKey" : "461.l.394957.tr.198",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.197",
+    "TransactionId" : 197,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763546020,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33113",
+      "PlayerId" : 33113,
+      "TransactionKey" : "461.l.394957.tr.197",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.41951",
+      "PlayerId" : 41951,
+      "TransactionKey" : "461.l.394957.tr.197",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.196",
+    "TransactionId" : 196,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763303983,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34062",
+      "PlayerId" : 34062,
+      "TransactionKey" : "461.l.394957.tr.196",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.4"
+    }, {
+      "PlayerKey" : "461.p.40064",
+      "PlayerId" : 40064,
+      "TransactionKey" : "461.l.394957.tr.196",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.195",
+    "TransactionId" : 195,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763303918,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40742",
+      "PlayerId" : 40742,
+      "TransactionKey" : "461.l.394957.tr.195",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.4"
+    }, {
+      "PlayerKey" : "461.p.31908",
+      "PlayerId" : 31908,
+      "TransactionKey" : "461.l.394957.tr.195",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.194",
+    "TransactionId" : 194,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763259919,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34054",
+      "PlayerId" : 34054,
+      "TransactionKey" : "461.l.394957.tr.194",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.2"
+    }, {
+      "PlayerKey" : "461.p.32725",
+      "PlayerId" : 32725,
+      "TransactionKey" : "461.l.394957.tr.194",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.193",
+    "TransactionId" : 193,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763258039,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30346",
+      "PlayerId" : 30346,
+      "TransactionKey" : "461.l.394957.tr.193",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.27120",
+      "PlayerId" : 27120,
+      "TransactionKey" : "461.l.394957.tr.193",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "freeagents",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.192",
+    "TransactionId" : 192,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763257968,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100023",
+      "PlayerId" : 100023,
+      "TransactionKey" : "461.l.394957.tr.192",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.100011",
+      "PlayerId" : 100011,
+      "TransactionKey" : "461.l.394957.tr.192",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.191",
+    "TransactionId" : 191,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763257904,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.27120",
+      "PlayerId" : 27120,
+      "TransactionKey" : "461.l.394957.tr.191",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.31366",
+      "PlayerId" : 31366,
+      "TransactionKey" : "461.l.394957.tr.191",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.190",
+    "TransactionId" : 190,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763080525,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40121",
+      "PlayerId" : 40121,
+      "TransactionKey" : "461.l.394957.tr.190",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.32231",
+      "PlayerId" : 32231,
+      "TransactionKey" : "461.l.394957.tr.190",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.189",
+    "TransactionId" : 189,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763051028,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.26658",
+      "PlayerId" : 26658,
+      "TransactionKey" : "461.l.394957.tr.189",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.29235",
+      "PlayerId" : 29235,
+      "TransactionKey" : "461.l.394957.tr.189",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.188",
+    "TransactionId" : 188,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763050900,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100033",
+      "PlayerId" : 100033,
+      "TransactionKey" : "461.l.394957.tr.188",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.100002",
+      "PlayerId" : 100002,
+      "TransactionKey" : "461.l.394957.tr.188",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.187",
+    "TransactionId" : 187,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763041306,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33989",
+      "PlayerId" : 33989,
+      "TransactionKey" : "461.l.394957.tr.187",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.186",
+    "TransactionId" : 186,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763013865,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40430",
+      "PlayerId" : 40430,
+      "TransactionKey" : "461.l.394957.tr.186",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.42010",
+      "PlayerId" : 42010,
+      "TransactionKey" : "461.l.394957.tr.186",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.185",
+    "TransactionId" : 185,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1763004124,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40905",
+      "PlayerId" : 40905,
+      "TransactionKey" : "461.l.394957.tr.185",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.42025",
+      "PlayerId" : 42025,
+      "TransactionKey" : "461.l.394957.tr.185",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.184",
+    "TransactionId" : 184,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762951438,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.29325",
+      "PlayerId" : 29325,
+      "TransactionKey" : "461.l.394957.tr.184",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.41988",
+      "PlayerId" : 41988,
+      "TransactionKey" : "461.l.394957.tr.184",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.182",
+    "TransactionId" : 182,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762940722,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31107",
+      "PlayerId" : 31107,
+      "TransactionKey" : "461.l.394957.tr.182",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.30161",
+      "PlayerId" : 30161,
+      "TransactionKey" : "461.l.394957.tr.182",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.181",
+    "TransactionId" : 181,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762940722,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33508",
+      "PlayerId" : 33508,
+      "TransactionKey" : "461.l.394957.tr.181",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.180",
+    "TransactionId" : 180,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762940722,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100034",
+      "PlayerId" : 100034,
+      "TransactionKey" : "461.l.394957.tr.180",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.30346",
+      "PlayerId" : 30346,
+      "TransactionKey" : "461.l.394957.tr.180",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.179",
+    "TransactionId" : 179,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762940722,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34047",
+      "PlayerId" : 34047,
+      "TransactionKey" : "461.l.394957.tr.179",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.33514",
+      "PlayerId" : 33514,
+      "TransactionKey" : "461.l.394957.tr.179",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.178",
+    "TransactionId" : 178,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762706389,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100002",
+      "PlayerId" : 100002,
+      "TransactionKey" : "461.l.394957.tr.178",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.100034",
+      "PlayerId" : 100034,
+      "TransactionKey" : "461.l.394957.tr.178",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.177",
+    "TransactionId" : 177,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762706336,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.8565",
+      "PlayerId" : 8565,
+      "TransactionKey" : "461.l.394957.tr.177",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.41081",
+      "PlayerId" : 41081,
+      "TransactionKey" : "461.l.394957.tr.177",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.175",
+    "TransactionId" : 175,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762591661,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41048",
+      "PlayerId" : 41048,
+      "TransactionKey" : "461.l.394957.tr.175",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.30973",
+      "PlayerId" : 30973,
+      "TransactionKey" : "461.l.394957.tr.175",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.174",
+    "TransactionId" : 174,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762591661,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41810",
+      "PlayerId" : 41810,
+      "TransactionKey" : "461.l.394957.tr.174",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.173",
+    "TransactionId" : 173,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762444026,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41009",
+      "PlayerId" : 41009,
+      "TransactionKey" : "461.l.394957.tr.173",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.100021",
+      "PlayerId" : 100021,
+      "TransactionKey" : "461.l.394957.tr.173",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.172",
+    "TransactionId" : 172,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762401870,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100029",
+      "PlayerId" : 100029,
+      "TransactionKey" : "461.l.394957.tr.172",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.100012",
+      "PlayerId" : 100012,
+      "TransactionKey" : "461.l.394957.tr.172",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.171",
+    "TransactionId" : 171,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762394942,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41922",
+      "PlayerId" : 41922,
+      "TransactionKey" : "461.l.394957.tr.171",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.170",
+    "TransactionId" : 170,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762394920,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41988",
+      "PlayerId" : 41988,
+      "TransactionKey" : "461.l.394957.tr.170",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.169",
+    "TransactionId" : 169,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762394902,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40102",
+      "PlayerId" : 40102,
+      "TransactionKey" : "461.l.394957.tr.169",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.168",
+    "TransactionId" : 168,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762394674,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40896",
+      "PlayerId" : 40896,
+      "TransactionKey" : "461.l.394957.tr.168",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.167",
+    "TransactionId" : 167,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762363038,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34062",
+      "PlayerId" : 34062,
+      "TransactionKey" : "461.l.394957.tr.167",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.165",
+    "TransactionId" : 165,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762335466,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34008",
+      "PlayerId" : 34008,
+      "TransactionKey" : "461.l.394957.tr.165",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.29325",
+      "PlayerId" : 29325,
+      "TransactionKey" : "461.l.394957.tr.165",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.164",
+    "TransactionId" : 164,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762335466,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100005",
+      "PlayerId" : 100005,
+      "TransactionKey" : "461.l.394957.tr.164",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.100030",
+      "PlayerId" : 100030,
+      "TransactionKey" : "461.l.394957.tr.164",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.163",
+    "TransactionId" : 163,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762335466,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41845",
+      "PlayerId" : 41845,
+      "TransactionKey" : "461.l.394957.tr.163",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.41048",
+      "PlayerId" : 41048,
+      "TransactionKey" : "461.l.394957.tr.163",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.162",
+    "TransactionId" : 162,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762335466,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.42025",
+      "PlayerId" : 42025,
+      "TransactionKey" : "461.l.394957.tr.162",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.26658",
+      "PlayerId" : 26658,
+      "TransactionKey" : "461.l.394957.tr.162",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.161",
+    "TransactionId" : 161,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762335466,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30266",
+      "PlayerId" : 30266,
+      "TransactionKey" : "461.l.394957.tr.161",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.100027",
+      "PlayerId" : 100027,
+      "TransactionKey" : "461.l.394957.tr.161",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.160",
+    "TransactionId" : 160,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762335466,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32003",
+      "PlayerId" : 32003,
+      "TransactionKey" : "461.l.394957.tr.160",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.6"
+    }, {
+      "PlayerKey" : "461.p.41810",
+      "PlayerId" : 41810,
+      "TransactionKey" : "461.l.394957.tr.160",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.159",
+    "TransactionId" : 159,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762335466,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100012",
+      "PlayerId" : 100012,
+      "TransactionKey" : "461.l.394957.tr.159",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.100002",
+      "PlayerId" : 100002,
+      "TransactionKey" : "461.l.394957.tr.159",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.158",
+    "TransactionId" : 158,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762134722,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.29325",
+      "PlayerId" : 29325,
+      "TransactionKey" : "461.l.394957.tr.158",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.31833",
+      "PlayerId" : 31833,
+      "TransactionKey" : "461.l.394957.tr.158",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.157",
+    "TransactionId" : 157,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1762054287,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.26658",
+      "PlayerId" : 26658,
+      "TransactionKey" : "461.l.394957.tr.157",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.33113",
+      "PlayerId" : 33113,
+      "TransactionKey" : "461.l.394957.tr.157",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.156",
+    "TransactionId" : 156,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761983278,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100011",
+      "PlayerId" : 100011,
+      "TransactionKey" : "461.l.394957.tr.156",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.100012",
+      "PlayerId" : 100012,
+      "TransactionKey" : "461.l.394957.tr.156",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.155",
+    "TransactionId" : 155,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761936552,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34357",
+      "PlayerId" : 34357,
+      "TransactionKey" : "461.l.394957.tr.155",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.33508",
+      "PlayerId" : 33508,
+      "TransactionKey" : "461.l.394957.tr.155",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.154",
+    "TransactionId" : 154,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761878534,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40075",
+      "PlayerId" : 40075,
+      "TransactionKey" : "461.l.394957.tr.154",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.4"
+    }, {
+      "PlayerKey" : "461.p.40742",
+      "PlayerId" : 40742,
+      "TransactionKey" : "461.l.394957.tr.154",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.153",
+    "TransactionId" : 153,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761870144,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33998",
+      "PlayerId" : 33998,
+      "TransactionKey" : "461.l.394957.tr.153",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.31840",
+      "PlayerId" : 31840,
+      "TransactionKey" : "461.l.394957.tr.153",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.152",
+    "TransactionId" : 152,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761869879,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100034",
+      "PlayerId" : 100034,
+      "TransactionKey" : "461.l.394957.tr.152",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.30996",
+      "PlayerId" : 30996,
+      "TransactionKey" : "461.l.394957.tr.152",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.151",
+    "TransactionId" : 151,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761747223,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100009",
+      "PlayerId" : 100009,
+      "TransactionKey" : "461.l.394957.tr.151",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.100011",
+      "PlayerId" : 100011,
+      "TransactionKey" : "461.l.394957.tr.151",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.150",
+    "TransactionId" : 150,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761746551,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33113",
+      "PlayerId" : 33113,
+      "TransactionKey" : "461.l.394957.tr.150",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.41827",
+      "PlayerId" : 41827,
+      "TransactionKey" : "461.l.394957.tr.150",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.149",
+    "TransactionId" : 149,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761735782,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31833",
+      "PlayerId" : 31833,
+      "TransactionKey" : "461.l.394957.tr.149",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.30551",
+      "PlayerId" : 30551,
+      "TransactionKey" : "461.l.394957.tr.149",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.148",
+    "TransactionId" : 148,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761735545,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100030",
+      "PlayerId" : 100030,
+      "TransactionKey" : "461.l.394957.tr.148",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.100001",
+      "PlayerId" : 100001,
+      "TransactionKey" : "461.l.394957.tr.148",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.145",
+    "TransactionId" : 145,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761726852,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31056",
+      "PlayerId" : 31056,
+      "TransactionKey" : "461.l.394957.tr.145",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.144",
+    "TransactionId" : 144,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761726852,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41081",
+      "PlayerId" : 41081,
+      "TransactionKey" : "461.l.394957.tr.144",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.30266",
+      "PlayerId" : 30266,
+      "TransactionKey" : "461.l.394957.tr.144",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.143",
+    "TransactionId" : 143,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761726852,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41048",
+      "PlayerId" : 41048,
+      "TransactionKey" : "461.l.394957.tr.143",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.41845",
+      "PlayerId" : 41845,
+      "TransactionKey" : "461.l.394957.tr.143",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.142",
+    "TransactionId" : 142,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761726852,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41827",
+      "PlayerId" : 41827,
+      "TransactionKey" : "461.l.394957.tr.142",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.34047",
+      "PlayerId" : 34047,
+      "TransactionKey" : "461.l.394957.tr.142",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.141",
+    "TransactionId" : 141,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761726852,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100014",
+      "PlayerId" : 100014,
+      "TransactionKey" : "461.l.394957.tr.141",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.32843",
+      "PlayerId" : 32843,
+      "TransactionKey" : "461.l.394957.tr.141",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.140",
+    "TransactionId" : 140,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761726852,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41810",
+      "PlayerId" : 41810,
+      "TransactionKey" : "461.l.394957.tr.140",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.6"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.139",
+    "TransactionId" : 139,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761716779,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32174",
+      "PlayerId" : 32174,
+      "TransactionKey" : "461.l.394957.tr.139",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.138",
+    "TransactionId" : 138,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761652539,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40889",
+      "PlayerId" : 40889,
+      "TransactionKey" : "461.l.394957.tr.138",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.137",
+    "TransactionId" : 137,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761602008,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32174",
+      "PlayerId" : 32174,
+      "TransactionKey" : "461.l.394957.tr.137",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.136",
+    "TransactionId" : 136,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761378462,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100012",
+      "PlayerId" : 100012,
+      "TransactionKey" : "461.l.394957.tr.136",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.100004",
+      "PlayerId" : 100004,
+      "TransactionKey" : "461.l.394957.tr.136",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.135",
+    "TransactionId" : 135,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761359188,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32843",
+      "PlayerId" : 32843,
+      "TransactionKey" : "461.l.394957.tr.135",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.100014",
+      "PlayerId" : 100014,
+      "TransactionKey" : "461.l.394957.tr.135",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.134",
+    "TransactionId" : 134,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761291435,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30996",
+      "PlayerId" : 30996,
+      "TransactionKey" : "461.l.394957.tr.134",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.33998",
+      "PlayerId" : 33998,
+      "TransactionKey" : "461.l.394957.tr.134",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.133",
+    "TransactionId" : 133,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761267585,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100027",
+      "PlayerId" : 100027,
+      "TransactionKey" : "461.l.394957.tr.133",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.31005",
+      "PlayerId" : 31005,
+      "TransactionKey" : "461.l.394957.tr.133",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.132",
+    "TransactionId" : 132,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761262156,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31840",
+      "PlayerId" : 31840,
+      "TransactionKey" : "461.l.394957.tr.132",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.32713",
+      "PlayerId" : 32713,
+      "TransactionKey" : "461.l.394957.tr.132",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.131",
+    "TransactionId" : 131,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761262080,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34104",
+      "PlayerId" : 34104,
+      "TransactionKey" : "461.l.394957.tr.131",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.130",
+    "TransactionId" : 130,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761186115,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100002",
+      "PlayerId" : 100002,
+      "TransactionKey" : "461.l.394957.tr.130",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.100030",
+      "PlayerId" : 100030,
+      "TransactionKey" : "461.l.394957.tr.130",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.129",
+    "TransactionId" : 129,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761148357,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34062",
+      "PlayerId" : 34062,
+      "TransactionKey" : "461.l.394957.tr.129",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.26658",
+      "PlayerId" : 26658,
+      "TransactionKey" : "461.l.394957.tr.129",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.128",
+    "TransactionId" : 128,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761148243,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100004",
+      "PlayerId" : 100004,
+      "TransactionKey" : "461.l.394957.tr.128",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.100023",
+      "PlayerId" : 100023,
+      "TransactionKey" : "461.l.394957.tr.128",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.127",
+    "TransactionId" : 127,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761133144,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.8795",
+      "PlayerId" : 8795,
+      "TransactionKey" : "461.l.394957.tr.127",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.33399",
+      "PlayerId" : 33399,
+      "TransactionKey" : "461.l.394957.tr.127",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.124",
+    "TransactionId" : 124,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761121616,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.28188",
+      "PlayerId" : 28188,
+      "TransactionKey" : "461.l.394957.tr.124",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.41081",
+      "PlayerId" : 41081,
+      "TransactionKey" : "461.l.394957.tr.124",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.123",
+    "TransactionId" : 123,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761121616,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100001",
+      "PlayerId" : 100001,
+      "TransactionKey" : "461.l.394957.tr.123",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.100009",
+      "PlayerId" : 100009,
+      "TransactionKey" : "461.l.394957.tr.123",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.122",
+    "TransactionId" : 122,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761121616,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41951",
+      "PlayerId" : 41951,
+      "TransactionKey" : "461.l.394957.tr.122",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.28592",
+      "PlayerId" : 28592,
+      "TransactionKey" : "461.l.394957.tr.122",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.121",
+    "TransactionId" : 121,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761121616,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40039",
+      "PlayerId" : 40039,
+      "TransactionKey" : "461.l.394957.tr.121",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.31056",
+      "PlayerId" : 31056,
+      "TransactionKey" : "461.l.394957.tr.121",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.120",
+    "TransactionId" : 120,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761121616,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100011",
+      "PlayerId" : 100011,
+      "TransactionKey" : "461.l.394957.tr.120",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.100012",
+      "PlayerId" : 100012,
+      "TransactionKey" : "461.l.394957.tr.120",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.119",
+    "TransactionId" : 119,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761121616,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31005",
+      "PlayerId" : 31005,
+      "TransactionKey" : "461.l.394957.tr.119",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.40911",
+      "PlayerId" : 40911,
+      "TransactionKey" : "461.l.394957.tr.119",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.118",
+    "TransactionId" : 118,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761121616,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.7200",
+      "PlayerId" : 7200,
+      "TransactionKey" : "461.l.394957.tr.118",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.7"
+    }, {
+      "PlayerKey" : "461.p.26662",
+      "PlayerId" : 26662,
+      "TransactionKey" : "461.l.394957.tr.118",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.117",
+    "TransactionId" : 117,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761098902,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30996",
+      "PlayerId" : 30996,
+      "TransactionKey" : "461.l.394957.tr.117",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.116",
+    "TransactionId" : 116,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1761057930,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41293",
+      "PlayerId" : 41293,
+      "TransactionKey" : "461.l.394957.tr.116",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.115",
+    "TransactionId" : 115,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760821818,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41904",
+      "PlayerId" : 41904,
+      "TransactionKey" : "461.l.394957.tr.115",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.31017",
+      "PlayerId" : 31017,
+      "TransactionKey" : "461.l.394957.tr.115",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.114",
+    "TransactionId" : 114,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760813222,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33998",
+      "PlayerId" : 33998,
+      "TransactionKey" : "461.l.394957.tr.114",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.40075",
+      "PlayerId" : 40075,
+      "TransactionKey" : "461.l.394957.tr.114",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.113",
+    "TransactionId" : 113,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760785245,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41293",
+      "PlayerId" : 41293,
+      "TransactionKey" : "461.l.394957.tr.113",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.112",
+    "TransactionId" : 112,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760671230,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.99001",
+      "PlayerId" : 99001,
+      "TransactionKey" : "461.l.394957.tr.112",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.40039",
+      "PlayerId" : 40039,
+      "TransactionKey" : "461.l.394957.tr.112",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.111",
+    "TransactionId" : 111,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760671100,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40030",
+      "PlayerId" : 40030,
+      "TransactionKey" : "461.l.394957.tr.111",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.34104",
+      "PlayerId" : 34104,
+      "TransactionKey" : "461.l.394957.tr.111",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.110",
+    "TransactionId" : 110,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760663727,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100026",
+      "PlayerId" : 100026,
+      "TransactionKey" : "461.l.394957.tr.110",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.4"
+    }, {
+      "PlayerKey" : "461.p.100033",
+      "PlayerId" : 100033,
+      "TransactionKey" : "461.l.394957.tr.110",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.109",
+    "TransactionId" : 109,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760564007,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100012",
+      "PlayerId" : 100012,
+      "TransactionKey" : "461.l.394957.tr.109",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.100013",
+      "PlayerId" : 100013,
+      "TransactionKey" : "461.l.394957.tr.109",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.106",
+    "TransactionId" : 106,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760516735,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31482",
+      "PlayerId" : 31482,
+      "TransactionKey" : "461.l.394957.tr.106",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.28188",
+      "PlayerId" : 28188,
+      "TransactionKey" : "461.l.394957.tr.106",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.105",
+    "TransactionId" : 105,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760516735,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100017",
+      "PlayerId" : 100017,
+      "TransactionKey" : "461.l.394957.tr.105",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.6"
+    }, {
+      "PlayerKey" : "461.p.100011",
+      "PlayerId" : 100011,
+      "TransactionKey" : "461.l.394957.tr.105",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.104",
+    "TransactionId" : 104,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760514192,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41902",
+      "PlayerId" : 41902,
+      "TransactionKey" : "461.l.394957.tr.104",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.2"
+    }, {
+      "PlayerKey" : "461.p.41009",
+      "PlayerId" : 41009,
+      "TransactionKey" : "461.l.394957.tr.104",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.103",
+    "TransactionId" : 103,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760514002,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33389",
+      "PlayerId" : 33389,
+      "TransactionKey" : "461.l.394957.tr.103",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.2"
+    }, {
+      "PlayerKey" : "461.p.31833",
+      "PlayerId" : 31833,
+      "TransactionKey" : "461.l.394957.tr.103",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.102",
+    "TransactionId" : 102,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760513857,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.28378",
+      "PlayerId" : 28378,
+      "TransactionKey" : "461.l.394957.tr.102",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.2"
+    }, {
+      "PlayerKey" : "461.p.8565",
+      "PlayerId" : 8565,
+      "TransactionKey" : "461.l.394957.tr.102",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.101",
+    "TransactionId" : 101,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760304680,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32384",
+      "PlayerId" : 32384,
+      "TransactionKey" : "461.l.394957.tr.101",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.100",
+    "TransactionId" : 100,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760277311,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31366",
+      "PlayerId" : 31366,
+      "TransactionKey" : "461.l.394957.tr.100",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.27120",
+      "PlayerId" : 27120,
+      "TransactionKey" : "461.l.394957.tr.100",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.99",
+    "TransactionId" : 99,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760154108,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41877",
+      "PlayerId" : 41877,
+      "TransactionKey" : "461.l.394957.tr.99",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.98",
+    "TransactionId" : 98,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760146367,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.28188",
+      "PlayerId" : 28188,
+      "TransactionKey" : "461.l.394957.tr.98",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.97",
+    "TransactionId" : 97,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760106146,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100011",
+      "PlayerId" : 100011,
+      "TransactionKey" : "461.l.394957.tr.97",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.6"
+    }, {
+      "PlayerKey" : "461.p.100034",
+      "PlayerId" : 100034,
+      "TransactionKey" : "461.l.394957.tr.97",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.96",
+    "TransactionId" : 96,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760081241,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.26658",
+      "PlayerId" : 26658,
+      "TransactionKey" : "461.l.394957.tr.96",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.95",
+    "TransactionId" : 95,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760071662,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100028",
+      "PlayerId" : 100028,
+      "TransactionKey" : "461.l.394957.tr.95",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.2"
+    }, {
+      "PlayerKey" : "461.p.100016",
+      "PlayerId" : 100016,
+      "TransactionKey" : "461.l.394957.tr.95",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.94",
+    "TransactionId" : 94,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760071003,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41052",
+      "PlayerId" : 41052,
+      "TransactionKey" : "461.l.394957.tr.94",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.93",
+    "TransactionId" : 93,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760059452,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30136",
+      "PlayerId" : 30136,
+      "TransactionKey" : "461.l.394957.tr.93",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "freeagents",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.92",
+    "TransactionId" : 92,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760059363,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30136",
+      "PlayerId" : 30136,
+      "TransactionKey" : "461.l.394957.tr.92",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.40078",
+      "PlayerId" : 40078,
+      "TransactionKey" : "461.l.394957.tr.92",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.91",
+    "TransactionId" : 91,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1760057151,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32713",
+      "PlayerId" : 32713,
+      "TransactionKey" : "461.l.394957.tr.91",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.31107",
+      "PlayerId" : 31107,
+      "TransactionKey" : "461.l.394957.tr.91",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.90",
+    "TransactionId" : 90,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759972371,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30551",
+      "PlayerId" : 30551,
+      "TransactionKey" : "461.l.394957.tr.90",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.33113",
+      "PlayerId" : 33113,
+      "TransactionKey" : "461.l.394957.tr.90",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.89",
+    "TransactionId" : 89,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759970044,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100014",
+      "PlayerId" : 100014,
+      "TransactionKey" : "461.l.394957.tr.89",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.100005",
+      "PlayerId" : 100005,
+      "TransactionKey" : "461.l.394957.tr.89",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.88",
+    "TransactionId" : 88,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759960533,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100030",
+      "PlayerId" : 100030,
+      "TransactionKey" : "461.l.394957.tr.88",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.100012",
+      "PlayerId" : 100012,
+      "TransactionKey" : "461.l.394957.tr.88",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.87",
+    "TransactionId" : 87,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759946247,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100023",
+      "PlayerId" : 100023,
+      "TransactionKey" : "461.l.394957.tr.87",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.100020",
+      "PlayerId" : 100020,
+      "TransactionKey" : "461.l.394957.tr.87",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.86",
+    "TransactionId" : 86,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759932218,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41081",
+      "PlayerId" : 41081,
+      "TransactionKey" : "461.l.394957.tr.86",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.41988",
+      "PlayerId" : 41988,
+      "TransactionKey" : "461.l.394957.tr.86",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.85",
+    "TransactionId" : 85,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759930111,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100013",
+      "PlayerId" : 100013,
+      "TransactionKey" : "461.l.394957.tr.85",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.100022",
+      "PlayerId" : 100022,
+      "TransactionKey" : "461.l.394957.tr.85",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.83",
+    "TransactionId" : 83,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40078",
+      "PlayerId" : 40078,
+      "TransactionKey" : "461.l.394957.tr.83",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.31840",
+      "PlayerId" : 31840,
+      "TransactionKey" : "461.l.394957.tr.83",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.82",
+    "TransactionId" : 82,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100021",
+      "PlayerId" : 100021,
+      "TransactionKey" : "461.l.394957.tr.82",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.100002",
+      "PlayerId" : 100002,
+      "TransactionKey" : "461.l.394957.tr.82",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.81",
+    "TransactionId" : 81,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100009",
+      "PlayerId" : 100009,
+      "TransactionKey" : "461.l.394957.tr.81",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.100026",
+      "PlayerId" : 100026,
+      "TransactionKey" : "461.l.394957.tr.81",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.80",
+    "TransactionId" : 80,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31977",
+      "PlayerId" : 31977,
+      "TransactionKey" : "461.l.394957.tr.80",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.41093",
+      "PlayerId" : 41093,
+      "TransactionKey" : "461.l.394957.tr.80",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.79",
+    "TransactionId" : 79,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32384",
+      "PlayerId" : 32384,
+      "TransactionKey" : "461.l.394957.tr.79",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.41499",
+      "PlayerId" : 41499,
+      "TransactionKey" : "461.l.394957.tr.79",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.78",
+    "TransactionId" : 78,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.27120",
+      "PlayerId" : 27120,
+      "TransactionKey" : "461.l.394957.tr.78",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.29792",
+      "PlayerId" : 29792,
+      "TransactionKey" : "461.l.394957.tr.78",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.77",
+    "TransactionId" : 77,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30614",
+      "PlayerId" : 30614,
+      "TransactionKey" : "461.l.394957.tr.77",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.99001",
+      "PlayerId" : 99001,
+      "TransactionKey" : "461.l.394957.tr.77",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.76",
+    "TransactionId" : 76,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759917590,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40742",
+      "PlayerId" : 40742,
+      "TransactionKey" : "461.l.394957.tr.76",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.4"
+    }, {
+      "PlayerKey" : "461.p.41902",
+      "PlayerId" : 41902,
+      "TransactionKey" : "461.l.394957.tr.76",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.75",
+    "TransactionId" : 75,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759894465,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.26658",
+      "PlayerId" : 26658,
+      "TransactionKey" : "461.l.394957.tr.75",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.74",
+    "TransactionId" : 74,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759850511,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33998",
+      "PlayerId" : 33998,
+      "TransactionKey" : "461.l.394957.tr.74",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.73",
+    "TransactionId" : 73,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759693317,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.32671",
+      "PlayerId" : 32671,
+      "TransactionKey" : "461.l.394957.tr.73",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.72",
+    "TransactionId" : 72,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759679113,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31107",
+      "PlayerId" : 31107,
+      "TransactionKey" : "461.l.394957.tr.72",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    }, {
+      "PlayerKey" : "461.p.41795",
+      "PlayerId" : 41795,
+      "TransactionKey" : "461.l.394957.tr.72",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.71",
+    "TransactionId" : 71,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759662497,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33100",
+      "PlayerId" : 33100,
+      "TransactionKey" : "461.l.394957.tr.71",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.40108",
+      "PlayerId" : 40108,
+      "TransactionKey" : "461.l.394957.tr.71",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.70",
+    "TransactionId" : 70,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759534842,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.28592",
+      "PlayerId" : 28592,
+      "TransactionKey" : "461.l.394957.tr.70",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.69",
+    "TransactionId" : 69,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759534831,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41293",
+      "PlayerId" : 41293,
+      "TransactionKey" : "461.l.394957.tr.69",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "freeagents",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.68",
+    "TransactionId" : 68,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759505510,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41293",
+      "PlayerId" : 41293,
+      "TransactionKey" : "461.l.394957.tr.68",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.67",
+    "TransactionId" : 67,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759448572,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33495",
+      "PlayerId" : 33495,
+      "TransactionKey" : "461.l.394957.tr.67",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.7"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.66",
+    "TransactionId" : 66,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759448435,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40835",
+      "PlayerId" : 40835,
+      "TransactionKey" : "461.l.394957.tr.66",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.7"
+    }, {
+      "PlayerKey" : "461.p.28188",
+      "PlayerId" : 28188,
+      "TransactionKey" : "461.l.394957.tr.66",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.65",
+    "TransactionId" : 65,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759332478,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34047",
+      "PlayerId" : 34047,
+      "TransactionKey" : "461.l.394957.tr.65",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.64",
+    "TransactionId" : 64,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759321053,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33399",
+      "PlayerId" : 33399,
+      "TransactionKey" : "461.l.394957.tr.64",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.33389",
+      "PlayerId" : 33389,
+      "TransactionKey" : "461.l.394957.tr.64",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.61",
+    "TransactionId" : 61,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33998",
+      "PlayerId" : 33998,
+      "TransactionKey" : "461.l.394957.tr.61",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.40899",
+      "PlayerId" : 40899,
+      "TransactionKey" : "461.l.394957.tr.61",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.60",
+    "TransactionId" : 60,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41093",
+      "PlayerId" : 41093,
+      "TransactionKey" : "461.l.394957.tr.60",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.33537",
+      "PlayerId" : 33537,
+      "TransactionKey" : "461.l.394957.tr.60",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.59",
+    "TransactionId" : 59,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31019",
+      "PlayerId" : 31019,
+      "TransactionKey" : "461.l.394957.tr.59",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.41904",
+      "PlayerId" : 41904,
+      "TransactionKey" : "461.l.394957.tr.59",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.58",
+    "TransactionId" : 58,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40108",
+      "PlayerId" : 40108,
+      "TransactionKey" : "461.l.394957.tr.58",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.31005",
+      "PlayerId" : 31005,
+      "TransactionKey" : "461.l.394957.tr.58",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.57",
+    "TransactionId" : 57,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30973",
+      "PlayerId" : 30973,
+      "TransactionKey" : "461.l.394957.tr.57",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.32671",
+      "PlayerId" : 32671,
+      "TransactionKey" : "461.l.394957.tr.57",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.56",
+    "TransactionId" : 56,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100022",
+      "PlayerId" : 100022,
+      "TransactionKey" : "461.l.394957.tr.56",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.100017",
+      "PlayerId" : 100017,
+      "TransactionKey" : "461.l.394957.tr.56",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.55",
+    "TransactionId" : 55,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100005",
+      "PlayerId" : 100005,
+      "TransactionKey" : "461.l.394957.tr.55",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.54",
+    "TransactionId" : 54,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759313910,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34104",
+      "PlayerId" : 34104,
+      "TransactionKey" : "461.l.394957.tr.54",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.9"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.53",
+    "TransactionId" : 53,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759265672,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100009",
+      "PlayerId" : 100009,
+      "TransactionKey" : "461.l.394957.tr.53",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.52",
+    "TransactionId" : 52,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759218747,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.29399",
+      "PlayerId" : 29399,
+      "TransactionKey" : "461.l.394957.tr.52",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.51",
+    "TransactionId" : 51,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759076004,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.26662",
+      "PlayerId" : 26662,
+      "TransactionKey" : "461.l.394957.tr.51",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.7"
+    }, {
+      "PlayerKey" : "461.p.34104",
+      "PlayerId" : 34104,
+      "TransactionKey" : "461.l.394957.tr.51",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.50",
+    "TransactionId" : 50,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1759024520,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41904",
+      "PlayerId" : 41904,
+      "TransactionKey" : "461.l.394957.tr.50",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.30182",
+      "PlayerId" : 30182,
+      "TransactionKey" : "461.l.394957.tr.50",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.49",
+    "TransactionId" : 49,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758841646,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40114",
+      "PlayerId" : 40114,
+      "TransactionKey" : "461.l.394957.tr.49",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.4"
+    }, {
+      "PlayerKey" : "461.p.34107",
+      "PlayerId" : 34107,
+      "TransactionKey" : "461.l.394957.tr.49",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.48",
+    "TransactionId" : 48,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758841555,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41902",
+      "PlayerId" : 41902,
+      "TransactionKey" : "461.l.394957.tr.48",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.4"
+    }, {
+      "PlayerKey" : "461.p.40095",
+      "PlayerId" : 40095,
+      "TransactionKey" : "461.l.394957.tr.48",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.47",
+    "TransactionId" : 47,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758825687,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100017",
+      "PlayerId" : 100017,
+      "TransactionKey" : "461.l.394957.tr.47",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.100014",
+      "PlayerId" : 100014,
+      "TransactionKey" : "461.l.394957.tr.47",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.46",
+    "TransactionId" : 46,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758825386,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30199",
+      "PlayerId" : 30199,
+      "TransactionKey" : "461.l.394957.tr.46",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.41048",
+      "PlayerId" : 41048,
+      "TransactionKey" : "461.l.394957.tr.46",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.45",
+    "TransactionId" : 45,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758711254,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40042",
+      "PlayerId" : 40042,
+      "TransactionKey" : "461.l.394957.tr.45",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.40093",
+      "PlayerId" : 40093,
+      "TransactionKey" : "461.l.394957.tr.45",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.43",
+    "TransactionId" : 43,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758707757,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31056",
+      "PlayerId" : 31056,
+      "TransactionKey" : "461.l.394957.tr.43",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.42",
+    "TransactionId" : 42,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758707757,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40958",
+      "PlayerId" : 40958,
+      "TransactionKey" : "461.l.394957.tr.42",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.7"
+    }, {
+      "PlayerKey" : "461.p.41881",
+      "PlayerId" : 41881,
+      "TransactionKey" : "461.l.394957.tr.42",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.41",
+    "TransactionId" : 41,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758707757,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41499",
+      "PlayerId" : 41499,
+      "TransactionKey" : "461.l.394957.tr.41",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.41062",
+      "PlayerId" : 41062,
+      "TransactionKey" : "461.l.394957.tr.41",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.40",
+    "TransactionId" : 40,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758707757,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100002",
+      "PlayerId" : 100002,
+      "TransactionKey" : "461.l.394957.tr.40",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.100001",
+      "PlayerId" : 100001,
+      "TransactionKey" : "461.l.394957.tr.40",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.39",
+    "TransactionId" : 39,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758687715,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30218",
+      "PlayerId" : 30218,
+      "TransactionKey" : "461.l.394957.tr.39",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.38",
+    "TransactionId" : 38,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758687681,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40905",
+      "PlayerId" : 40905,
+      "TransactionKey" : "461.l.394957.tr.38",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.37",
+    "TransactionId" : 37,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758474198,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41009",
+      "PlayerId" : 41009,
+      "TransactionKey" : "461.l.394957.tr.37",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.2"
+    }, {
+      "PlayerKey" : "461.p.40063",
+      "PlayerId" : 40063,
+      "TransactionKey" : "461.l.394957.tr.37",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.36",
+    "TransactionId" : 36,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758468397,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100001",
+      "PlayerId" : 100001,
+      "TransactionKey" : "461.l.394957.tr.36",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.100023",
+      "PlayerId" : 100023,
+      "TransactionKey" : "461.l.394957.tr.36",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.35",
+    "TransactionId" : 35,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758250161,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.29269",
+      "PlayerId" : 29269,
+      "TransactionKey" : "461.l.394957.tr.35",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.34",
+    "TransactionId" : 34,
+    "TransactionType" : "drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758250042,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33465",
+      "PlayerId" : 33465,
+      "TransactionKey" : "461.l.394957.tr.34",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.33",
+    "TransactionId" : 33,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758223595,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.8565",
+      "PlayerId" : 8565,
+      "TransactionKey" : "461.l.394957.tr.33",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.2"
+    }, {
+      "PlayerKey" : "461.p.31199",
+      "PlayerId" : 31199,
+      "TransactionKey" : "461.l.394957.tr.33",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.32",
+    "TransactionId" : 32,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758222669,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33392",
+      "PlayerId" : 33392,
+      "TransactionKey" : "461.l.394957.tr.32",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.31056",
+      "PlayerId" : 31056,
+      "TransactionKey" : "461.l.394957.tr.32",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.31",
+    "TransactionId" : 31,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758154973,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40051",
+      "PlayerId" : 40051,
+      "TransactionKey" : "461.l.394957.tr.31",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.31857",
+      "PlayerId" : 31857,
+      "TransactionKey" : "461.l.394957.tr.31",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.30",
+    "TransactionId" : 30,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758115621,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100009",
+      "PlayerId" : 100009,
+      "TransactionKey" : "461.l.394957.tr.30",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.100025",
+      "PlayerId" : 100025,
+      "TransactionKey" : "461.l.394957.tr.30",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.28",
+    "TransactionId" : 28,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758103228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.26699",
+      "PlayerId" : 26699,
+      "TransactionKey" : "461.l.394957.tr.28",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.32843",
+      "PlayerId" : 32843,
+      "TransactionKey" : "461.l.394957.tr.28",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.27",
+    "TransactionId" : 27,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758103228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31005",
+      "PlayerId" : 31005,
+      "TransactionKey" : "461.l.394957.tr.27",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.40958",
+      "PlayerId" : 40958,
+      "TransactionKey" : "461.l.394957.tr.27",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.26",
+    "TransactionId" : 26,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758103228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.26658",
+      "PlayerId" : 26658,
+      "TransactionKey" : "461.l.394957.tr.26",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.30136",
+      "PlayerId" : 30136,
+      "TransactionKey" : "461.l.394957.tr.26",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.25",
+    "TransactionId" : 25,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758103228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.34088",
+      "PlayerId" : 34088,
+      "TransactionKey" : "461.l.394957.tr.25",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.40042",
+      "PlayerId" : 40042,
+      "TransactionKey" : "461.l.394957.tr.25",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.24",
+    "TransactionId" : 24,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758103228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100026",
+      "PlayerId" : 100026,
+      "TransactionKey" : "461.l.394957.tr.24",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.100022",
+      "PlayerId" : 100022,
+      "TransactionKey" : "461.l.394957.tr.24",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.23",
+    "TransactionId" : 23,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758103228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31838",
+      "PlayerId" : 31838,
+      "TransactionKey" : "461.l.394957.tr.23",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.22",
+    "TransactionId" : 22,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1758103228,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40900",
+      "PlayerId" : 40900,
+      "TransactionKey" : "461.l.394957.tr.22",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.8"
+    }, {
+      "PlayerKey" : "461.p.33399",
+      "PlayerId" : 33399,
+      "TransactionKey" : "461.l.394957.tr.22",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.21",
+    "TransactionId" : 21,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757798399,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100022",
+      "PlayerId" : 100022,
+      "TransactionKey" : "461.l.394957.tr.21",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.100002",
+      "PlayerId" : 100002,
+      "TransactionKey" : "461.l.394957.tr.21",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.20",
+    "TransactionId" : 20,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757797286,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.33113",
+      "PlayerId" : 33113,
+      "TransactionKey" : "461.l.394957.tr.20",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.31019",
+      "PlayerId" : 31019,
+      "TransactionKey" : "461.l.394957.tr.20",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.19",
+    "TransactionId" : 19,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757788165,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.31857",
+      "PlayerId" : 31857,
+      "TransactionKey" : "461.l.394957.tr.19",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.41892",
+      "PlayerId" : 41892,
+      "TransactionKey" : "461.l.394957.tr.19",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.18",
+    "TransactionId" : 18,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757720992,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41062",
+      "PlayerId" : 41062,
+      "TransactionKey" : "461.l.394957.tr.18",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.30426",
+      "PlayerId" : 30426,
+      "TransactionKey" : "461.l.394957.tr.18",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.17",
+    "TransactionId" : 17,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757634295,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40093",
+      "PlayerId" : 40093,
+      "TransactionKey" : "461.l.394957.tr.17",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.40126",
+      "PlayerId" : 40126,
+      "TransactionKey" : "461.l.394957.tr.17",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.16",
+    "TransactionId" : 16,
+    "TransactionType" : "add",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757598812,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40889",
+      "PlayerId" : 40889,
+      "TransactionKey" : "461.l.394957.tr.16",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.6"
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.14",
+    "TransactionId" : 14,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757498769,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41988",
+      "PlayerId" : 41988,
+      "TransactionKey" : "461.l.394957.tr.14",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.40835",
+      "PlayerId" : 40835,
+      "TransactionKey" : "461.l.394957.tr.14",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.13",
+    "TransactionId" : 13,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757498769,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40958",
+      "PlayerId" : 40958,
+      "TransactionKey" : "461.l.394957.tr.13",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.40981",
+      "PlayerId" : 40981,
+      "TransactionKey" : "461.l.394957.tr.13",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.12",
+    "TransactionId" : 12,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757498769,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40905",
+      "PlayerId" : 40905,
+      "TransactionKey" : "461.l.394957.tr.12",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.40030",
+      "PlayerId" : 40030,
+      "TransactionKey" : "461.l.394957.tr.12",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.11",
+    "TransactionId" : 11,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757498769,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100014",
+      "PlayerId" : 100014,
+      "TransactionKey" : "461.l.394957.tr.11",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.3"
+    }, {
+      "PlayerKey" : "461.p.100021",
+      "PlayerId" : 100021,
+      "TransactionKey" : "461.l.394957.tr.11",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.10",
+    "TransactionId" : 10,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757229583,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40835",
+      "PlayerId" : 40835,
+      "TransactionKey" : "461.l.394957.tr.10",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.10"
+    }, {
+      "PlayerKey" : "461.p.32858",
+      "PlayerId" : 32858,
+      "TransactionKey" : "461.l.394957.tr.10",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.9",
+    "TransactionId" : 9,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1757099606,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.41892",
+      "PlayerId" : 41892,
+      "TransactionKey" : "461.l.394957.tr.9",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.1"
+    }, {
+      "PlayerKey" : "461.p.30423",
+      "PlayerId" : 30423,
+      "TransactionKey" : "461.l.394957.tr.9",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.8",
+    "TransactionId" : 8,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1756987696,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30266",
+      "PlayerId" : 30266,
+      "TransactionKey" : "461.l.394957.tr.8",
+      "TransactionType" : "add",
+      "TransactionSource" : "freeagents",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.12"
+    }, {
+      "PlayerKey" : "461.p.40835",
+      "PlayerId" : 40835,
+      "TransactionKey" : "461.l.394957.tr.8",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.7",
+    "TransactionId" : 7,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1756711122,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.100025",
+      "PlayerId" : 100025,
+      "TransactionKey" : "461.l.394957.tr.7",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.41824",
+      "PlayerId" : 41824,
+      "TransactionKey" : "461.l.394957.tr.7",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.6",
+    "TransactionId" : 6,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1756711122,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.30346",
+      "PlayerId" : 30346,
+      "TransactionKey" : "461.l.394957.tr.6",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.5"
+    }, {
+      "PlayerKey" : "461.p.32695",
+      "PlayerId" : 32695,
+      "TransactionKey" : "461.l.394957.tr.6",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  }, {
+    "TransactionKey" : "461.l.394957.tr.5",
+    "TransactionId" : 5,
+    "TransactionType" : "add/drop",
+    "TransactionStatus" : "successful",
+    "TransactionTimestamp" : 1756711122,
+    "PlayersInvolved" : [ {
+      "PlayerKey" : "461.p.40030",
+      "PlayerId" : 40030,
+      "TransactionKey" : "461.l.394957.tr.5",
+      "TransactionType" : "add",
+      "TransactionSource" : "waivers",
+      "DestinationType" : "team",
+      "DestinationTeamId" : "461.l.394957.t.11"
+    }, {
+      "PlayerKey" : "461.p.40900",
+      "PlayerId" : 40900,
+      "TransactionKey" : "461.l.394957.tr.5",
+      "TransactionType" : "drop",
+      "TransactionSource" : "team",
+      "DestinationType" : "waivers",
+      "DestinationTeamId" : ""
+    } ]
+  } ]
+}

@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-func ExecuteSqlStatement(sqlStatement string, sqlParams []interface{}) int64 {
+func ExecuteSqlStatement(sqlStatement string, sqlParams []any) (int64, error) {
 
 	db := GetDB()
 	result, err := db.Exec(sqlStatement, sqlParams...)
@@ -17,7 +17,11 @@ func ExecuteSqlStatement(sqlStatement string, sqlParams []interface{}) int64 {
 	}
 
 	rowsAffected, err := result.RowsAffected()
-	return rowsAffected
+	if err != nil {
+		logger.LogError("Error getting rows affected", "error", err.Error())
+		return 0, err
+	}
+	return rowsAffected, nil
 }
 
 func ExecuteGetLatestTransactionSelectStatement(sqlStatement string, leagueId string) (int, int) {

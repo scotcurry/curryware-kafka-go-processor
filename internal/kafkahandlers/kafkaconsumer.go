@@ -42,11 +42,21 @@ func ConsumeMessages(topics []string, server string) {
 		panic(err)
 	}
 
-	// List where the last commit happened.  To do this you need to have to pass in the TopicPartitions, so get those
+	// List where the last commit happened.  To do this, you need to have to pass in the TopicPartitions, so get those
 	// first.
 	err = consumer.SubscribeTopics(topics, nil)
 	signalChannel := make(chan os.Signal, 1)
 	signal.Notify(signalChannel, syscall.SIGINT, syscall.SIGTERM)
+
+	// This is where all topic handlers get built out.  This makes it easier to add them as they come online.
+	// see the bottom of this file for implementations.
+	topicHandlers := map[string]func(*kafka.Message){
+		"PlayerStats":            processPlayerStats,
+		"StatValueTopic":         processStatValueTopic,
+		"PlayerTopicDaily":       processPlayerTopicDaily,
+		"DatadogValidationTopic": processDatadogValidationTopic,
+		"TransactionTopic":       processTransactionTopic,
+	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
 	fmt.Println("Jumping into the event loop")
@@ -72,52 +82,56 @@ func ConsumeMessages(topics []string, server string) {
 				logging.LogInfo("Event received %d bytes", len(event.Value))
 			}
 
-			switch *event.TopicPartition.Topic {
-			case "PlayerStats":
-				logging.LogInfo("Processing PlayerStats")
-				statPackage := string(event.Value)
-				statsInfo := jsonhandlers.ParseMultipleStatInfo(statPackage)
-				postgreshandlers.InsertPlayerStats(statsInfo)
-				break
-			case "PlayerTopic2":
-				logging.LogInfo("Processing PlayerTopic2")
-				playerPackage := string(event.Value)
-				playersToAdd := jsonhandlers.ParseMultiplePlayerInfo(playerPackage)
-				postgreshandlers.InsertPlayerRecord(playersToAdd)
-				break
-			case "StatTopic":
-				logging.LogInfo("Processing StatTopic")
-				statInfoPackage := string(event.Value)
-				statInfoToAdd := jsonhandlers.ParseLeagueStatInfo(statInfoPackage)
-				postgreshandlers.InsertLeagueStatInfo(statInfoToAdd)
-				break
-			case "StatValueTopic":
-				logging.LogInfo("Processing StatValueTopic")
-				statValuePackage := string(event.Value)
-				statValuesToAdd := jsonhandlers.ParseLeagueStatValue(statValuePackage)
-				postgreshandlers.InsertLeagueStatValueInfo(statValuesToAdd)
-				break
-			case "PlayerTopicDaily":
-				logging.LogInfo("Processing PlayerTopicDaily")
-				playerPackage := string(event.Value)
-				logging.LogInfo("Player package length: ", len(playerPackage))
-				break
-			case "DatadogValidationTopic":
-				logging.LogInfo("Processing DatadogValidationTopic")
-				dataValidationPackage := string(event.Value)
-				logging.LogInfo("Data validation package length: ", len(dataValidationPackage))
-				break
-			case "TransactionTopic":
-				logging.LogInfo("Processing TransactionTopic")
-				transactionPackage := string(event.Value)
-				transactionJson := jsonhandlers.ParseTransactionInfo(transactionPackage)
-				transactionCount := postgreshandlers.ProcessTransactionInfo(transactionJson)
-				logging.LogDebug("NEEDS TO BE UPDATED: Transaction count: ", transactionCount)
-				logging.LogInfo("Transaction package length: ", len(transactionPackage))
-			default:
-				logging.LogError(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
-				fmt.Println(fmt.Sprintf("Unknown topic - %s", *event.TopicPartition.Topic))
+			topic := *event.TopicPartition.Topic
+			if handler, ok := topicHandlers[topic]; ok {
+				handler(event)
+			} else {
+				logging.LogError(fmt.Sprintf("No handler for topic %s", topic))
+				fmt.Println(fmt.Sprintf("No handler for topic %s", topic))
 			}
 		}
 	}
+}
+
+func processPlayerStats(event *kafka.Message) {
+
+	logging.LogInfo("Processing PlayerStats")
+	statPackage := string(event.Value)
+	statsInfo := jsonhandlers.ParseMultipleStatInfo(statPackage)
+	postgreshandlers.InsertPlayerStats(statsInfo)
+}
+
+func processPlayerTopicDaily(event *kafka.Message) {
+
+	logging.LogInfo("Processing PlayerTopicDaily")
+	playerPackage := string(event.Value)
+	logging.LogInfo("Player package length: ", len(playerPackage))
+}
+
+func processDatadogValidationTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing DatadogValidationTopic")
+	dataValidationPackage := string(event.Value)
+	logging.LogInfo("Data validation package length: ", len(dataValidationPackage))
+}
+
+func processStatValueTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing StatValueTopic")
+	statValuePackage := string(event.Value)
+	statValuesToAdd, err := jsonhandlers.ParseLeagueStatValue(statValuePackage)
+	if err != nil {
+		logging.LogError("Error parsing stat values")
+	}
+	postgreshandlers.InsertLeagueStatValueInfo(statValuesToAdd)
+}
+
+func processTransactionTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing TransactionTopic")
+	transactionPackage := string(event.Value)
+	transactionJson := jsonhandlers.ParseTransactionInfo(transactionPackage)
+	transactionCount := postgreshandlers.ProcessTransactionInfo(transactionJson)
+	logging.LogDebug("NEEDS TO BE UPDATED: Transaction count: ", transactionCount)
+	logging.LogInfo("Transaction package length: ", len(transactionPackage))
 }

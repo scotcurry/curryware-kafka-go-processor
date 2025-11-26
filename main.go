@@ -3,6 +3,7 @@ package main
 import (
 	"curryware-kafka-go-processor/internal/kafkahandlers"
 	"curryware-kafka-go-processor/internal/logging"
+	"curryware-kafka-go-processor/internal/postgreshandlers"
 	"os"
 	"os/signal"
 	"syscall"
@@ -14,8 +15,13 @@ import (
 func main() {
 
 	// Set up the Datadog Tracer.
-	currentPath, _ := os.Getwd()
-	logging.LogInfo(currentPath)
+	currentPath, err := os.Getwd()
+	if err != nil {
+		logging.LogError("Error getting current working directory", "error", err.Error())
+	} else {
+		logging.LogInfo("Current working directory", "path", currentPath)
+	}
+
 	tracer.Start(tracer.WithService("curryware-kafka-go-processor"),
 		tracer.WithServiceVersion("1.0.1"),
 		tracer.WithEnv("prod"),
@@ -32,7 +38,9 @@ func main() {
 	// When the SIGTERM signal is received, it sends it to this go routine, which stops the tracer and closes the app.
 	go func() {
 		<-sigChan
+		logging.LogInfo("Received SIGTERM signal, shutting down gracefully...")
 		tracer.Stop()
+		_ = postgreshandlers.CloseDB()
 		os.Exit(0)
 	}()
 
@@ -41,6 +49,9 @@ func main() {
 
 	// Setting up logging.  JSON format.
 	logging.LogInfo("Launching curryware-kafka-go-processor...")
+
+	// This is to "fail fast" if the database connection fails.
+	_ = postgreshandlers.GetDB()
 
 	// This is going to get the servername from the environment variable to make debugging easier.
 	server := kafkahandlers.GetKafkaServer()
@@ -51,6 +62,10 @@ func main() {
 
 	// This code runs in a loop that is always true.  The syscall.SIGTERM above is the handler for breaking out
 	// of this code.
-	topicsToMonitor := kafkahandlers.GetTopicNames(server)
+	topicsToMonitor, err := kafkahandlers.GetTopicNames(server)
+	if err != nil {
+		logging.LogError("Error getting topic names from Kafka server", "error", err.Error())
+		os.Exit(1002)
+	}
 	kafkahandlers.ConsumeMessages(topicsToMonitor, server)
 }

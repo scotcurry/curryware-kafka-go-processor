@@ -7,8 +7,11 @@ import (
 	"time"
 )
 
+// db is a global variable that can be used by all the database function calls.
 var (
-	db   *sql.DB
+	db *sql.DB
+
+	// once is used to ensure a function is executed only once, typically for initialization purposes.
 	once sync.Once
 )
 

@@ -3,33 +3,12 @@ package postgreshandlers
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses"
 	"curryware-kafka-go-processor/internal/logging"
-	"database/sql"
-	"fmt"
 	"strconv"
-
-	_ "github.com/lib/pq"
 )
 
 func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
-
-	// TODO: This needs to be refactored.
-	psqlInfo, variableError := GetDatabaseInformation()
-	if variableError != nil {
-		logging.LogError("Error getting database information")
-	}
-
-	db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		logging.LogInfo("Error opening postgres connection")
-		fmt.Println("Error opening postgres connection")
-		panic(err)
-	}
-	defer func(db *sql.DB) {
-		err := db.Close()
-		if err != nil {
-			fmt.Println("Error closing postgres connection")
-		}
-	}(db)
+	// Use the singleton database connection pool
+	db := GetDB()
 	sqlStatement := `INSERT INTO player_info (player_id, player_season_key, player_name, player_status, 
                          player_status_full, player_url,  player_team, player_bye_week, player_uniform_number, 
                          player_position, player_headshot, player_injury_notes) 
@@ -52,20 +31,16 @@ func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
 		res, err := db.Exec(sqlStatement, playerId, playerKey, playerName, playerStatus, playerStatusFull, playerUrl,
 			playerTeam, playerByeWeek, playerUniformNumber, playerPosition, playerHeadshot, playerInjuryNotes)
 		if err != nil {
-			logging.LogError("Error inserting player record")
-			fmt.Println("Error inserting player record")
+			logging.LogError("Error inserting player record", "error", err.Error(), "player_id", playerId)
 			panic(err)
-		} else {
-			count, err := res.RowsAffected()
-			if err != nil {
-				logging.LogError("Error getting rows affected")
-				fmt.Println("Error getting rows affected")
-				panic(err)
-			} else {
-				logging.LogInfo("Rows affected", strconv.Itoa(int(count)))
-				fmt.Println("Rows affected: " + strconv.Itoa(int(count)))
-			}
 		}
+
+		count, err := res.RowsAffected()
+		if err != nil {
+			logging.LogError("Error getting rows affected", "error", err.Error())
+			panic(err)
+		}
+		logging.LogInfo("Rows affected", "count", strconv.Itoa(int(count)))
 	}
-	logging.LogInfo(fmt.Sprintf("Done inserting player records. Total records: %s", strconv.Itoa(len(playerInfo))))
+	logging.LogInfo("Done inserting player records", "total_records", strconv.Itoa(len(playerInfo)))
 }

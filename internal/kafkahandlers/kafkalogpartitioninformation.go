@@ -7,15 +7,15 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 )
 
-// GetTopicNames If you don't pass in a topic and ask for all topics they are returned using this call.
-func GetTopicNames(server string) []string {
+// GetTopicNames If you don't pass in a topic and ask for all topics, they are returned using this call.
+func GetTopicNames(server string) ([]string, error) {
 
 	adminClient, err := kafka.NewAdminClient(&kafka.ConfigMap{
 		"bootstrap.servers": server,
 	})
 	if err != nil {
-		fmt.Println("Error building admin client")
-		panic(err)
+		logging.LogError("Error building admin client")
+		return nil, fmt.Errorf("error building admin client: %v", err)
 	}
 	defer adminClient.Close()
 
@@ -33,8 +33,8 @@ func GetTopicNames(server string) []string {
 			}
 		}
 	} else {
-		fmt.Println("No metadata")
+		logging.LogError("No metadata")
 	}
 
-	return allTopics
+	return allTopics, nil
 }

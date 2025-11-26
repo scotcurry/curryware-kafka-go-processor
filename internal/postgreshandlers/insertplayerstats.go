@@ -3,7 +3,6 @@ package postgreshandlers
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
-	"database/sql"
 	"fmt"
 	"strconv"
 	"strings"
@@ -14,24 +13,8 @@ import (
 // case it to throw an error on the insert statement if it isn't complete filled out, so there is code to go pull
 // a template from a file in sqltemplate.txt and use that.
 func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
-
-	// TODO: This needs to be refactored.
-	psqlInfo, variableError := GetDatabaseInformation()
-	if variableError != nil {
-		logger.LogError("Error getting database information")
-	}
-
-	db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		fmt.Println("Error opening postgres connection")
-		panic(err)
-	}
-	defer func(db *sql.DB) {
-		err := db.Close()
-		if err != nil {
-			fmt.Println("Error closing postgres connection")
-		}
-	}(db)
+	// Use the singleton database connection pool
+	db := GetDB()
 
 	insertValues := ""
 	for _, stat := range statsJson {
@@ -54,18 +37,15 @@ func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
 
 		res, err := db.Exec(sqlStatement)
 		if err != nil {
-			logger.LogError(fmt.Sprintf("Error inserting player stats: SQL Statement: %s\n", sqlStatement))
-			logger.LogError(err.Error())
+			logger.LogError("Error inserting player stats", "error", err.Error(), "sql_statement", sqlStatement)
 			panic(err)
-		} else {
-			count, err := res.RowsAffected()
-			if err != nil {
-				fmt.Println("Error getting rows affected.")
-				logger.LogError(err.Error())
-				panic(err)
-			} else {
-				logger.LogInfo(fmt.Sprintf("Rows affected: %d", count))
-			}
 		}
+
+		count, err := res.RowsAffected()
+		if err != nil {
+			logger.LogError("Error getting rows affected", "error", err.Error())
+			panic(err)
+		}
+		logger.LogInfo("Rows affected", "count", count)
 	}
 }

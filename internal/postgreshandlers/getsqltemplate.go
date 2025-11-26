@@ -13,6 +13,10 @@ func GetSqlTemplate(templateName string) string {
 
 	// Validate that this works in K8s
 	currentDirectory, err := os.Getwd()
+	if err != nil {
+		logger.LogError("Error getting current working directory", "error", err.Error())
+		return ""
+	}
 	pathToFile := path.Join(currentDirectory, "internal", "postgreshandlers", "sqltemplates", "sqltemplate.txt")
 	_, err = os.Stat(pathToFile)
 	if os.IsNotExist(err) {

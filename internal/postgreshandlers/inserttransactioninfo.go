@@ -11,8 +11,9 @@ func ProcessTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCo
 	leagueKey := transactionJson.LeagueKey
 	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(leagueKey)
 	println(databaseLastTransaction)
+	println(lastTransactionDate)
 	// No transactions in the database, so we need to insert everything.
-	rowCount := insertTransactionInfo(transactionJson, lastTransactionDate)
+	rowCount := insertTransactionInfo(transactionJson)
 	logger.LogInfo("Database Last Transaction: {1}", databaseLastTransaction)
 
 	return rowCount
@@ -28,35 +29,35 @@ func getLastTransactionFromDatabase(leagueKey string) (int64, int64) {
 }
 
 // This is to set the pointer so the next time only new transactions are inserted.
-func updateLatestTransactions(transactionJson fantasyclasses.TransactionInfoWithCount, latestTransaction int, lastTransactionDate int) int64 {
+//func updateLatestTransactions(transactionJson fantasyclasses.TransactionInfoWithCount, latestTransaction int, lastTransactionDate int) int64 {
+//
+//	leagueKey := transactionJson.LeagueKey
+//
+//	var rows int64 = 0
+//	for counter := 0; counter < len(transactionJson.Transactions); counter++ {
+//		transactionDate := int(transactionJson.Transactions[counter].TransactionTimestamp)
+//		if transactionDate > lastTransactionDate {
+//			transactionToInsert := transactionJson.Transactions[counter]
+//			rows, err := insertTransactionDetail(transactionToInsert)
+//			if err != nil {
+//				logger.LogError("Error inserting transaction info: ", err)
+//			}
+//			logger.LogInfo("Rows inserted: {1}", rows)
+//		}
+//	}
+//
+//	updateLatestTransactionStatement := "UPDATE latest_transaction_id SET league_latest_transaction = $1 WHERE league_transaction_id = $2"
+//	sqlParams := make([]interface{}, 0)
+//	sqlParams = append(sqlParams, latestTransaction)
+//	sqlParams = append(sqlParams, leagueKey)
+//	rows, err := ExecuteSqlStatement(updateLatestTransactionStatement, sqlParams)
+//	if err != nil {
+//		logger.LogError("Error updating latest transaction id: ", err)
+//	}
+//	return rows
+//}
 
-	leagueKey := transactionJson.LeagueKey
-
-	var rows int64 = 0
-	for counter := 0; counter < len(transactionJson.Transactions); counter++ {
-		transactionDate := int(transactionJson.Transactions[counter].TransactionTimestamp)
-		if transactionDate > lastTransactionDate {
-			transactionToInsert := transactionJson.Transactions[counter]
-			rows, err := insertTransactionDetail(transactionToInsert)
-			if err != nil {
-				logger.LogError("Error inserting transaction info: ", err)
-			}
-			logger.LogInfo("Rows inserted: {1}", rows)
-		}
-	}
-
-	updateLatestTransactionStatement := "UPDATE latest_transaction_id SET league_latest_transaction = $1 WHERE league_transaction_id = $2"
-	sqlParams := make([]interface{}, 0)
-	sqlParams = append(sqlParams, latestTransaction)
-	sqlParams = append(sqlParams, leagueKey)
-	rows, err := ExecuteSqlStatement(updateLatestTransactionStatement, sqlParams)
-	if err != nil {
-		logger.LogError("Error updating latest transaction id: ", err)
-	}
-	return rows
-}
-
-func insertTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCount, lastTransactionDate int64) int64 {
+func insertTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCount) int64 {
 
 	var totalRows int64 = 0
 	allTransactions := transactionJson.Transactions
@@ -100,7 +101,7 @@ func insertTransactionDetail(transactionToInsert fantasyclasses.TransactionInfo)
 		logger.LogInfo("No rows inserted for transaction key: {1}, record exists", "transactionKey", transactionKey)
 		return rowCount, nil
 	}
-	logger.LogInfo("Rows inserted: {1}", rowCount)
+	logger.LogInfo("Rows inserted: ", "rowCount", rowCount)
 
 	players := transactionToInsert.PlayersInvolved
 

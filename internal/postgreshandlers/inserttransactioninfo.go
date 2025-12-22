@@ -3,6 +3,7 @@ package postgreshandlers
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
+	"fmt"
 	"time"
 )
 
@@ -10,8 +11,8 @@ func ProcessTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCo
 
 	leagueKey := transactionJson.LeagueKey
 	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(leagueKey)
-	println(databaseLastTransaction)
-	println(lastTransactionDate)
+	fmt.Println(databaseLastTransaction)
+	fmt.Println(lastTransactionDate)
 	// No transactions in the database, so we need to insert everything.
 	rowCount := insertTransactionInfo(transactionJson)
 	logger.LogInfo("Database Last Transaction: {1}", databaseLastTransaction)
@@ -74,9 +75,11 @@ func insertTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCou
 
 func insertTransactionDetail(transactionToInsert fantasyclasses.TransactionInfo) (int64, error) {
 
-	transactionInfoSqlStatement := "INSERT INTO transaction_info (transaction_key, transaction_id, transaction_type, transaction_status, transaction_time) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (transaction_key) DO NOTHING;"
+	transactionInfoSqlStatement := "INSERT INTO transaction_info (game_id, league_id, transaction_key, transaction_id, transaction_type, transaction_status, transaction_time) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT (transaction_key) DO NOTHING;"
 	var totalRowsAdded int64 = 0
 
+	gameId := transactionToInsert.GameID
+	leagueId := transactionToInsert.LeagueID
 	transactionKey := transactionToInsert.TransactionKey
 	transactionId := transactionToInsert.TransactionId
 	transactionType := transactionToInsert.TransactionType
@@ -85,6 +88,8 @@ func insertTransactionDetail(transactionToInsert fantasyclasses.TransactionInfo)
 	timestamp := time.Unix(transactionTime, 0)
 
 	sqlParams := make([]interface{}, 0)
+	sqlParams = append(sqlParams, gameId)
+	sqlParams = append(sqlParams, leagueId)
 	sqlParams = append(sqlParams, transactionKey)
 	sqlParams = append(sqlParams, transactionId)
 	sqlParams = append(sqlParams, transactionType)

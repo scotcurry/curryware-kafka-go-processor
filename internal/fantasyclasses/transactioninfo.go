@@ -7,6 +7,8 @@ type TransactionInfoWithCount struct {
 }
 
 type TransactionInfo struct {
+	GameID               int64                   `json:"GameId"`
+	LeagueID             int64                   `json:"LeagueId"`
 	TransactionKey       string                  `json:"TransactionKey"`
 	TransactionId        int                     `json:"TransactionId"`
 	TransactionType      string                  `json:"TransactionType"`

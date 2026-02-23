@@ -28,34 +28,33 @@ func InsertLeagueStatValueInfo(leagueStatValueInfo []fantasyclasses.LeagueStatsV
 		}
 	}(db)
 
-	sqlStatement := `INSERT INTO league_scoring_value_information (league_stat_key, league_game_id, league_id, 
+	sqlStatement := `INSERT INTO league_scoring_value_information (game_id, league_id, 
                                               league_stat_id, league_stat_value) 
-					VALUES ($1, $2, $3, $4, $5)`
+					VALUES ($1, $2, $3, $4)`
 
 	for counter := 0; counter < len(leagueStatValueInfo); counter++ {
 
-		leagueStatKey := leagueStatValueInfo[counter].LeagueStatId
-		leagueStatId := leagueStatValueInfo[counter].StatId
 		leagueGameId := leagueStatValueInfo[counter].GameId
 		leagueId := leagueStatValueInfo[counter].LeagueId
+		leagueStatId := leagueStatValueInfo[counter].StatId
 		leagueStatValue := leagueStatValueInfo[counter].StatValue
 
-		res, err := db.Exec(sqlStatement, leagueStatKey, leagueStatId, leagueGameId, leagueId, leagueStatValue)
+		res, err := db.Exec(sqlStatement, leagueGameId, leagueId, leagueStatId, leagueStatValue)
 		if err != nil {
 			logging.LogError("Error inserting stat record")
 			fmt.Println("Error inserting stat record")
 			panic(err)
-		} else {
-			count, err := res.RowsAffected()
-			if err != nil {
-				logging.LogError("Error getting stat rows affected")
-				fmt.Println("Error getting stat rows affected")
-				panic(err)
-			} else {
-				logging.LogInfo("Stat rows affected", strconv.Itoa(int(count)))
-				fmt.Println("Stat rows affected: " + strconv.Itoa(int(count)))
-			}
 		}
+
+		count, err := res.RowsAffected()
+		if err != nil {
+			logging.LogError("Error getting stat rows affected")
+			fmt.Println("Error getting stat rows affected")
+			panic(err)
+		}
+
+		logging.LogInfo("Stat rows affected", strconv.Itoa(int(count)))
+		fmt.Println("Stat rows affected: " + strconv.Itoa(int(count)))
 	}
 	logging.LogInfo(fmt.Sprintf("Done inserting player records. Total records: %s",
 		strconv.Itoa(len(leagueStatValueInfo))))

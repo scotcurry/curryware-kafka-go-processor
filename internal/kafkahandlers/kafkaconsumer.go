@@ -84,6 +84,7 @@ func ConsumeMessages(topics []string, server string) {
 
 			topic := *event.TopicPartition.Topic
 			if handler, ok := topicHandlers[topic]; ok {
+				logging.LogInfo(fmt.Sprintf("Processing topic %s", topic))
 				handler(event)
 			} else {
 				logging.LogError(fmt.Sprintf("No handler for topic %s", topic))
@@ -106,6 +107,7 @@ func processPlayerTopicDaily(event *kafka.Message) {
 	logging.LogInfo("Processing PlayerTopicDaily")
 	playerPackage := string(event.Value)
 	logging.LogInfo("Player package length: ", len(playerPackage))
+	postgreshandlers.InsertPlayerRecord(jsonhandlers.ParseMultiplePlayerInfo(playerPackage))
 }
 
 func processDatadogValidationTopic(event *kafka.Message) {

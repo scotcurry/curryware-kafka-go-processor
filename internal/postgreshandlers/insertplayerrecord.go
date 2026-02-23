@@ -9,10 +9,10 @@ import (
 func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
 	// Use the singleton database connection pool
 	db := GetDB()
-	sqlStatement := `INSERT INTO player_info (player_id, player_season_key, player_name, player_status, 
+	sqlStatement := `INSERT INTO player_info_snapshot (player_id, player_season_key, player_name, player_status, 
                          player_status_full, player_url,  player_team, player_bye_week, player_uniform_number, 
                          player_position, player_headshot, player_injury_notes) 
-					VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`
+					VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) ON CONFLICT DO NOTHING`
 	for counter := 0; counter < len(playerInfo); counter++ {
 
 		playerId := playerInfo[counter].PlayerID

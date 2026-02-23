@@ -96,6 +96,10 @@ func insertTransactionDetail(transactionToInsert fantasyclasses.TransactionInfo)
 	sqlParams = append(sqlParams, transactionStatus)
 	sqlParams = append(sqlParams, timestamp)
 
+	if gameId == 0 || leagueId == 0 {
+		logger.LogError("GameId or LeagueId is 0")
+	}
+
 	rowCount, err := ExecuteSqlStatement(transactionInfoSqlStatement, sqlParams)
 	if err != nil {
 		logger.LogError("Error inserting transaction info: ", err)

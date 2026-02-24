@@ -8,7 +8,8 @@ import (
 	"strconv"
 )
 
-func InsertLeagueStatValueInfo(leagueStatValueInfo []fantasyclasses.LeagueStatsValueInfo) int {
+// InsertLeagueStatValueInfo TODO:  This is complete function needs to be revisited.  Completely wrong.
+func InsertLeagueStatValueInfo(leagueStatValueInfo []fantasyclasses.PlayerStatValueInfo) int {
 
 	psqlInfo, variableError := GetDatabaseInformation()
 	if variableError != nil {
@@ -34,8 +35,8 @@ func InsertLeagueStatValueInfo(leagueStatValueInfo []fantasyclasses.LeagueStatsV
 
 	for counter := 0; counter < len(leagueStatValueInfo); counter++ {
 
-		leagueGameId := leagueStatValueInfo[counter].GameId
-		leagueId := leagueStatValueInfo[counter].LeagueId
+		leagueGameId := leagueStatValueInfo[counter].PlayerGameKey
+		leagueId := leagueStatValueInfo[counter].StatId
 		leagueStatId := leagueStatValueInfo[counter].StatId
 		leagueStatValue := leagueStatValueInfo[counter].StatValue
 

@@ -12,16 +12,16 @@ import (
 // (test case pulls 310 stats) is it creates a single values string.  There is something with Go compiler check that
 // case it to throw an error on the insert statement if it isn't complete filled out, so there is code to go pull
 // a template from a file in sqltemplate.txt and use that.
-func InsertPlayerStats(statsJson []fantasyclasses.StatsInfo) {
+func InsertPlayerStats(statsJson []fantasyclasses.PlayerStatValueInfo) {
 	// Use the singleton database connection pool
 	db := GetDB()
 
 	insertValues := ""
 	for _, stat := range statsJson {
 		statId := stat.StatId
-		playerId := stat.PlayerID
-		gameKey := stat.GameKey
-		weekKey := stat.WeekKey
+		playerId := stat.PlayerId
+		gameKey := stat.PlayerGameKey
+		weekKey := stat.PlayerStatWeek
 		statValue := stat.StatValue
 
 		valueLine := "(" + strconv.Itoa(playerId) + "," + strconv.Itoa(gameKey) + "," + strconv.Itoa(weekKey) + "," + strconv.Itoa(statId) + "," + strconv.FormatFloat(statValue, 'f', 2, 64) + "),"

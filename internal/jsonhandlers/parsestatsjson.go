@@ -8,12 +8,12 @@ import (
 	"fmt"
 )
 
-func ParseMultipleStatInfo(statsInfo string) []fantasyclasses.StatsInfo {
+func ParseMultipleStatInfo(statsInfo string) []fantasyclasses.PlayerWeeklyStatsInfo {
 
 	decodedBytes, err := base64.StdEncoding.DecodeString(statsInfo)
 	statsInfo = string(decodedBytes)
 
-	var multipleStatInfo []fantasyclasses.StatsInfo
+	var multipleStatInfo []fantasyclasses.PlayerWeeklyStatsInfo
 	err = json.Unmarshal([]byte(statsInfo), &multipleStatInfo)
 	if err != nil {
 		fmt.Println("Error parsing player info")

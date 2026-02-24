@@ -1,6 +1,6 @@
 package fantasyclasses
 
-type StatsInfo struct {
+type PlayerWeeklyStatsInfo struct {
 	PlayerID  int     `json:"PlayerId"`
 	GameKey   int     `json:"GameKey"`
 	WeekKey   int     `json:"WeekKey"`

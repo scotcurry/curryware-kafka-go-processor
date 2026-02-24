@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 )
 
-func ParseLeagueStatValue(statsInfo string) ([]fantasyclasses.LeagueStatsValueInfo, error) {
+func ParseLeagueStatValues(statsInfo string) ([]fantasyclasses.PlayerStatValueInfo, error) {
 
 	decodedBytes, err := base64.StdEncoding.DecodeString(statsInfo)
 
@@ -15,7 +15,7 @@ func ParseLeagueStatValue(statsInfo string) ([]fantasyclasses.LeagueStatsValueIn
 		logging.LogError("Error Parsing Stat Values JSON ", err)
 		return nil, err
 	}
-	var statValueStruct []fantasyclasses.LeagueStatsValueInfo
+	var statValueStruct []fantasyclasses.PlayerStatValueInfo
 	err = json.Unmarshal(decodedBytes, &statValueStruct)
 
 	return statValueStruct, nil

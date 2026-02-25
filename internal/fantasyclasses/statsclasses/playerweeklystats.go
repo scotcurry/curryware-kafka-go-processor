@@ -1,8 +1,8 @@
-package fantasyclasses
+package statsclasses
 
-type PlayerStatValueInfo struct {
+type PlayerWeeklyStatsInfo struct {
 	PlayerId       int     `json:"playerId"`
-	PlayerGameKey  int     `json:"playerGameKey"`
+	PlayerGameKey  string  `json:"playerGameKey"`
 	PlayerStatWeek int     `json:"playerStatWeek"`
 	StatId         int     `json:"statId"`
 	StatValue      float64 `json:"statValue"`

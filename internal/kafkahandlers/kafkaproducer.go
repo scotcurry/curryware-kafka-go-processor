@@ -2,9 +2,10 @@ package kafkahandlers
 
 import (
 	"fmt"
-	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
-	ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
 	"strings"
+
+	ddkafka "github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka.v2/v2"
+	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
 )
 
 func ProduceMessage(topic string, server string) {

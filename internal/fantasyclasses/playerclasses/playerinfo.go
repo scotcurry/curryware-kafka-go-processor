@@ -1,4 +1,4 @@
-package fantasyclasses
+package playerclasses
 
 type PlayerInfo struct {
 	PlayerSeasonId      string `json:"Key"`

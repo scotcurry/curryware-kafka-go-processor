@@ -1,4 +1,4 @@
-package fantasyclasses
+package transactionclasses
 
 type TransactionPlayerInfo struct {
 	PlayerKey         string `json:"PlayerKey"`

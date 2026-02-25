@@ -1,4 +1,4 @@
-package fantasyclasses
+package leagueclasses
 
 type LeagueStatsValueInfo struct {
 	LeagueStatId int     `json:"LeagueStatKey"`

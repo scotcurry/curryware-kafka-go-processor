@@ -1,14 +1,14 @@
 package postgreshandlers
 
 import (
-	"curryware-kafka-go-processor/internal/fantasyclasses"
+	"curryware-kafka-go-processor/internal/fantasyclasses/leagueclasses"
 	"curryware-kafka-go-processor/internal/logging"
 	"database/sql"
 	"fmt"
 	"strconv"
 )
 
-func InsertLeagueStatInfo(leagueStatInfo []fantasyclasses.LeagueStatInfo) int {
+func InsertLeagueStatInfo(leagueStatInfo []leagueclasses.LeagueStatDescriptionInfo) int {
 
 	psqlInfo, variableError := GetDatabaseInformation()
 	if variableError != nil {

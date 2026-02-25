@@ -1,6 +1,6 @@
-package fantasyclasses
+package leagueclasses
 
-type LeagueStatInfo struct {
+type LeagueStatDescriptionInfo struct {
 	LeagueStatId     int    `json:"LeagueStatKey"`
 	StatId           int    `json:"StatId"`
 	StatEnabled      bool   `json:"StatEnabled"`

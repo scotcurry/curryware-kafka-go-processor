@@ -1,13 +1,13 @@
 package postgreshandlers
 
 import (
-	"curryware-kafka-go-processor/internal/fantasyclasses"
+	"curryware-kafka-go-processor/internal/fantasyclasses/transactionclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"fmt"
 	"time"
 )
 
-func ProcessTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCount) int64 {
+func ProcessTransactionInfo(transactionJson transactionclasses.TransactionInfoWithCount) int64 {
 
 	leagueKey := transactionJson.LeagueKey
 	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(leagueKey)
@@ -58,7 +58,7 @@ func getLastTransactionFromDatabase(leagueKey string) (int64, int64) {
 //	return rows
 //}
 
-func insertTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCount) int64 {
+func insertTransactionInfo(transactionJson transactionclasses.TransactionInfoWithCount) int64 {
 
 	var totalRows int64 = 0
 	allTransactions := transactionJson.Transactions
@@ -73,7 +73,7 @@ func insertTransactionInfo(transactionJson fantasyclasses.TransactionInfoWithCou
 	return totalRows
 }
 
-func insertTransactionDetail(transactionToInsert fantasyclasses.TransactionInfo) (int64, error) {
+func insertTransactionDetail(transactionToInsert transactionclasses.TransactionInfo) (int64, error) {
 
 	transactionInfoSqlStatement := "INSERT INTO transaction_info (game_id, league_id, transaction_key, transaction_id, transaction_type, transaction_status, transaction_time) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT (transaction_key) DO NOTHING;"
 	var totalRowsAdded int64 = 0

@@ -1,6 +1,9 @@
 package kafkahandlers
 
 import (
+	"curryware-kafka-go-processor/internal/fantasyclasses/playerclasses"
+	"curryware-kafka-go-processor/internal/fantasyclasses/statsclasses"
+	"curryware-kafka-go-processor/internal/fantasyclasses/transactionclasses"
 	"curryware-kafka-go-processor/internal/jsonhandlers"
 	"curryware-kafka-go-processor/internal/logging"
 	"curryware-kafka-go-processor/internal/postgreshandlers"
@@ -10,8 +13,10 @@ import (
 	"syscall"
 	"time"
 
+	ddkafka "github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka.v2/v2"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
-	ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
+	// "github.com/confluentinc/confluent-kafka-go/v2/kafka"
+	// ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
 )
 
 func ConsumeMessages(topics []string, server string) {
@@ -51,7 +56,8 @@ func ConsumeMessages(topics []string, server string) {
 	// This is where all topic handlers get built out.  This makes it easier to add them as they come online.
 	// see the bottom of this file for implementations.
 	topicHandlers := map[string]func(*kafka.Message){
-		"StatValueTopic":         processStatValueTopic,
+		// TODO:  Clean this up.
+		// "StatValueTopic":         processStatValueTopic,
 		"PlayerTopicDaily":       processPlayerTopicDaily,
 		"DatadogValidationTopic": processDatadogValidationTopic,
 		"TransactionTopic":       processTransactionTopic,
@@ -61,7 +67,7 @@ func ConsumeMessages(topics []string, server string) {
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
 	fmt.Println("Jumping into the event loop")
 
-	// This is just a timer that will post a log entry so I know the services is running.
+	// This is just a timer that will post a log entry, so I know the services is running.
 	ticker := time.NewTicker(300 * time.Second)
 	defer ticker.Stop()
 
@@ -94,20 +100,17 @@ func ConsumeMessages(topics []string, server string) {
 	}
 }
 
-//func processPlayerStats(event *kafka.Message) {
-//
-//	logging.LogInfo("Processing PlayerStats")
-//	statPackage := string(event.Value)
-//	statsInfo := jsonhandlers.ParseMultipleStatInfo(statPackage)
-//	postgreshandlers.InsertPlayerStats(statsInfo)
-//}
-
 func processPlayerTopicDaily(event *kafka.Message) {
 
 	logging.LogInfo("Processing PlayerTopicDaily")
 	playerPackage := string(event.Value)
 	logging.LogInfo("Player package length: ", len(playerPackage))
-	postgreshandlers.InsertPlayerRecord(jsonhandlers.ParseMultiplePlayerInfo(playerPackage))
+	players, err := jsonhandlers.ParseJSON[[]playerclasses.PlayerInfo](playerPackage)
+	if err != nil {
+		logging.LogError("Error parsing player info")
+		return
+	}
+	postgreshandlers.InsertPlayerRecord(players)
 }
 
 func processDatadogValidationTopic(event *kafka.Message) {
@@ -117,23 +120,27 @@ func processDatadogValidationTopic(event *kafka.Message) {
 	logging.LogInfo("Data validation package length: ", len(dataValidationPackage))
 }
 
-func processStatValueTopic(event *kafka.Message) {
-
-	logging.LogInfo("Processing StatValueTopic")
-	statValuePackage := string(event.Value)
-	statValuesToAdd, err := jsonhandlers.ParseLeagueStatValues(statValuePackage)
-	if err != nil {
-		logging.LogError("Error parsing stat values")
-	}
-	// TODO:  This needs to be updated to use new StatsValueClass.
-	postgreshandlers.InsertLeagueStatValueInfo(statValuesToAdd)
-}
+//func processStatValueTopic(event *kafka.Message) {
+//
+//	logging.LogInfo("Processing StatValueTopic")
+//	statValuePackage := string(event.Value)
+//	statValuesToAdd, err := jsonhandlers.ParseLeagueStatValues(statValuePackage)
+//	if err != nil {
+//		logging.LogError("Error parsing stat values")
+//	}
+//	// TODO:  This needs to be updated to use new StatsValueClass.
+//	postgreshandlers.InsertLeagueStatValueInfo(statValuesToAdd)
+//}
 
 func processTransactionTopic(event *kafka.Message) {
 
 	logging.LogInfo("Processing TransactionTopic")
 	transactionPackage := string(event.Value)
-	transactionJson := jsonhandlers.ParseTransactionInfo(transactionPackage)
+	transactionJson, err := jsonhandlers.ParseJSON[transactionclasses.TransactionInfoWithCount](transactionPackage)
+	if err != nil {
+		logging.LogError("Error parsing transaction info")
+		return
+	}
 	transactionCount := postgreshandlers.ProcessTransactionInfo(transactionJson)
 	logging.LogDebug("NEEDS TO BE UPDATED: Transaction count: ", transactionCount)
 	logging.LogInfo("Transaction package length: ", len(transactionPackage))
@@ -143,7 +150,7 @@ func processStatisticsTopic(event *kafka.Message) {
 
 	logging.LogInfo("Processing StatisticsTopic")
 	statsPackage := string(event.Value)
-	statisticsInfo, err := jsonhandlers.ParseLeagueStatValues(statsPackage)
+	statisticsInfo, err := jsonhandlers.ParseJSON[[]statsclasses.PlayerWeeklyStatsInfo](statsPackage)
 	if err != nil {
 		logging.LogError("Error parsing stats info")
 	}

@@ -1,12 +1,12 @@
 package postgreshandlers
 
 import (
-	"curryware-kafka-go-processor/internal/fantasyclasses"
+	"curryware-kafka-go-processor/internal/fantasyclasses/playerclasses"
 	"curryware-kafka-go-processor/internal/logging"
 	"strconv"
 )
 
-func InsertPlayerRecord(playerInfo []fantasyclasses.PlayerInfo) {
+func InsertPlayerRecord(playerInfo []playerclasses.PlayerInfo) {
 	// Use the singleton database connection pool
 	db := GetDB()
 	sqlStatement := `INSERT INTO player_info_snapshot (player_id, player_season_key, player_name, player_status, 

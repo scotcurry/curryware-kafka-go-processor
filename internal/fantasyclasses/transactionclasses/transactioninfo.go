@@ -1,4 +1,4 @@
-package fantasyclasses
+package transactionclasses
 
 type TransactionInfoWithCount struct {
 	LeagueKey        string            `json:"LeagueKey"`

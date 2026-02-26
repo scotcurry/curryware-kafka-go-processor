@@ -153,7 +153,10 @@ func processStatisticsTopic(event *kafka.Message) {
 	statisticsInfo, err := jsonhandlers.ParseJSON[[]statsclasses.PlayerWeeklyStatsInfo](statsPackage)
 	if err != nil {
 		logging.LogError("Error parsing stats info")
+		return
 	}
 
-	postgreshandlers.InsertPlayerStats(statisticsInfo)
+	statsCount := postgreshandlers.InsertPlayerStats(statisticsInfo)
+	logging.LogInfo("Player stats inserted", "count", statsCount)
+	logging.LogInfo("Statistics package length: ", len(statsPackage))
 }

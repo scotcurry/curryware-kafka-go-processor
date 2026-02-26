@@ -12,7 +12,7 @@ import (
 // (a test case pulls 310 stats) is it creates a single values string.  There is something with Go compiler check that
 // cases it to throw an error on the insert statement if it isn't filled out, so there is code to go pull
 // a template from a file in sqltemplate.txt.
-func InsertPlayerStats(statsJson []statsclasses.PlayerWeeklyStatsInfo) {
+func InsertPlayerStats(statsJson []statsclasses.PlayerWeeklyStatsInfo) int64 {
 	// Use the singleton database connection pool
 	db := GetDB()
 
@@ -24,7 +24,7 @@ func InsertPlayerStats(statsJson []statsclasses.PlayerWeeklyStatsInfo) {
 		weekKey := stat.PlayerStatWeek
 		statValue := stat.StatValue
 
-		valueLine := "(" + strconv.Itoa(playerId) + "," + gameKey + "," + strconv.Itoa(weekKey) + "," + strconv.Itoa(statId) + "," + strconv.FormatFloat(statValue, 'f', 2, 64) + "),"
+		valueLine := "(" + strconv.Itoa(playerId) + ",'" + gameKey + "'," + strconv.Itoa(weekKey) + "," + strconv.Itoa(statId) + "," + strconv.FormatFloat(statValue, 'f', 2, 64) + "),"
 		insertValues = insertValues + valueLine
 	}
 
@@ -47,5 +47,7 @@ func InsertPlayerStats(statsJson []statsclasses.PlayerWeeklyStatsInfo) {
 			panic(err)
 		}
 		logger.LogInfo("Rows affected", "count", count)
+		return count
 	}
+	return 0
 }

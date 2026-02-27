@@ -4,29 +4,14 @@ import (
 	logger "curryware-kafka-go-processor/internal/logging"
 	"database/sql"
 	"errors"
-	"fmt"
 )
 
 func ExecuteSqlStatement(sqlStatement string, sqlParams []any) (int64, error) {
-
-	db := GetDB()
-	result, err := db.Exec(sqlStatement, sqlParams...)
-	if err != nil {
-		logger.LogError("Error executing sql statement: ", err)
-		fmt.Println("Error executing sql statement: ", err)
-	}
-
-	rowsAffected, err := result.RowsAffected()
-	if err != nil {
-		logger.LogError("Error getting rows affected", "error", err.Error())
-		return 0, err
-	}
-	return rowsAffected, nil
+	return ExecStatement(sqlStatement, sqlParams...)
 }
 
 func ExecuteGetLatestTransactionSelectStatement(sqlStatement string, leagueId string) (int, int) {
-
-	row := GetDB().QueryRow(sqlStatement, leagueId)
+	row := QueryRowStatement(sqlStatement, leagueId)
 	var lastTransactionNumber int
 	var lastTransactionDate int
 	err := row.Scan(&lastTransactionNumber, &lastTransactionDate)
@@ -34,10 +19,8 @@ func ExecuteGetLatestTransactionSelectStatement(sqlStatement string, leagueId st
 		return 0, 0
 	}
 	if err != nil {
-		logger.LogError("Error executing sql statement: ", err)
-		fmt.Println("Error executing sql statement: ", err)
+		logger.LogError("Error executing sql statement", "error", err.Error())
 		return -1, -1
-	} else {
-		return lastTransactionNumber, lastTransactionDate
 	}
+	return lastTransactionNumber, lastTransactionDate
 }

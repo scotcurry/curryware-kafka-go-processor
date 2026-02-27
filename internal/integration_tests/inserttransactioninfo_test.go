@@ -1,8 +1,9 @@
-package postgreshandlers
+package integration_tests
 
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses/transactionclasses"
 	"curryware-kafka-go-processor/internal/jsonhandlers"
+	"curryware-kafka-go-processor/internal/postgreshandlers"
 	"encoding/base64"
 	"testing"
 )
@@ -17,6 +18,6 @@ func TestInsertTransactionRecords(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error parsing transaction info: %v", err)
 	}
-	rows := ProcessTransactionInfo(transactionArray)
+	rows := postgreshandlers.ProcessTransactionInfo(transactionArray)
 	println(rows)
 }

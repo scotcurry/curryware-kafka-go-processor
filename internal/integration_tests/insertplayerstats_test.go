@@ -1,8 +1,9 @@
-package postgreshandlers
+package integration_tests
 
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses/statsclasses"
 	"curryware-kafka-go-processor/internal/jsonhandlers"
+	"curryware-kafka-go-processor/internal/postgreshandlers"
 	"encoding/base64"
 	"fmt"
 	"testing"
@@ -17,5 +18,5 @@ func TestInsertPlayerStatsRecord(t *testing.T) {
 		t.Fatalf("Error parsing player stats: %v", err)
 	}
 	fmt.Println(allPlayersArray)
-	InsertPlayerStats(allPlayersArray)
+	postgreshandlers.InsertPlayerWeeklyStats(allPlayersArray)
 }

@@ -1,8 +1,9 @@
-package postgreshandlers
+package integration_tests
 
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses/leagueclasses"
 	"curryware-kafka-go-processor/internal/jsonhandlers"
+	"curryware-kafka-go-processor/internal/postgreshandlers"
 	"encoding/base64"
 	"testing"
 )
@@ -15,7 +16,7 @@ func TestInsertStatInfo(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error parsing stat info: %v", err)
 	}
-	insertedRecords := InsertLeagueStatInfo(statInfoDictionary)
+	insertedRecords := postgreshandlers.InsertLeagueStatInfo(statInfoDictionary)
 	expectedRecords := 38
 
 	if insertedRecords != expectedRecords {

@@ -156,7 +156,7 @@ func processStatisticsTopic(event *kafka.Message) {
 		return
 	}
 
-	statsCount := postgreshandlers.InsertPlayerStats(statisticsInfo)
+	statsCount := postgreshandlers.InsertPlayerWeeklyStats(statisticsInfo)
 	logging.LogInfo("Player stats inserted", "count", statsCount)
 	logging.LogInfo("Statistics package length: ", len(statsPackage))
 }

@@ -5,6 +5,8 @@ import (
 	"database/sql"
 	"sync"
 	"time"
+
+	_ "github.com/lib/pq"
 )
 
 // db is a global variable that can be used by all the database function calls.
@@ -38,10 +40,17 @@ func GetDB() *sql.DB {
 
 		// Test the connection
 		if err = db.Ping(); err != nil {
-			logger.LogError("Error pinging postgres connection")
-			println(err)
+			logger.LogError("Error pinging postgres connection", "error", err.Error())
 			panic(err)
 		}
 	})
 	return db
+}
+
+// CloseDB closes the singleton database connection pool.
+func CloseDB() error {
+	if db == nil {
+		return nil
+	}
+	return db.Close()
 }

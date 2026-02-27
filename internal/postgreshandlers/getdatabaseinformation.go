@@ -22,8 +22,8 @@ func GetDatabaseInformation() (string, error) {
 
 	portInteger, err := strconv.ParseInt(postgresPort, 10, 64)
 	if err != nil {
-		fmt.Println("Error parsing port")
-		panic(err)
+		logger.LogError("Error parsing port", "error", err.Error())
+		return "", fmt.Errorf("invalid POSTGRES_PORT value %q: %w", postgresPort, err)
 	}
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+

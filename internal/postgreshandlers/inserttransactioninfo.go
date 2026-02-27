@@ -3,7 +3,6 @@ package postgreshandlers
 import (
 	"curryware-kafka-go-processor/internal/fantasyclasses/transactionclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
-	"fmt"
 	"time"
 )
 
@@ -11,11 +10,9 @@ func ProcessTransactionInfo(transactionJson transactionclasses.TransactionInfoWi
 
 	leagueKey := transactionJson.LeagueKey
 	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(leagueKey)
-	fmt.Println(databaseLastTransaction)
-	fmt.Println(lastTransactionDate)
-	// No transactions in the database, so we need to insert everything.
+	logger.LogDebug("Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate)
 	rowCount := insertTransactionInfo(transactionJson)
-	logger.LogInfo("Database Last Transaction: {1}", databaseLastTransaction)
+	logger.LogInfo("Database Last Transaction", "transaction", databaseLastTransaction)
 
 	return rowCount
 }

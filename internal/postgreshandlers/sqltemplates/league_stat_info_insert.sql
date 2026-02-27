@@ -1,0 +1,2 @@
+-- language=GenericSQL
+INSERT INTO league_scoring_information (league_stat_key, league_stat_id, league_stat_enabled, league_stat_name, league_stat_display_name, league_stat_group, league_stat_abbreviation, league_stat_sort_order, league_stat_position_type, league_stat_sort_position) VALUES {insert_values} ON CONFLICT DO NOTHING

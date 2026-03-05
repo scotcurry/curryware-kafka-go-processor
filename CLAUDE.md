@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Platform and Requirements
 - Go 1.26+
 - PostgreSQL
-- Docker
+- Docker/Podman (Podman machine: `curryware-podman`)
 
 ## Build and Validation Commands
 **Important: After every code change, validate the build succeeds.**
@@ -27,6 +27,11 @@ go test ./internal/jsonhandlers/... -run TestFunctionName
 
 # Run tests in the moved stats tests directory
 go test ./internal/tests/statstests/...
+
+# After build and tests pass, verify Podman is running then build and validate the Docker image
+podman machine info curryware-podman   # Ensure the curryware-podman machine is running
+podman build -t curryware-kafka-go-processor:latest .   # Build the Docker image
+podman rmi curryware-kafka-go-processor:latest           # Clean up the image after a successful build
 ```
 
 ## Architecture Overview

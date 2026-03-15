@@ -1,6 +1,7 @@
 package kafkahandlers
 
 import (
+	"curryware-kafka-go-processor/internal/fantasyclasses/leagueclasses"
 	"curryware-kafka-go-processor/internal/fantasyclasses/playerclasses"
 	"curryware-kafka-go-processor/internal/fantasyclasses/statsclasses"
 	"curryware-kafka-go-processor/internal/fantasyclasses/transactionclasses"
@@ -62,6 +63,7 @@ func ConsumeMessages(topics []string, server string) {
 		"DatadogValidationTopic": processDatadogValidationTopic,
 		"TransactionTopic":       processTransactionTopic,
 		"StatisticsTopic":        processStatisticsTopic,
+		"StatDescriptionTopic":   processStatDescriptionTopic,
 	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
@@ -85,7 +87,7 @@ func ConsumeMessages(topics []string, server string) {
 			if eventError != nil {
 				continue
 			} else {
-				logging.LogInfo("Event received %d bytes", len(event.Value))
+				logging.LogInfo("Event received", "bytes", len(event.Value))
 			}
 
 			topic := *event.TopicPartition.Topic
@@ -120,18 +122,6 @@ func processDatadogValidationTopic(event *kafka.Message) {
 	logging.LogInfo("Data validation package length: ", len(dataValidationPackage))
 }
 
-//func processStatValueTopic(event *kafka.Message) {
-//
-//	logging.LogInfo("Processing StatValueTopic")
-//	statValuePackage := string(event.Value)
-//	statValuesToAdd, err := jsonhandlers.ParseLeagueStatValues(statValuePackage)
-//	if err != nil {
-//		logging.LogError("Error parsing stat values")
-//	}
-//	// TODO:  This needs to be updated to use new StatsValueClass.
-//	postgreshandlers.InsertLeagueStatValueInfo(statValuesToAdd)
-//}
-
 func processTransactionTopic(event *kafka.Message) {
 
 	logging.LogInfo("Processing TransactionTopic")
@@ -158,5 +148,20 @@ func processStatisticsTopic(event *kafka.Message) {
 
 	statsCount := postgreshandlers.InsertPlayerWeeklyStats(statisticsInfo)
 	logging.LogInfo("Player stats inserted", "count", statsCount)
-	logging.LogInfo("Statistics package length: ", len(statsPackage))
+	logging.LogInfo("Statistics package length", "length", len(statsPackage))
+}
+
+func processStatDescriptionTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing StatDescriptionTopic")
+	statDescriptionPackage := string(event.Value)
+	statDescriptions, err := jsonhandlers.ParseJSON[[]leagueclasses.LeagueStatDescriptionInfo](statDescriptionPackage)
+	if err != nil {
+		logging.LogError("Error parsing stat description info")
+		return
+	}
+
+	statDescriptionCount := postgreshandlers.InsertLeagueStatInfo(statDescriptions)
+	logging.LogInfo("League stat descriptions inserted", "count", statDescriptionCount)
+	logging.LogInfo("Stat description package length", "length", len(statDescriptionPackage))
 }

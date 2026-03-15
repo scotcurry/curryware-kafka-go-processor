@@ -11,46 +11,59 @@ import (
 
 // db is a global variable that can be used by all the database function calls.
 var (
-	db *sql.DB
-
-	// once is used to ensure a function is executed only once, typically for initialization purposes.
-	once sync.Once
+	db   *sql.DB
+	dbMu sync.Mutex
 )
 
-// GetDB returns a singleton database connection pool
-func GetDB() *sql.DB {
-	once.Do(func() {
-		psqlInfo, variableError := GetDatabaseInformation()
-		if variableError != nil {
-			logger.LogError("Error getting database information")
-			panic(variableError)
-		}
+// GetDB returns a singleton database connection pool.
+// Returns (*sql.DB, error) so callers can handle connection failures gracefully.
+func GetDB() (*sql.DB, error) {
+	dbMu.Lock()
+	defer dbMu.Unlock()
 
-		var err error
-		db, err = sql.Open("postgres", psqlInfo)
+	if db != nil {
+		return db, nil
+	}
+
+	psqlInfo, variableError := GetDatabaseInformation()
+	if variableError != nil {
+		logger.LogError("Error getting database information")
+		return nil, variableError
+	}
+
+	conn, err := sql.Open("postgres", psqlInfo)
+	if err != nil {
+		logger.LogError("Error opening postgres connection")
+		return nil, err
+	}
+
+	// Configure connection pool settings
+	conn.SetMaxOpenConns(25)
+	conn.SetMaxIdleConns(25)
+	conn.SetConnMaxLifetime(5 * time.Minute)
+
+	// Test the connection
+	if err = conn.Ping(); err != nil {
+		logger.LogError("Error pinging postgres connection", "error", err.Error())
+		err := conn.Close()
 		if err != nil {
-			logger.LogError("Error opening postgres connection")
-			panic(err)
+			return nil, err
 		}
+		return nil, err
+	}
 
-		// Configure connection pool settings
-		db.SetMaxOpenConns(25)
-		db.SetMaxIdleConns(25)
-		db.SetConnMaxLifetime(5 * time.Minute)
-
-		// Test the connection
-		if err = db.Ping(); err != nil {
-			logger.LogError("Error pinging postgres connection", "error", err.Error())
-			panic(err)
-		}
-	})
-	return db
+	db = conn
+	return db, nil
 }
 
 // CloseDB closes the singleton database connection pool.
 func CloseDB() error {
+	dbMu.Lock()
+	defer dbMu.Unlock()
 	if db == nil {
 		return nil
 	}
-	return db.Close()
+	err := db.Close()
+	db = nil
+	return err
 }

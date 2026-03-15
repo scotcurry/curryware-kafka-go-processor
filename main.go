@@ -4,9 +4,12 @@ import (
 	"curryware-kafka-go-processor/internal/kafkahandlers"
 	"curryware-kafka-go-processor/internal/logging"
 	"curryware-kafka-go-processor/internal/postgreshandlers"
+	"fmt"
+	"net"
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
 )
@@ -53,8 +56,42 @@ func main() {
 	// Setting up logging.  JSON format.
 	logging.LogInfo("Launching curryware-kafka-go-processor...")
 
-	// This is to "fail fast" if the database connection fails.
-	_ = postgreshandlers.GetDB()
+	// Log Postgres DNS/network diagnostics to help debug connectivity issues.
+	postgresServer := os.Getenv("POSTGRES_SERVER")
+	postgresPort := os.Getenv("POSTGRES_PORT")
+	if postgresServer != "" {
+		logging.LogInfo("Postgres server configured", "server", postgresServer, "port", postgresPort)
+		addrs, dnsErr := net.LookupHost(postgresServer)
+		if dnsErr != nil {
+			logging.LogError("Postgres DNS resolution failed", "server", postgresServer, "error", dnsErr.Error())
+		} else {
+			logging.LogInfo("Postgres DNS resolved", "server", postgresServer, "addresses", fmt.Sprintf("%v", addrs))
+			if postgresPort != "" {
+				conn, dialErr := net.DialTimeout("tcp", net.JoinHostPort(postgresServer, postgresPort), 5*time.Second)
+				if dialErr != nil {
+					logging.LogError("Postgres TCP connection failed", "server", postgresServer, "port", postgresPort, "error", dialErr.Error())
+				} else {
+					logging.LogInfo("Postgres TCP connection successful", "server", postgresServer, "port", postgresPort)
+					err := conn.Close()
+					if err != nil {
+						return
+					}
+				}
+			}
+		}
+	} else {
+		logging.LogError("POSTGRES_SERVER environment variable is not set")
+	}
+
+	// Attempt an early database connection. Log a warning if it fails but continue running
+	// so the pod does not crash-loop when Postgres is temporarily unavailable.
+	_, dbErr := postgreshandlers.GetDB()
+	if dbErr != nil {
+		logging.LogError("Postgres is not reachable at startup — the service will retry when a message arrives",
+			"error", dbErr.Error())
+	} else {
+		logging.LogInfo("Postgres connection established at startup")
+	}
 
 	// This is going to get the servername from the environment variable to make debugging easier.
 	server := kafkahandlers.GetKafkaServer()

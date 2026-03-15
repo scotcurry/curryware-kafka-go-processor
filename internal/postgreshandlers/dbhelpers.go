@@ -8,7 +8,11 @@ import (
 // ExecStatement executes a SQL statement and returns the number of rows affected.
 // It uses the singleton DB connection and logs errors, but does not panic.
 func ExecStatement(sqlStatement string, params ...any) (int64, error) {
-	db := GetDB()
+	db, err := GetDB()
+	if err != nil {
+		logger.LogError("Error getting database connection", "error", err.Error())
+		return 0, err
+	}
 	result, err := db.Exec(sqlStatement, params...)
 	if err != nil {
 		logger.LogError("Error executing sql statement", "error", err.Error())
@@ -24,7 +28,11 @@ func ExecStatement(sqlStatement string, params ...any) (int64, error) {
 }
 
 // QueryRowStatement executes a query that returns a single row using the singleton DB connection.
-func QueryRowStatement(sqlStatement string, params ...any) *sql.Row {
-	db := GetDB()
-	return db.QueryRow(sqlStatement, params...)
+func QueryRowStatement(sqlStatement string, params ...any) (*sql.Row, error) {
+	db, err := GetDB()
+	if err != nil {
+		logger.LogError("Error getting database connection", "error", err.Error())
+		return nil, err
+	}
+	return db.QueryRow(sqlStatement, params...), nil
 }

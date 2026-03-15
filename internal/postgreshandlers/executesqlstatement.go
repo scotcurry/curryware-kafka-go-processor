@@ -11,10 +11,14 @@ func ExecuteSqlStatement(sqlStatement string, sqlParams []any) (int64, error) {
 }
 
 func ExecuteGetLatestTransactionSelectStatement(sqlStatement string, leagueId string) (int, int) {
-	row := QueryRowStatement(sqlStatement, leagueId)
+	row, err := QueryRowStatement(sqlStatement, leagueId)
+	if err != nil {
+		logger.LogError("Error getting database connection for select statement", "error", err.Error())
+		return -1, -1
+	}
 	var lastTransactionNumber int
 	var lastTransactionDate int
-	err := row.Scan(&lastTransactionNumber, &lastTransactionDate)
+	err = row.Scan(&lastTransactionNumber, &lastTransactionDate)
 	if errors.Is(err, sql.ErrNoRows) {
 		return 0, 0
 	}

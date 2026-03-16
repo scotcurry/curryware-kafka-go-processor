@@ -17,6 +17,7 @@ var (
 
 // GetDB returns a singleton database connection pool.
 // Returns (*sql.DB, error) so callers can handle connection failures gracefully.
+// If the connection is not yet established, it retries with exponential backoff.
 func GetDB() (*sql.DB, error) {
 	dbMu.Lock()
 	defer dbMu.Unlock()
@@ -31,29 +32,47 @@ func GetDB() (*sql.DB, error) {
 		return nil, variableError
 	}
 
-	conn, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		logger.LogError("Error opening postgres connection")
-		return nil, err
-	}
+	// Retry with exponential backoff so the pod survives transient postgres
+	// unavailability (e.g. pod starting before postgres is ready).
+	maxRetries := 5
+	backoff := 2 * time.Second
 
-	// Configure connection pool settings
-	conn.SetMaxOpenConns(25)
-	conn.SetMaxIdleConns(25)
-	conn.SetConnMaxLifetime(5 * time.Minute)
-
-	// Test the connection
-	if err = conn.Ping(); err != nil {
-		logger.LogError("Error pinging postgres connection", "error", err.Error())
-		err := conn.Close()
-		if err != nil {
-			return nil, err
+	var lastErr error
+	for attempt := 0; attempt < maxRetries; attempt++ {
+		if attempt > 0 {
+			logger.LogInfo("Retrying postgres connection",
+				"attempt", attempt+1,
+				"backoff", backoff.String())
+			time.Sleep(backoff)
+			backoff *= 2
 		}
-		return nil, err
+
+		conn, err := sql.Open("postgres", psqlInfo)
+		if err != nil {
+			logger.LogError("Error opening postgres connection", "error", err.Error())
+			lastErr = err
+			continue
+		}
+
+		// Configure connection pool settings
+		conn.SetMaxOpenConns(25)
+		conn.SetMaxIdleConns(25)
+		conn.SetConnMaxLifetime(5 * time.Minute)
+
+		// Test the connection
+		if pingErr := conn.Ping(); pingErr != nil {
+			logger.LogError("Error pinging postgres connection", "error", pingErr.Error())
+			_ = conn.Close()
+			lastErr = pingErr
+			continue
+		}
+
+		db = conn
+		return db, nil
 	}
 
-	db = conn
-	return db, nil
+	logger.LogError("All postgres connection attempts failed", "attempts", maxRetries)
+	return nil, lastErr
 }
 
 // CloseDB closes the singleton database connection pool.

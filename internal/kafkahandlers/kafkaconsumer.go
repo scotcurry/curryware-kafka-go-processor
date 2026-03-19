@@ -59,11 +59,12 @@ func ConsumeMessages(topics []string, server string) {
 	topicHandlers := map[string]func(*kafka.Message){
 		// TODO:  Clean this up.
 		// "StatValueTopic":         processStatValueTopic,
-		"PlayerTopicDaily":       processPlayerTopicDaily,
-		"DatadogValidationTopic": processDatadogValidationTopic,
-		"TransactionTopic":       processTransactionTopic,
-		"StatisticsTopic":        processStatisticsTopic,
-		"StatDescriptionTopic":   processStatDescriptionTopic,
+		"PlayerTopicDaily":          processPlayerTopicDaily,
+		"DatadogValidationTopic":    processDatadogValidationTopic,
+		"TransactionTopic":          processTransactionTopic,
+		"StatisticsTopic":           processStatisticsTopic,
+		"StatDescriptionTopic":      processStatDescriptionTopic,
+		"AllLeagueInformationTopic": processAllLeagueInformationTopic,
 	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
@@ -164,4 +165,19 @@ func processStatDescriptionTopic(event *kafka.Message) {
 	statDescriptionCount := postgreshandlers.InsertLeagueStatInfo(statDescriptions)
 	logging.LogInfo("League stat descriptions inserted", "count", statDescriptionCount)
 	logging.LogInfo("Stat description package length", "length", len(statDescriptionPackage))
+}
+
+func processAllLeagueInformationTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing AllLeagueInformationTopic")
+	leagueInfoPackage := string(event.Value)
+	leagueInfo, err := jsonhandlers.ParseJSON[[]leagueclasses.LeagueInformation](leagueInfoPackage)
+	if err != nil {
+		logging.LogError("Error parsing league information")
+		return
+	}
+
+	leagueInfoCount := postgreshandlers.InsertLeagueInformation(leagueInfo)
+	logging.LogInfo("League information records inserted", "count", leagueInfoCount)
+	logging.LogInfo("League information package length", "length", len(leagueInfoPackage))
 }

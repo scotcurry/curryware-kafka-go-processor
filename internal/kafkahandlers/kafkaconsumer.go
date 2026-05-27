@@ -65,6 +65,7 @@ func ConsumeMessages(topics []string, server string) {
 		"StatisticsTopic":           processStatisticsTopic,
 		"StatDescriptionTopic":      processStatDescriptionTopic,
 		"AllLeagueInformationTopic": processAllLeagueInformationTopic,
+		"TeamInformationTopic":      processTeamInformationTopic,
 	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
@@ -180,4 +181,19 @@ func processAllLeagueInformationTopic(event *kafka.Message) {
 	leagueInfoCount := postgreshandlers.InsertLeagueInformation(leagueInfo)
 	logging.LogInfo("League information records inserted", "count", leagueInfoCount)
 	logging.LogInfo("League information package length", "length", len(leagueInfoPackage))
+}
+
+func processTeamInformationTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing TeamInformationTopic")
+	teamInfoPackage := string(event.Value)
+	teamInfo, err := jsonhandlers.ParseJSON[leagueclasses.TeamInformation](teamInfoPackage)
+	if err != nil {
+		logging.LogError("Error parsing team information")
+		return
+	}
+
+	teamInfoCount := postgreshandlers.InsertTeamInformation([]leagueclasses.TeamInformation{teamInfo})
+	logging.LogInfo("Team information records inserted", "count", teamInfoCount)
+	logging.LogInfo("Team information package length", "length", len(teamInfoPackage))
 }

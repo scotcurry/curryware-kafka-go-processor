@@ -7,26 +7,18 @@ import (
 )
 
 func InsertLeagueStatInfo(leagueStatInfo []leagueclasses.LeagueStatDescriptionInfo) int {
-	sqlStatement := `INSERT INTO league_scoring_information (league_stat_key, league_stat_id, league_stat_enabled, league_stat_name,
-                                        league_stat_display_name, league_stat_group, league_stat_abbreviation, league_stat_sort_order,
-                                        league_stat_position_type, league_stat_sort_position)
-										VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
+	sqlStatement := `INSERT INTO league_stat_description (league_stat_key_id, game_id, league_id, stat_id, stat_enabled, stat_name,
+                                        stat_display_name, stat_group_display_name, stat_abbreviation, stat_sort_order,
+                                        stat_position_type, stat_sort_position)
+										VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`
 
 	for counter := 0; counter < len(leagueStatInfo); counter++ {
-		leagueStatKey := leagueStatInfo[counter].LeagueStatId
-		leagueStatId := leagueStatInfo[counter].StatId
-		leagueStatEnabled := leagueStatInfo[counter].StatEnabled
-		leagueStatName := leagueStatInfo[counter].StatName
-		leagueStatDisplayName := leagueStatInfo[counter].StatDisplayName
-		leagueStatGroup := leagueStatInfo[counter].StatGroup
-		leagueStatAbbreviation := leagueStatInfo[counter].StatAbbreviation
-		leagueStatSortOrder := leagueStatInfo[counter].StatSortOrder
-		leagueStatPositionType := leagueStatInfo[counter].StatPositionType
-		leagueStatSortPosition := leagueStatInfo[counter].StatSortPosition
+		stat := leagueStatInfo[counter]
 
-		logger.LogDebug("Inserting league stat", "league_stat_key", leagueStatKey)
-		count, err := ExecStatement(sqlStatement, leagueStatKey, leagueStatId, leagueStatEnabled, leagueStatName, leagueStatDisplayName,
-			leagueStatGroup, leagueStatAbbreviation, leagueStatSortOrder, leagueStatPositionType, leagueStatSortPosition)
+		logger.LogDebug("Inserting league stat", "league_stat_key_id", stat.LeagueStatKeyId)
+		count, err := ExecStatement(sqlStatement, stat.LeagueStatKeyId, stat.GameId, stat.LeagueId, stat.StatId,
+			stat.StatEnabled, stat.StatName, stat.StatDisplayName, stat.StatGroupDisplayName,
+			stat.StatAbbreviation, stat.StatSortOrder, stat.StatPositionType, stat.StatSortPosition)
 		if err != nil {
 			logger.LogError("Error inserting league stat record", "error", err.Error())
 			continue

@@ -29,6 +29,10 @@ func InsertLeagueInformation(leagueInfo []leagueclasses.LeagueInformation) int {
 			logger.LogError("Error inserting league information record", "error", err.Error(), "league_key", leagueKey)
 			continue
 		}
+		if count == 0 {
+			logger.LogInfo("League information record already exists, skipping remaining records", "league_key", leagueKey)
+			return counter
+		}
 		logger.LogInfo("Rows affected", "count", strconv.Itoa(int(count)))
 	}
 	logger.LogInfo("Done inserting league information records", "total_records", strconv.Itoa(len(leagueInfo)))

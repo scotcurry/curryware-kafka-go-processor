@@ -8,11 +8,16 @@ import (
 )
 
 func InsertLeagueInformation(leagueInfo []leagueclasses.LeagueInformation) int {
-	sqlStatement := `INSERT INTO all_league_information (league_key, league_id, league_name, league_logo_url,
+	sqlStatement := `INSERT INTO all_league_information (league_key, league_id, game_id, league_name, league_logo_url,
                          number_of_teams, league_update_timestamp, start_date, end_week, season)
-				VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT DO NOTHING`
+				VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT DO NOTHING`
 
 	for counter := 0; counter < len(leagueInfo); counter++ {
+		gameId, err := strconv.Atoi(leagueInfo[counter].GameKey)
+		if err != nil {
+			logger.LogError("Error converting GameKey to integer", "error", err.Error(), "game_key", leagueInfo[counter].GameKey)
+			continue
+		}
 		leagueKey := leagueInfo[counter].LeagueKey
 		leagueId := leagueInfo[counter].LeagueId
 		leagueName := leagueInfo[counter].LeagueName
@@ -23,7 +28,7 @@ func InsertLeagueInformation(leagueInfo []leagueclasses.LeagueInformation) int {
 		endDate := leagueInfo[counter].EndDate
 		season := leagueInfo[counter].Season
 
-		count, err := ExecStatement(sqlStatement, leagueKey, leagueId, leagueName, leagueLogoUrl,
+		count, err := ExecStatement(sqlStatement, leagueKey, leagueId, gameId, leagueName, leagueLogoUrl,
 			numberOfTeams, leagueUpdateTimestamp, startDate, endDate, season)
 		if err != nil {
 			logger.LogError("Error inserting league information record", "error", err.Error(), "league_key", leagueKey)

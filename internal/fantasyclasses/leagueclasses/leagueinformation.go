@@ -1,6 +1,7 @@
 package leagueclasses
 
 type LeagueInformation struct {
+	GameKey               string `json:"GameKey"`
 	LeagueKey             string `json:"LeagueKey"`
 	LeagueId              int    `json:"LeagueId"`
 	LeagueName            string `json:"LeagueName"`

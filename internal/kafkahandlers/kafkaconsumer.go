@@ -57,8 +57,6 @@ func ConsumeMessages(topics []string, server string) {
 	// This is where all topic handlers get built out.  This makes it easier to add them as they come online.
 	// see the bottom of this file for implementations.
 	topicHandlers := map[string]func(*kafka.Message){
-		// TODO:  Clean this up.
-		// "StatValueTopic":         processStatValueTopic,
 		"PlayerTopicDaily":          processPlayerTopicDaily,
 		"DatadogValidationTopic":    processDatadogValidationTopic,
 		"TransactionTopic":          processTransactionTopic,
@@ -66,6 +64,7 @@ func ConsumeMessages(topics []string, server string) {
 		"StatDescriptionTopic":      processStatDescriptionTopic,
 		"AllLeagueInformationTopic": processAllLeagueInformationTopic,
 		"TeamInformationTopic":      processTeamInformationTopic,
+		"AllTeamInformationTopic":   processAllTeamInformationTopic,
 	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
@@ -196,4 +195,19 @@ func processTeamInformationTopic(event *kafka.Message) {
 	teamInfoCount := postgreshandlers.InsertTeamInformation([]leagueclasses.TeamInformation{teamInfo})
 	logging.LogInfo("Team information records inserted", "count", teamInfoCount)
 	logging.LogInfo("Team information package length", "length", len(teamInfoPackage))
+}
+
+func processAllTeamInformationTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing AllTeamInformationTopic")
+	allTeamInfoPackage := string(event.Value)
+	allTeamInfo, err := jsonhandlers.ParseJSON[[]leagueclasses.AllTeamInformation](allTeamInfoPackage)
+	if err != nil {
+		logging.LogError("Error parsing all team information")
+		return
+	}
+
+	allTeamInfoCount := postgreshandlers.InsertAllTeamInformation(allTeamInfo)
+	logging.LogInfo("All team information records inserted", "count", allTeamInfoCount)
+	logging.LogInfo("All team information package length", "length", len(allTeamInfoPackage))
 }

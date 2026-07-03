@@ -72,14 +72,13 @@ func ConsumeMessages(server string) {
 	// This is where all topic handlers get built out.  This makes it easier to add them as they come online.
 	// see the bottom of this file for implementations.
 	topicHandlers := map[string]func(*kafka.Message){
-		"AllLeagueInformationTopic": processAllLeagueInformationTopic,
-		"AllTeamInformationTopic":   processAllLeagueTeamInformationTopic,
-		"DatadogValidationTopic":    processDatadogValidationTopic,
-		"PlayerTopicDaily":          processPlayerTopicDaily,
-		"StatDescriptionTopic":      processStatDescriptionTopic,
-		"StatisticsTopic":           processStatisticsTopic,
-		"TransactionTopic":          processTransactionTopic,
-		// "TeamInformationTopic":    		processTeamInformationTopic,
+		"AllLeagueInformationTopic":     processAllLeagueInformationTopic,
+		"AllLeagueTeamInformationTopic": processAllLeagueTeamInformationTopic,
+		"DatadogValidationTopic":        processDatadogValidationTopic,
+		"PlayerTopicDaily":              processPlayerTopicDaily,
+		"StatDescriptionTopic":          processStatDescriptionTopic,
+		"StatisticsTopic":               processStatisticsTopic,
+		"TransactionTopic":              processTransactionTopic,
 	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.

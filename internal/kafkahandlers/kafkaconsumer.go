@@ -20,13 +20,20 @@ import (
 	// ddkafka "gopkg.in/DataDog/dd-trace-go.v1/contrib/confluentinc/confluent-kafka-go/kafka.v2"
 )
 
-func ConsumeMessages(topics []string, server string) {
+func ConsumeMessages(server string) {
 
 	// Logging code for Datadog.
 	_, err := ValidateDNSResolution(server, "")
 	logging.LogInfo("Launching ConsumeMessages - curryware-kafka-go-processor on server: " + server)
-	for i := 0; i < len(topics); i++ {
-		fmt.Println(fmt.Sprintf("Consuming Message(s): %s", topics[i]))
+
+	// Log the topics that exist at startup. This is informational only — the regex subscription
+	// below also picks up topics created while the service is running.
+	currentTopics, err := GetTopicNames(server)
+	if err != nil {
+		logging.LogError("Error getting topic names from Kafka server", "error", err.Error())
+	}
+	for i := 0; i < len(currentTopics); i++ {
+		fmt.Println(fmt.Sprintf("Consuming Message(s): %s", currentTopics[i]))
 	}
 
 	// Builds the consumer. Group ID will change for different types of statistics.
@@ -35,22 +42,30 @@ func ConsumeMessages(topics []string, server string) {
 		"group.id":           "curryware-group",
 		"auto.offset.reset":  "earliest",
 		"enable.auto.commit": "true",
+		// How often the client refreshes topic metadata. Newly created topics that match the
+		// regex subscription are picked up on the next refresh (default is 5 minutes).
+		"topic.metadata.refresh.interval.ms": 60000,
 	}, ddkafka.WithDataStreams())
+	if err != nil {
+		logging.LogError("Error building consumer")
+		fmt.Println("Error building consumer")
+		panic(err)
+	}
 	defer func(consumer *ddkafka.Consumer) {
 		closeErr := consumer.Close()
 		if closeErr != nil {
 			logging.LogError("Error closing consumer")
 		}
 	}(consumer)
+
+	// Subscribing with a regex (a topic starting with "^") makes the client re-match the pattern
+	// on every metadata refresh, so topics created after startup are consumed automatically.
+	// Topics starting with "_" (internal topics) are excluded, matching GetTopicNames.
+	err = consumer.SubscribeTopics([]string{"^[^_].*"}, nil)
 	if err != nil {
-		logging.LogError("Error building consumer")
-		fmt.Println("Error building consumer")
+		logging.LogError("Error subscribing to topics", "error", err.Error())
 		panic(err)
 	}
-
-	// List where the last commit happened.  To do this, you need to have to pass in the TopicPartitions, so get those
-	// first.
-	err = consumer.SubscribeTopics(topics, nil)
 	signalChannel := make(chan os.Signal, 1)
 	signal.Notify(signalChannel, syscall.SIGINT, syscall.SIGTERM)
 
@@ -97,7 +112,6 @@ func ConsumeMessages(topics []string, server string) {
 				handler(event)
 			} else {
 				logging.LogError(fmt.Sprintf("No handler for topic %s", topic))
-				fmt.Println(fmt.Sprintf("No handler for topic %s", topic))
 			}
 		}
 	}
@@ -199,7 +213,7 @@ func processAllLeagueInformationTopic(event *kafka.Message) {
 
 func processAllLeagueTeamInformationTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing AllTeamInformationTopic")
+	logging.LogInfo("Processing AllLeagueTeamInformationTopic")
 	allTeamInfoPackage := string(event.Value)
 	allTeamInfo, err := jsonhandlers.ParseJSON[[]leagueclasses.AllTeamInformation](allTeamInfoPackage)
 	if err != nil {

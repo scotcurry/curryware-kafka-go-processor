@@ -15,6 +15,7 @@ func ValidateDNSResolution(domain string, port string) ([]string, error) {
 		parts := strings.Split(domain, ":")
 		domain = parts[0]
 		port = parts[1]
+		logging.LogInfo(fmt.Sprintf("Validating DNS resolution for %s on port %s", domain, port))
 	}
 
 	addresses, err := net.LookupHost(domain)

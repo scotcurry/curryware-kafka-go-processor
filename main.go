@@ -101,11 +101,7 @@ func main() {
 	}
 
 	// This code runs in a loop that is always true.  The syscall.SIGTERM above is the handler for breaking out
-	// of this code.
-	topicsToMonitor, err := kafkahandlers.GetTopicNames(server)
-	if err != nil {
-		logging.LogError("Error getting topic names from Kafka server", "error", err.Error())
-		os.Exit(1002)
-	}
-	kafkahandlers.ConsumeMessages(topicsToMonitor, server)
+	// of this code.  ConsumeMessages subscribes with a regex pattern, so topics created while the
+	// service is running are picked up automatically on the next metadata refresh.
+	kafkahandlers.ConsumeMessages(server)
 }

@@ -7,23 +7,27 @@ import (
 )
 
 func InsertTeamInformation(teamInfo []leagueclasses.TeamInformation) int {
-	sqlStatement := `INSERT INTO team_information (team_key, team_name, team_url, team_logo_url,
-                         draft_position, draft_grade, manager_nickname, manager_image_url, manager_felo_score)
-				VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT DO NOTHING`
+	sqlStatement := `INSERT INTO all_team_information (league_key, team_key, team_id, team_name, team_logo,
+                         previous_season_team_rank, number_of_moves, number_of_trades, draft_position, draft_grade, 
+                         manager_nicknames, manager_felo_score)
+				VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) ON CONFLICT DO NOTHING`
 
 	for counter := 0; counter < len(teamInfo); counter++ {
+		leagueKey := teamInfo[counter].LeagueKey
 		teamKey := teamInfo[counter].TeamKey
+		teamId := teamInfo[counter].TeamID
 		teamName := teamInfo[counter].TeamName
-		teamUrl := teamInfo[counter].TeamUrl
-		teamLogoUrl := teamInfo[counter].TeamLogoUrl
+		teamUrl := teamInfo[counter].TeamLogo
+		previousSeasonTeamRank := teamInfo[counter].PreviousSeasonTeamRank
+		numberOfMoves := teamInfo[counter].NumberOfMoves
+		numberOfTrades := teamInfo[counter].NumberOfTrades
 		draftPosition := teamInfo[counter].DraftPosition
 		draftGrade := teamInfo[counter].DraftGrade
 		managerNickname := teamInfo[counter].ManagerNickname
-		managerImageUrl := teamInfo[counter].ManagerImageUrl
 		managerFeloScore := teamInfo[counter].ManagerFeloScore
 
-		count, err := ExecStatement(sqlStatement, teamKey, teamName, teamUrl, teamLogoUrl,
-			draftPosition, draftGrade, managerNickname, managerImageUrl, managerFeloScore)
+		count, err := ExecStatement(sqlStatement, leagueKey, teamKey, teamId, teamName, teamUrl, previousSeasonTeamRank,
+			numberOfMoves, numberOfTrades, draftPosition, draftGrade, managerNickname, managerFeloScore)
 		if err != nil {
 			logger.LogError("Error inserting team information record", "error", err.Error(), "team_key", teamKey)
 			continue

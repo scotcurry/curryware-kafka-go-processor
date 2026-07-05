@@ -9,8 +9,9 @@ type TeamInformation struct {
 	PreviousSeasonTeamRank int    `json:"PreviousSeasonTeamRank"`
 	NumberOfMoves          int    `json:"NumberOfMoves"`
 	NumberOfTrades         int    `json:"NumberOfTrades"`
+	DraftRecapURL          string `json:"DraftRecapURL"`
 	DraftPosition          int    `json:"DraftPosition"`
 	DraftGrade             string `json:"DraftGrade"`
-	ManagerNickname        string `json:"ManagerNickname"`
-	ManagerFeloScore       int    `json:"ManagerFeloScore"`
+	ManagerNicknames       string `json:"ManagerNicknames"`
+	ManagerFeloScore       int    `json:"ManagerFeloScores"`
 }

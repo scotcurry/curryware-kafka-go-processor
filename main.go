@@ -14,7 +14,7 @@ import (
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
 )
 
-// The documentation for the Kafka libraries are at https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka
+// The documentation for the Kafka libraries at https://pkg.go.dev/github.com/confluentinc/confluent-kafka-go/kafka
 func main() {
 
 	// Set up the Datadog Tracer.
@@ -26,14 +26,12 @@ func main() {
 	}
 
 	err = tracer.Start(tracer.WithService("curryware-kafka-go-processor"),
-		tracer.WithServiceVersion("1.0.1"),
-		tracer.WithEnv("prod"),
 		tracer.WithTraceEnabled(true),
 	)
 	if err != nil {
 		return
 	}
-	// The explanation for defer keyword is at https://read.amazon.com/?asin=B0184N7WWS&ref_=kwl_kr_iv_rec_2
+	// The explanation for the keyword defer is at https://read.amazon.com/?asin=B0184N7WWS&ref_=kwl_kr_iv_rec_2
 	defer tracer.Stop()
 
 	logging.LogDebug("Starting curryware-kafka-go-processor...")
@@ -61,11 +59,11 @@ func main() {
 	postgresPort := os.Getenv("POSTGRES_PORT")
 	if postgresServer != "" {
 		logging.LogInfo("Postgres server configured", "server", postgresServer, "port", postgresPort)
-		addrs, dnsErr := net.LookupHost(postgresServer)
+		address, dnsErr := net.LookupHost(postgresServer)
 		if dnsErr != nil {
 			logging.LogError("Postgres DNS resolution failed", "server", postgresServer, "error", dnsErr.Error())
 		} else {
-			logging.LogInfo("Postgres DNS resolved", "server", postgresServer, "addresses", fmt.Sprintf("%v", addrs))
+			logging.LogInfo("Postgres DNS resolved", "server", postgresServer, "addresses", fmt.Sprintf("%v", address))
 			if postgresPort != "" {
 				conn, dialErr := net.DialTimeout("tcp", net.JoinHostPort(postgresServer, postgresPort), 5*time.Second)
 				if dialErr != nil {

@@ -82,7 +82,7 @@ func ConsumeMessages(server string) {
 	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
-	fmt.Println("Jumping into the event loop")
+	logging.LogInfo("Jumping into the event loop")
 
 	// This is just a timer that will post a log entry, so I know the services is running.
 	ticker := time.NewTicker(300 * time.Second)

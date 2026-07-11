@@ -72,6 +72,7 @@ func ConsumeMessages(server string) {
 	// This is where all topic handlers get built out.  This makes it easier to add them as they come online.
 	// see the bottom of this file for implementations.
 	topicHandlers := map[string]func(*kafka.Message){
+		"AllAvailablePlayersTopic":  processAllAvailablePlayersTopic,
 		"AllLeagueInformationTopic": processAllLeagueInformationTopic,
 		"AllTeamInformationTopic":   processAllLeagueTeamInformationTopic,
 		"DatadogValidationTopic":    processDatadogValidationTopic,
@@ -127,6 +128,21 @@ func processPlayerTopicDaily(event *kafka.Message) {
 		return
 	}
 	postgreshandlers.InsertPlayerRecord(players)
+}
+
+func processAllAvailablePlayersTopic(event *kafka.Message) {
+
+	logging.LogInfo("Processing AllAvailablePlayersTopic")
+	availablePlayersPackage := string(event.Value)
+	availablePlayers, err := jsonhandlers.ParseJSON[[]playerclasses.PlayerInfo](availablePlayersPackage)
+	if err != nil {
+		logging.LogError("Error parsing available player info")
+		return
+	}
+
+	availablePlayerCount := postgreshandlers.InsertAvailablePlayerRecord(availablePlayers)
+	logging.LogInfo("Available player records inserted", "count", availablePlayerCount)
+	logging.LogInfo("Available players package length", "length", len(availablePlayersPackage))
 }
 
 func processDatadogValidationTopic(event *kafka.Message) {

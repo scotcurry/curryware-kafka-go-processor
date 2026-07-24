@@ -1,6 +1,7 @@
 package kafkahandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/logging"
 	"fmt"
 	"net"
@@ -10,26 +11,26 @@ import (
 
 func ValidateDNSResolution(domain string, port string) ([]string, error) {
 
-	logging.LogInfo(fmt.Sprintf("Validating DNS resolution for %s", domain))
+	logging.LogInfo(context.Background(), fmt.Sprintf("Validating DNS resolution for %s", domain))
 	if strings.Contains(domain, ":") {
 		parts := strings.Split(domain, ":")
 		domain = parts[0]
 		port = parts[1]
-		logging.LogInfo(fmt.Sprintf("Validating DNS resolution for %s on port %s", domain, port))
+		logging.LogInfo(context.Background(), fmt.Sprintf("Validating DNS resolution for %s on port %s", domain, port))
 	}
 
 	addresses, err := net.LookupHost(domain)
 	if err != nil {
-		logging.LogError(fmt.Sprintf("ValidateDNSResolution - DNS resolution failed for %s: %v", domain, err))
+		logging.LogError(context.Background(), fmt.Sprintf("ValidateDNSResolution - DNS resolution failed for %s: %v", domain, err))
 		return nil, fmt.Errorf("DNS resolution failed for %s: %v", domain, err)
 	} else {
-		logging.LogInfo(fmt.Sprintf("ValidateDNSResolution - DNS resolution successful for %s", domain))
+		logging.LogInfo(context.Background(), fmt.Sprintf("ValidateDNSResolution - DNS resolution successful for %s", domain))
 		_, portError := validatePortOpen(domain, port, 3*time.Second)
 		if portError != nil {
-			logging.LogError(fmt.Sprintf("ValidateDNSResolution - Port %s is not open for %s: %v", port, domain, portError))
+			logging.LogError(context.Background(), fmt.Sprintf("ValidateDNSResolution - Port %s is not open for %s: %v", port, domain, portError))
 			return nil, fmt.Errorf("ValidateDNSResolution - port %s is not open for %s: %v", port, domain, portError)
 		} else {
-			logging.LogInfo(fmt.Sprintf("ValidateDNSResolution - Port %s is open for %s", port, domain))
+			logging.LogInfo(context.Background(), fmt.Sprintf("ValidateDNSResolution - Port %s is open for %s", port, domain))
 		}
 	}
 	return addresses, nil
@@ -45,7 +46,7 @@ func validatePortOpen(domain string, port string, timeout time.Duration) (bool, 
 	defer func(conn net.Conn) {
 		err := conn.Close()
 		if err != nil {
-			logging.LogError("ValidateDNSResolution - validatePortOpen - Error closing connection")
+			logging.LogError(context.Background(), "ValidateDNSResolution - validatePortOpen - Error closing connection")
 		}
 	}(conn)
 	return true, nil

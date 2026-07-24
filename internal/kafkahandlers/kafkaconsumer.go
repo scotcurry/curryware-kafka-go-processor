@@ -1,9 +1,9 @@
 package kafkahandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/leagueclasses"
 	"curryware-kafka-go-processor/internal/fantasyclasses/playerclasses"
-	"curryware-kafka-go-processor/internal/fantasyclasses/statsclasses"
 	"curryware-kafka-go-processor/internal/fantasyclasses/teamclasses"
 	"curryware-kafka-go-processor/internal/fantasyclasses/transactionclasses"
 	"curryware-kafka-go-processor/internal/jsonhandlers"
@@ -25,16 +25,16 @@ func ConsumeMessages(server string) {
 
 	// Logging code for Datadog.
 	_, err := ValidateDNSResolution(server, "")
-	logging.LogInfo("Launching ConsumeMessages - curryware-kafka-go-processor on server: " + server)
+	logging.LogInfo(context.Background(), "Launching ConsumeMessages - curryware-kafka-go-processor on server: "+server)
 
 	// Log the topics that exist at startup. This is informational only — the regex subscription
 	// below also picks up topics created while the service is running.
 	currentTopics, err := GetTopicNames(server)
 	if err != nil {
-		logging.LogError("Error getting topic names from Kafka server", "error", err.Error())
+		logging.LogError(context.Background(), "Error getting topic names from Kafka server", "error", err.Error())
 	}
-	for i := 0; i < len(currentTopics); i++ {
-		fmt.Println(fmt.Sprintf("Consuming Message(s): %s", currentTopics[i]))
+	for i := range currentTopics {
+		logging.LogInfo(context.Background(), fmt.Sprintf("Consuming Message(s): %s", currentTopics[i]))
 	}
 
 	// Builds the consumer. Group ID will change for different types of statistics.
@@ -48,14 +48,14 @@ func ConsumeMessages(server string) {
 		"topic.metadata.refresh.interval.ms": 60000,
 	}, ddkafka.WithDataStreams())
 	if err != nil {
-		logging.LogError("Error building consumer")
+		logging.LogError(context.Background(), "Error building consumer")
 		fmt.Println("Error building consumer")
 		panic(err)
 	}
 	defer func(consumer *ddkafka.Consumer) {
 		closeErr := consumer.Close()
 		if closeErr != nil {
-			logging.LogError("Error closing consumer")
+			logging.LogError(context.Background(), "Error closing consumer")
 		}
 	}(consumer)
 
@@ -64,7 +64,7 @@ func ConsumeMessages(server string) {
 	// Topics starting with "_" (internal topics) are excluded, matching GetTopicNames.
 	err = consumer.SubscribeTopics([]string{"^[^_].*"}, nil)
 	if err != nil {
-		logging.LogError("Error subscribing to topics", "error", err.Error())
+		logging.LogError(context.Background(), "Error subscribing to topics", "error", err.Error())
 		panic(err)
 	}
 	signalChannel := make(chan os.Signal, 1)
@@ -85,35 +85,35 @@ func ConsumeMessages(server string) {
 	}
 
 	// This is the loop that will run forever.  Need to use Datadog to see how much processor this actually takes.
-	logging.LogInfo("Jumping into the event loop")
+	logging.LogInfo(context.Background(), "Jumping into the event loop")
 
 	// This is just a timer that will post a log entry, so I know the services is running.
-	ticker := time.NewTicker(300 * time.Second)
+	ticker := time.NewTicker(30 * time.Second)
 	defer ticker.Stop()
 
 	run := true
 	for run {
 		select {
 		case <-ticker.C:
-			logging.LogInfo("Processing event consumer loop")
+			logging.LogInfo(context.Background(), "Processing event consumer loop")
 		case sig := <-signalChannel:
 			fmt.Printf("Caught signal %v, exiting\n", sig)
 			run = false
 		default:
 			event, eventError := consumer.ReadMessage(20 * time.Second)
-			logging.LogDebug("Executing Event Loop")
+			logging.LogDebug(context.Background(), "Executing Event Loop")
 			if eventError != nil {
 				continue
 			} else {
-				logging.LogInfo("Event received", "bytes", len(event.Value))
+				logging.LogInfo(context.Background(), "Event received", "bytes", len(event.Value))
 			}
 
 			topic := *event.TopicPartition.Topic
 			if handler, ok := topicHandlers[topic]; ok {
-				logging.LogInfo(fmt.Sprintf("Processing topic %s", topic))
+				logging.LogInfo(context.Background(), fmt.Sprintf("Processing topic %s", topic))
 				handler(event)
 			} else {
-				logging.LogError(fmt.Sprintf("No handler for topic %s", topic))
+				logging.LogError(context.Background(), fmt.Sprintf("No handler for topic %s", topic))
 			}
 		}
 	}
@@ -121,12 +121,12 @@ func ConsumeMessages(server string) {
 
 func processPlayerTopicDaily(event *kafka.Message) {
 
-	logging.LogInfo("Processing PlayerTopicDaily")
+	logging.LogInfo(context.Background(), "Processing PlayerTopicDaily")
 	playerPackage := string(event.Value)
-	logging.LogInfo("Player package length: ", len(playerPackage))
+	logging.LogInfo(context.Background(), "Player package length: ", len(playerPackage))
 	players, err := jsonhandlers.ParseJSON[[]playerclasses.PlayerInfo](playerPackage)
 	if err != nil {
-		logging.LogError("Error parsing player info")
+		logging.LogError(context.Background(), "Error parsing player info")
 		return
 	}
 	postgreshandlers.InsertPlayerRecord(players)
@@ -134,111 +134,111 @@ func processPlayerTopicDaily(event *kafka.Message) {
 
 func processAllAvailablePlayersTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing AllAvailablePlayersTopic")
+	logging.LogInfo(context.Background(), "Processing AllAvailablePlayersTopic")
 	availablePlayersPackage := string(event.Value)
 	availablePlayers, err := jsonhandlers.ParseJSON[[]playerclasses.PlayerInfo](availablePlayersPackage)
 	if err != nil {
-		logging.LogError("Error parsing available player info")
+		logging.LogError(context.Background(), "Error parsing available player info")
 		return
 	}
 
 	availablePlayerCount := postgreshandlers.InsertAvailablePlayerRecord(availablePlayers)
-	logging.LogInfo("Available player records inserted", "count", availablePlayerCount)
-	logging.LogInfo("Available players package length", "length", len(availablePlayersPackage))
+	logging.LogInfo(context.Background(), "Available player records inserted", "count", availablePlayerCount)
+	logging.LogInfo(context.Background(), "Available players package length", "length", len(availablePlayersPackage))
 }
 
 func processDatadogValidationTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing DatadogValidationTopic")
+	logging.LogInfo(context.Background(), "Processing DatadogValidationTopic")
 	dataValidationPackage := string(event.Value)
-	logging.LogInfo("Data validation package length: ", len(dataValidationPackage))
+	logging.LogInfo(context.Background(), "Data validation package length: ", len(dataValidationPackage))
 }
 
 func processTransactionTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing TransactionTopic")
+	logging.LogInfo(context.Background(), "Processing TransactionTopic")
 	transactionPackage := string(event.Value)
 	transactionJson, err := jsonhandlers.ParseJSON[transactionclasses.TransactionInfoWithCount](transactionPackage)
 	if err != nil {
-		logging.LogError("Error parsing transaction info")
+		logging.LogError(context.Background(), "Error parsing transaction info")
 		return
 	}
 	transactionCount := postgreshandlers.ProcessTransactionInfo(transactionJson)
-	logging.LogDebug("NEEDS TO BE UPDATED: Transaction count: ", transactionCount)
-	logging.LogInfo("Transaction package length: ", len(transactionPackage))
+	logging.LogDebug(context.Background(), "NEEDS TO BE UPDATED: Transaction count: ", transactionCount)
+	logging.LogInfo(context.Background(), "Transaction package length: ", len(transactionPackage))
 }
 
 func processStatisticsTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing StatisticsTopic")
-	statsPackage := string(event.Value)
-	statisticsInfo, err := jsonhandlers.ParseJSON[[]statsclasses.PlayerWeeklyStatsInfo](statsPackage)
-	if err != nil {
-		logging.LogError("Error parsing stats info")
-		return
-	}
+	//logging.LogInfo(context.Background(), "Processing StatisticsTopic")
+	//statsPackage := string(event.Value)
+	//statisticsInfo, err := jsonhandlers.ParseJSON[[]statsclasses.PlayerWeeklyStatsInfo](statsPackage)
+	//if err != nil {
+	//	logging.LogError(context.Background(), "Error parsing stats info")
+	//	return
+	//}
 
-	statsCount := postgreshandlers.InsertPlayerWeeklyStats(statisticsInfo)
-	logging.LogInfo("Player stats inserted", "count", statsCount)
-	logging.LogInfo("Statistics package length", "length", len(statsPackage))
+	//statsCount := postgreshandlers.InsertPlayerWeeklyStats(statisticsInfo)
+	//logging.LogInfo(context.Background(), "Player stats inserted", "count", statsCount)
+	//logging.LogInfo(context.Background(), "Statistics package length", "length", len(statsPackage))
 }
 
 func processStatDescriptionTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing StatDescriptionTopic")
+	logging.LogInfo(context.Background(), "Processing StatDescriptionTopic")
 	statDescriptionPackage := string(event.Value)
 	statDescriptions, err := jsonhandlers.ParseJSON[[]leagueclasses.LeagueStatDescriptionInfo](statDescriptionPackage)
 	if err != nil {
-		logging.LogError("Error parsing stat description info")
+		logging.LogError(context.Background(), "Error parsing stat description info")
 		return
 	}
 
 	statDescriptionCount := postgreshandlers.InsertLeagueStatInfo(statDescriptions)
-	logging.LogInfo("League stat descriptions inserted", "count", statDescriptionCount)
-	logging.LogInfo("Stat description package length", "length", len(statDescriptionPackage))
+	logging.LogInfo(context.Background(), "League stat descriptions inserted", "count", statDescriptionCount)
+	logging.LogInfo(context.Background(), "Stat description package length", "length", len(statDescriptionPackage))
 }
 
 func processAllLeagueInformationTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing AllLeagueInformationTopic")
+	logging.LogInfo(context.Background(), "Processing AllLeagueInformationTopic")
 	leagueInfoPackage := string(event.Value)
 	leagueInfo, err := jsonhandlers.ParseJSON[[]leagueclasses.LeagueInformation](leagueInfoPackage)
 	if err != nil {
-		logging.LogError("Error parsing league information")
+		logging.LogError(context.Background(), "Error parsing league information")
 		return
 	}
 
 	leagueInfoCount := postgreshandlers.InsertLeagueInformation(leagueInfo)
-	logging.LogInfo("League information records inserted", "count", leagueInfoCount)
-	logging.LogInfo("League information package length", "length", len(leagueInfoPackage))
+	logging.LogInfo(context.Background(), "League information records inserted", "count", leagueInfoCount)
+	logging.LogInfo(context.Background(), "League information package length", "length", len(leagueInfoPackage))
 }
 
 func processTeamRosterInformationTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing TeamRosterInformationTopic")
+	logging.LogInfo(context.Background(), "Processing TeamRosterInformationTopic")
 	teamRosterPackage := string(event.Value)
 	teamRosterInfo, err := jsonhandlers.ParseJSON[[]teamclasses.TeamRosterInfo](teamRosterPackage)
 	if err != nil {
-		logging.LogError("Error parsing team roster info")
+		logging.LogError(context.Background(), "Error parsing team roster info")
 		return
 	}
 
 	teamRosterCount := postgreshandlers.InsertTeamRosterInfo(teamRosterInfo)
-	logging.LogInfo("Team roster records inserted", "count", teamRosterCount)
-	logging.LogInfo("Team roster package length", "length", len(teamRosterPackage))
+	logging.LogInfo(context.Background(), "Team roster records inserted", "count", teamRosterCount)
+	logging.LogInfo(context.Background(), "Team roster package length", "length", len(teamRosterPackage))
 }
 
 func processAllLeagueTeamInformationTopic(event *kafka.Message) {
 
-	logging.LogInfo("Processing AllLeagueTeamInformationTopic")
+	logging.LogInfo(context.Background(), "Processing AllLeagueTeamInformationTopic")
 	allTeamInfoPackage := string(event.Value)
 	allTeamInfo, err := jsonhandlers.ParseJSON[[]leagueclasses.TeamInformation](allTeamInfoPackage)
 	if err != nil {
-		logging.LogError("Error parsing all team information")
+		logging.LogError(context.Background(), "Error parsing all team information")
 		return
 	}
 
 	allTeamInfoCount := postgreshandlers.InsertTeamInformation(allTeamInfo)
-	logging.LogInfo("All team information records inserted", "count", allTeamInfoCount)
-	logging.LogInfo("All team information package length", "length", len(allTeamInfoPackage))
+	logging.LogInfo(context.Background(), "All team information records inserted", "count", allTeamInfoCount)
+	logging.LogInfo(context.Background(), "All team information package length", "length", len(allTeamInfoPackage))
 }

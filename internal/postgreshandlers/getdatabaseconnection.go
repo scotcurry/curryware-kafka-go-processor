@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"database/sql"
 	"sync"
@@ -28,7 +29,7 @@ func GetDB() (*sql.DB, error) {
 
 	psqlInfo, variableError := GetDatabaseInformation()
 	if variableError != nil {
-		logger.LogError("Error getting database information")
+		logger.LogError(context.Background(), "Error getting database information")
 		return nil, variableError
 	}
 
@@ -40,7 +41,7 @@ func GetDB() (*sql.DB, error) {
 	var lastErr error
 	for attempt := 0; attempt < maxRetries; attempt++ {
 		if attempt > 0 {
-			logger.LogInfo("Retrying postgres connection",
+			logger.LogInfo(context.Background(), "Retrying postgres connection",
 				"attempt", attempt+1,
 				"backoff", backoff.String())
 			time.Sleep(backoff)
@@ -49,7 +50,7 @@ func GetDB() (*sql.DB, error) {
 
 		conn, err := sql.Open("postgres", psqlInfo)
 		if err != nil {
-			logger.LogError("Error opening postgres connection", "error", err.Error())
+			logger.LogError(context.Background(), "Error opening postgres connection", "error", err.Error())
 			lastErr = err
 			continue
 		}
@@ -61,7 +62,7 @@ func GetDB() (*sql.DB, error) {
 
 		// Test the connection
 		if pingErr := conn.Ping(); pingErr != nil {
-			logger.LogError("Error pinging postgres connection", "error", pingErr.Error())
+			logger.LogError(context.Background(), "Error pinging postgres connection", "error", pingErr.Error())
 			_ = conn.Close()
 			lastErr = pingErr
 			continue
@@ -71,7 +72,7 @@ func GetDB() (*sql.DB, error) {
 		return db, nil
 	}
 
-	logger.LogError("All postgres connection attempts failed", "attempts", maxRetries)
+	logger.LogError(context.Background(), "All postgres connection attempts failed", "attempts", maxRetries)
 	return nil, lastErr
 }
 

@@ -1,6 +1,7 @@
 package kafkahandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/logging"
 	"fmt"
 
@@ -14,7 +15,7 @@ func GetTopicNames(server string) ([]string, error) {
 		"bootstrap.servers": server,
 	})
 	if err != nil {
-		logging.LogError("Error building admin client")
+		logging.LogError(context.Background(), "Error building admin client")
 		return nil, fmt.Errorf("error building admin client: %v", err)
 	}
 	defer adminClient.Close()
@@ -28,12 +29,12 @@ func GetTopicNames(server string) ([]string, error) {
 	if metadata != nil {
 		for topic := range metadata.Topics {
 			if topic[0] != '_' {
-				logging.LogInfo("Topic name: " + topic)
+				logging.LogInfo(context.Background(), "Topic name: "+topic)
 				allTopics = append(allTopics, topic)
 			}
 		}
 	} else {
-		logging.LogError("No metadata")
+		logging.LogError(context.Background(), "No metadata")
 	}
 
 	return allTopics, nil

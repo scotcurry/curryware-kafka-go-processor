@@ -1,9 +1,10 @@
 module curryware-kafka-go-processor
 
-go 1.26.4
+go 1.26.5
 
 require (
 	github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka.v2/v2 v2.9.1
+	github.com/DataDog/dd-trace-go/contrib/log/slog/v2 v2.9.1
 	github.com/DataDog/dd-trace-go/v2 v2.9.1
 	github.com/confluentinc/confluent-kafka-go/v2 v2.15.0
 	github.com/lib/pq v1.12.3

@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"errors"
 	"fmt"
@@ -22,7 +23,7 @@ func GetDatabaseInformation() (string, error) {
 
 	portInteger, err := strconv.ParseInt(postgresPort, 10, 64)
 	if err != nil {
-		logger.LogError("Error parsing port", "error", err.Error())
+		logger.LogError(context.Background(), "Error parsing port", "error", err.Error())
 		return "", fmt.Errorf("invalid POSTGRES_PORT value %q: %w", postgresPort, err)
 	}
 
@@ -30,7 +31,7 @@ func GetDatabaseInformation() (string, error) {
 		"password=%s dbname=%s sslmode=disable",
 		postgresServer, portInteger, postgresUser, postgresPassword, postgresDb)
 
-	logger.LogInfo(fmt.Sprintf("psqlInfo %s", psqlInfo))
+	logger.LogInfo(context.Background(), "Database connection info built", "server", postgresServer, "port", portInteger, "database", postgresDb)
 
 	return psqlInfo, nil
 }

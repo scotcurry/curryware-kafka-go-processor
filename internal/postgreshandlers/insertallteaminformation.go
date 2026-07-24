@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/leagueclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"strconv"
@@ -28,11 +29,11 @@ func InsertAllTeamInformation(teamInfo []leagueclasses.AllTeamInformation) int {
 			team.ManagerNicknames,
 		)
 		if err != nil {
-			logger.LogError("Error inserting all team information record", "error", err.Error(), "team_key", team.TeamKey)
+			logger.LogError(context.Background(), "Error inserting all team information record", "error", err.Error(), "team_key", team.TeamKey)
 			continue
 		}
-		logger.LogInfo("Rows affected", "count", strconv.Itoa(int(count)))
+		logger.LogInfo(context.Background(), "Rows affected", "count", strconv.Itoa(int(count)))
 	}
-	logger.LogInfo("Done inserting all team information records", "total_records", strconv.Itoa(len(teamInfo)))
+	logger.LogInfo(context.Background(), "Done inserting all team information records", "total_records", strconv.Itoa(len(teamInfo)))
 	return len(teamInfo)
 }

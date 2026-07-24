@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/leagueclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"strconv"
@@ -15,16 +16,16 @@ func InsertLeagueStatInfo(leagueStatInfo []leagueclasses.LeagueStatDescriptionIn
 	for counter := 0; counter < len(leagueStatInfo); counter++ {
 		stat := leagueStatInfo[counter]
 
-		logger.LogDebug("Inserting league stat", "league_stat_key_id", stat.LeagueStatKeyId)
+		logger.LogDebug(context.Background(), "Inserting league stat", "league_stat_key_id", stat.LeagueStatKeyId)
 		count, err := ExecStatement(sqlStatement, stat.LeagueStatKeyId, stat.GameId, stat.LeagueId, stat.StatId,
 			stat.StatEnabled, stat.StatName, stat.StatDisplayName, stat.StatGroupDisplayName,
 			stat.StatAbbreviation, stat.StatSortOrder, stat.StatPositionType, stat.StatSortPosition)
 		if err != nil {
-			logger.LogError("Error inserting league stat record", "error", err.Error())
+			logger.LogError(context.Background(), "Error inserting league stat record", "error", err.Error())
 			continue
 		}
-		logger.LogInfo("Rows affected", "count", strconv.Itoa(int(count)))
+		logger.LogInfo(context.Background(), "Rows affected", "count", strconv.Itoa(int(count)))
 	}
-	logger.LogInfo("Done inserting league stat records", "total_records", strconv.Itoa(len(leagueStatInfo)))
+	logger.LogInfo(context.Background(), "Done inserting league stat records", "total_records", strconv.Itoa(len(leagueStatInfo)))
 	return len(leagueStatInfo)
 }

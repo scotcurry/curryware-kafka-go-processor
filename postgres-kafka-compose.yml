@@ -1,0 +1,105 @@
+version: "3.8"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Podman Compose — Datadog Agent + Application
+#
+# Usage:
+#   1. Copy .env.example to .env and fill in DD_API_KEY
+#   2. podman-compose up -d
+#
+# Podman-specific notes:
+#   • The Docker socket path is replaced with the Podman socket.
+#     If you are running rootful Podman, the socket is at:
+#       /run/podman/podman.sock
+#     If rootless, it is typically at:
+#       /run/user/<UID>/podman/podman.sock
+#     Adjust DD_CONTAINER_SOCK_PATH below accordingly.
+#   • AppArmor is a Linux kernel module not used by Podman by default;
+#     the security_opt entry is kept for compatibility but is a no-op on
+#     systems without AppArmor (e.g. RHEL/Fedora with SELinux).
+#   • `pid: host` requires the container to run in rootful mode or with
+#     the `--userns=host` flag. Rootless Podman will warn but may still work
+#     depending on your kernel configuration.
+# ──────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── PostgreSQL 16 ────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16
+    container_name: fantasy-postgres
+
+    environment:
+      POSTGRES_DB: fantasy_football
+      POSTGRES_USER: fantasy
+      POSTGRES_PASSWORD: fantasy
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - /Users/scot.curry/RiderProjects/curryware-yahoo-api/init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fantasy -d fantasy_football"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - fantasy-network
+
+  # ── Kafka (KRaft mode — no ZooKeeper required) ───────────────────────────────
+  kafka:
+    image: confluentinc/cp-kafka:8.2.2
+    container_name: kafka
+
+    environment:
+      # KRaft: this node is both broker and controller
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+
+      # Listeners:
+      #   PLAINTEXT      — container-to-container traffic (e.g. your app inside compose)
+      #   PLAINTEXT_HOST — host / IDE access via localhost:9092
+      #   CONTROLLER     — internal KRaft controller communication
+      KAFKA_LISTENERS: DOCKER://0.0.0.0:9093,HOST://0.0.0.0:9092,CONTROLLER://0.0.0.0:29093
+      KAFKA_ADVERTISED_LISTENERS: DOCKER://kafka:9093,HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: DOCKER:PLAINTEXT,HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+
+      KAFKA_INTER_BROKER_LISTENER_NAME: DOCKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29093
+
+      # Single-node dev defaults
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_MIN_INSYNC_REPLICAS: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
+      # Required for KRaft — generate a fresh one with:
+      #   podman run --rm confluentinc/cp-kafka:7.6.1 kafka-storage random-uuid
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2EV"
+    ports:
+      - "9092:9092"    # host / IDE access
+      - "29092:29092"  # inter-container (expose if you need it from the host too)
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+    networks:
+      - fantasy-network
+
+networks:
+  fantasy-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  kafka_data:

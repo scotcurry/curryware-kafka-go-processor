@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/teamclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"strconv"
@@ -20,7 +21,7 @@ func InsertTeamRosterInfo(rosterInfo []teamclasses.TeamRosterInfo) int {
                     has_player_notes = EXCLUDED.has_player_notes,
                     last_player_note_timestamp = EXCLUDED.last_player_note_timestamp`
 
-	for counter := 0; counter < len(rosterInfo); counter++ {
+	for counter := range rosterInfo {
 		teamKey := rosterInfo[counter].TeamKey
 		teamId := rosterInfo[counter].TeamId
 		managerId := rosterInfo[counter].ManagerId
@@ -35,11 +36,11 @@ func InsertTeamRosterInfo(rosterInfo []teamclasses.TeamRosterInfo) int {
 		count, err := ExecStatement(sqlStatement, teamKey, teamId, managerId, playerKey, playerId,
 			teamFullName, byeWeek, primaryPosition, hasPlayerNotes, lastPlayerNoteTimestamp)
 		if err != nil {
-			logger.LogError("Error inserting team roster record", "error", err.Error(), "team_key", teamKey, "player_key", playerKey)
+			logger.LogError(context.Background(), "Error inserting team roster record", "error", err.Error(), "team_key", teamKey, "player_key", playerKey)
 			continue
 		}
-		logger.LogInfo("Rows affected", "count", strconv.Itoa(int(count)))
+		logger.LogInfo(context.Background(), "Rows affected", "count", strconv.Itoa(int(count)))
 	}
-	logger.LogInfo("Done inserting team roster records", "total_records", strconv.Itoa(len(rosterInfo)))
+	logger.LogInfo(context.Background(), "Done inserting team roster records", "total_records", strconv.Itoa(len(rosterInfo)))
 	return len(rosterInfo)
 }

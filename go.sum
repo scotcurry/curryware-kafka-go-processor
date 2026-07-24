@@ -20,6 +20,8 @@ github.com/DataDog/datadog-go/v5 v5.9.0 h1:0rhs5wBov9Iz+xLXLk4maaReHvOANM1ijSm2I
 github.com/DataDog/datadog-go/v5 v5.9.0/go.mod h1:2SBt8zJu6r7sRQHZFMQ8oCukWTKj0ymwulmNgQzJ1JM=
 github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka.v2/v2 v2.9.1 h1:MbxgNuqdSBPBE5CBC/wxEDPrYetZLrUbjtPDRq6m6FE=
 github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka.v2/v2 v2.9.1/go.mod h1:v2GdaWe7RoEXjCf/ZqUakA8XdwGchlq7jB/132+wClg=
+github.com/DataDog/dd-trace-go/contrib/log/slog/v2 v2.9.1 h1:rsnXTMMo/wF4nRHjdZbpaTuODsm+/iaWm30xIVab0B0=
+github.com/DataDog/dd-trace-go/contrib/log/slog/v2 v2.9.1/go.mod h1:rriKtwRyNttBX1/LPuLfPzDvL1iwy9PmlPXLzIP6zGI=
 github.com/DataDog/dd-trace-go/v2 v2.9.1 h1:N2aqlWS0nAG5o+ETVyvz3gtboZbfemaD8Q/VumStGRY=
 github.com/DataDog/dd-trace-go/v2 v2.9.1/go.mod h1:SdMkCESSBc2knx56Xol2pO7jhMDPi7MxyNj6vRYMW48=
 github.com/DataDog/go-libddwaf/v4 v4.10.0 h1:e1kqR5yqqttLRuFXHb8FrrgLfMWTx5LnZICMwQwTDYM=

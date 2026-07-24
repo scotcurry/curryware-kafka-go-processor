@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/playerclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"strconv"
@@ -28,10 +29,10 @@ func InsertPlayerRecord(playerInfo []playerclasses.PlayerInfo) {
 		count, err := ExecStatement(sqlStatement, playerId, playerKey, playerName, playerStatus, playerStatusFull, playerUrl,
 			playerTeam, playerByeWeek, playerUniformNumber, playerPosition, playerHeadshot, playerInjuryNotes)
 		if err != nil {
-			logger.LogError("Error inserting player record", "error", err.Error(), "player_id", playerId)
+			logger.LogError(context.Background(), "Error inserting player record", "error", err.Error(), "player_id", playerId)
 			continue
 		}
-		logger.LogInfo("Rows affected", "count", strconv.Itoa(int(count)))
+		logger.LogInfo(context.Background(), "Rows affected", "count", strconv.Itoa(int(count)))
 	}
-	logger.LogInfo("Done inserting player records", "total_records", strconv.Itoa(len(playerInfo)))
+	logger.LogInfo(context.Background(), "Done inserting player records", "total_records", strconv.Itoa(len(playerInfo)))
 }

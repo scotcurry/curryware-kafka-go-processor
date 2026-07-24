@@ -1,6 +1,7 @@
 package jsonhandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/logging"
 	"encoding/base64"
 	"encoding/json"
@@ -12,13 +13,13 @@ func ParseJSON[T any](encoded string) (T, error) {
 
 	decodedBytes, err := base64.StdEncoding.DecodeString(encoded)
 	if err != nil {
-		logging.LogError("Error decoding base64: ", err)
+		logging.LogError(context.Background(), "Error decoding base64", "error", err)
 		return result, err
 	}
 
 	err = json.Unmarshal(decodedBytes, &result)
 	if err != nil {
-		logging.LogError("Error parsing JSON: ", err)
+		logging.LogError(context.Background(), "Error parsing JSON", "error", err)
 		return result, err
 	}
 

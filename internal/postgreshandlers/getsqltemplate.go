@@ -1,10 +1,7 @@
 package postgreshandlers
 
 import (
-	logger "curryware-kafka-go-processor/internal/logging"
 	_ "embed"
-	"fmt"
-	"strings"
 )
 
 //go:embed sqltemplates/player_weekly_stats.sql
@@ -18,11 +15,11 @@ var sqlTemplates = map[string]string{
 	"league_stat_info_insert_statement":     leagueStatInfoInsertSQL,
 }
 
-func GetSqlTemplate(templateName string) string {
-	tmpl, ok := sqlTemplates[templateName]
-	if !ok {
-		logger.LogError(fmt.Sprintf("SQL template not found: %s", templateName))
-		return ""
-	}
-	return strings.TrimSpace(tmpl)
-}
+//func GetSqlTemplate(templateName string) string {
+//	tmpl, ok := sqlTemplates[templateName]
+//	if !ok {
+//		logger.LogError(context.Background(), fmt.Sprintf("SQL template not found: %s", templateName))
+//		return ""
+//	}
+//	return strings.TrimSpace(tmpl)
+//}

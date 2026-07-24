@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"database/sql"
 )
@@ -10,18 +11,18 @@ import (
 func ExecStatement(sqlStatement string, params ...any) (int64, error) {
 	db, err := GetDB()
 	if err != nil {
-		logger.LogError("Error getting database connection", "error", err.Error())
+		logger.LogError(context.Background(), "Error getting database connection", "error", err.Error())
 		return 0, err
 	}
 	result, err := db.Exec(sqlStatement, params...)
 	if err != nil {
-		logger.LogError("Error executing sql statement", "error", err.Error())
+		logger.LogError(context.Background(), "Error executing sql statement", "error", err.Error())
 		return 0, err
 	}
 
 	rowsAffected, err := result.RowsAffected()
 	if err != nil {
-		logger.LogError("Error getting rows affected", "error", err.Error())
+		logger.LogError(context.Background(), "Error getting rows affected", "error", err.Error())
 		return 0, err
 	}
 	return rowsAffected, nil
@@ -31,7 +32,7 @@ func ExecStatement(sqlStatement string, params ...any) (int64, error) {
 func QueryRowStatement(sqlStatement string, params ...any) (*sql.Row, error) {
 	db, err := GetDB()
 	if err != nil {
-		logger.LogError("Error getting database connection", "error", err.Error())
+		logger.LogError(context.Background(), "Error getting database connection", "error", err.Error())
 		return nil, err
 	}
 	return db.QueryRow(sqlStatement, params...), nil

@@ -1,6 +1,7 @@
 package postgreshandlers
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/transactionclasses"
 	logger "curryware-kafka-go-processor/internal/logging"
 	"time"
@@ -10,9 +11,9 @@ func ProcessTransactionInfo(transactionJson transactionclasses.TransactionInfoWi
 
 	leagueKey := transactionJson.LeagueKey
 	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(leagueKey)
-	logger.LogDebug("Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate)
+	logger.LogDebug(context.Background(), "Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate)
 	rowCount := insertTransactionInfo(transactionJson)
-	logger.LogInfo("Database Last Transaction", "transaction", databaseLastTransaction)
+	logger.LogInfo(context.Background(), "Database Last Transaction", "transaction", databaseLastTransaction)
 
 	return rowCount
 }
@@ -38,9 +39,9 @@ func getLastTransactionFromDatabase(leagueKey string) (int64, int64) {
 //			transactionToInsert := transactionJson.Transactions[counter]
 //			rows, err := insertTransactionDetail(transactionToInsert)
 //			if err != nil {
-//				logger.LogError("Error inserting transaction info: ", err)
+//				logger.LogError(context.Background(), "Error inserting transaction info: ", err)
 //			}
-//			logger.LogInfo("Rows inserted: {1}", rows)
+//			logger.LogInfo(context.Background(), "Rows inserted: {1}", rows)
 //		}
 //	}
 //
@@ -50,7 +51,7 @@ func getLastTransactionFromDatabase(leagueKey string) (int64, int64) {
 //	sqlParams = append(sqlParams, leagueKey)
 //	rows, err := ExecuteSqlStatement(updateLatestTransactionStatement, sqlParams)
 //	if err != nil {
-//		logger.LogError("Error updating latest transaction id: ", err)
+//		logger.LogError(context.Background(), "Error updating latest transaction id: ", err)
 //	}
 //	return rows
 //}
@@ -62,7 +63,7 @@ func insertTransactionInfo(transactionJson transactionclasses.TransactionInfoWit
 	for counter := 0; counter < len(allTransactions); counter++ {
 		rows, err := insertTransactionDetail(allTransactions[counter])
 		if err != nil {
-			logger.LogError("Error inserting transaction info: ", err)
+			logger.LogError(context.Background(), "Error inserting transaction info", "error", err)
 		}
 		totalRows += rows
 	}
@@ -94,20 +95,20 @@ func insertTransactionDetail(transactionToInsert transactionclasses.TransactionI
 	sqlParams = append(sqlParams, timestamp)
 
 	if gameId == 0 || leagueId == 0 {
-		logger.LogError("GameId or LeagueId is 0")
+		logger.LogError(context.Background(), "GameId or LeagueId is 0")
 	}
 
 	rowCount, err := ExecuteSqlStatement(transactionInfoSqlStatement, sqlParams)
 	if err != nil {
-		logger.LogError("Error inserting transaction info: ", err)
+		logger.LogError(context.Background(), "Error inserting transaction info", "error", err)
 		return 0, err
 	}
 
 	if rowCount == 0 {
-		logger.LogInfo("No rows inserted for transaction key: {1}, record exists", "transactionKey", transactionKey)
+		logger.LogInfo(context.Background(), "No rows inserted, record exists", "transactionKey", transactionKey)
 		return rowCount, nil
 	}
-	logger.LogInfo("Rows inserted: ", "rowCount", rowCount)
+	logger.LogInfo(context.Background(), "Rows inserted", "rowCount", rowCount)
 
 	players := transactionToInsert.PlayersInvolved
 
@@ -132,7 +133,7 @@ func insertTransactionDetail(transactionToInsert transactionclasses.TransactionI
 
 		rows, err := ExecuteSqlStatement(playerInsertSqlStatement, sqlParams)
 		if err != nil {
-			logger.LogError("Error inserting transaction player info: ", err)
+			logger.LogError(context.Background(), "Error inserting transaction player info", "error", err)
 			return 0, err
 		}
 		totalRowsAdded += rows

@@ -7,14 +7,14 @@ import (
 	"errors"
 )
 
-func ExecuteSqlStatement(sqlStatement string, sqlParams []any) (int64, error) {
-	return ExecStatement(sqlStatement, sqlParams...)
+func ExecuteSqlStatement(ctx context.Context, sqlStatement string, sqlParams []any) (int64, error) {
+	return ExecStatement(ctx, sqlStatement, sqlParams...)
 }
 
-func ExecuteGetLatestTransactionSelectStatement(sqlStatement string, leagueId string) (int, int) {
-	row, err := QueryRowStatement(sqlStatement, leagueId)
+func ExecuteGetLatestTransactionSelectStatement(ctx context.Context, sqlStatement string, leagueId string) (int, int) {
+	row, err := QueryRowStatement(ctx, sqlStatement, leagueId)
 	if err != nil {
-		logger.LogError(context.Background(), "Error getting database connection for select statement", "error", err.Error())
+		logger.LogError(ctx, "Error getting database connection for select statement", "error", err.Error())
 		return -1, -1
 	}
 	var lastTransactionNumber int
@@ -24,7 +24,7 @@ func ExecuteGetLatestTransactionSelectStatement(sqlStatement string, leagueId st
 		return 0, 0
 	}
 	if err != nil {
-		logger.LogError(context.Background(), "Error executing sql statement", "error", err.Error())
+		logger.LogError(ctx, "Error executing sql statement", "error", err.Error())
 		return -1, -1
 	}
 	return lastTransactionNumber, lastTransactionDate

@@ -1,6 +1,7 @@
 package integration_tests
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/playerclasses"
 	"curryware-kafka-go-processor/internal/jsonhandlers"
 	"curryware-kafka-go-processor/internal/postgreshandlers"
@@ -19,7 +20,7 @@ func TestInsertPlayerRecord(t *testing.T) {
 	}
 
 	playerArray := []playerclasses.PlayerInfo{playerRecord}
-	postgreshandlers.InsertPlayerRecord(playerArray)
+	postgreshandlers.InsertPlayerRecord(context.Background(), playerArray)
 	fmt.Println("Player record inserted")
 	t.Log("Test passed")
 }

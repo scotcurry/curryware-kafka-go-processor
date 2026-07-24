@@ -96,7 +96,7 @@ func main() {
 
 	// Attempt an early database connection. Log a warning if it fails but continue running
 	// so the pod does not crash-loop when Postgres is temporarily unavailable.
-	_, dbErr := postgreshandlers.GetDB()
+	_, dbErr := postgreshandlers.GetDB(ctx)
 	if dbErr != nil {
 		logging.LogError(ctx, "Postgres is not reachable at startup — the service will retry when a message arrives",
 			"error", dbErr.Error())

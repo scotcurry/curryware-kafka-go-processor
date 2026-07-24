@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func InsertPlayerRecord(playerInfo []playerclasses.PlayerInfo) {
+func InsertPlayerRecord(ctx context.Context, playerInfo []playerclasses.PlayerInfo) {
 	sqlStatement := `INSERT INTO player_info_snapshot (player_id, player_season_key, player_name, player_status,
                          player_status_full, player_url,  player_team, player_bye_week, player_uniform_number,
                          player_position, player_headshot, player_injury_notes)
@@ -26,13 +26,13 @@ func InsertPlayerRecord(playerInfo []playerclasses.PlayerInfo) {
 		playerHeadshot := playerInfo[counter].PlayerHeadshot
 		playerInjuryNotes := playerInfo[counter].PlayerInjuryNotes
 
-		count, err := ExecStatement(sqlStatement, playerId, playerKey, playerName, playerStatus, playerStatusFull, playerUrl,
+		count, err := ExecStatement(ctx, sqlStatement, playerId, playerKey, playerName, playerStatus, playerStatusFull, playerUrl,
 			playerTeam, playerByeWeek, playerUniformNumber, playerPosition, playerHeadshot, playerInjuryNotes)
 		if err != nil {
-			logger.LogError(context.Background(), "Error inserting player record", "error", err.Error(), "player_id", playerId)
+			logger.LogError(ctx, "Error inserting player record", "error", err.Error(), "player_id", playerId)
 			continue
 		}
-		logger.LogInfo(context.Background(), "Rows affected", "count", strconv.Itoa(int(count)))
+		logger.LogInfo(ctx, "Rows affected", "count", strconv.Itoa(int(count)))
 	}
-	logger.LogInfo(context.Background(), "Done inserting player records", "total_records", strconv.Itoa(len(playerInfo)))
+	logger.LogInfo(ctx, "Done inserting player records", "total_records", strconv.Itoa(len(playerInfo)))
 }

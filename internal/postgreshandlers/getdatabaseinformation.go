@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-func GetDatabaseInformation() (string, error) {
+func GetDatabaseInformation(ctx context.Context) (string, error) {
 
 	postgresServer := os.Getenv("POSTGRES_SERVER")
 	postgresPort := os.Getenv("POSTGRES_PORT")
@@ -23,7 +23,7 @@ func GetDatabaseInformation() (string, error) {
 
 	portInteger, err := strconv.ParseInt(postgresPort, 10, 64)
 	if err != nil {
-		logger.LogError(context.Background(), "Error parsing port", "error", err.Error())
+		logger.LogError(ctx, "Error parsing port", "error", err.Error())
 		return "", fmt.Errorf("invalid POSTGRES_PORT value %q: %w", postgresPort, err)
 	}
 
@@ -31,7 +31,7 @@ func GetDatabaseInformation() (string, error) {
 		"password=%s dbname=%s sslmode=disable",
 		postgresServer, portInteger, postgresUser, postgresPassword, postgresDb)
 
-	logger.LogInfo(context.Background(), "Database connection info built", "server", postgresServer, "port", portInteger, "database", postgresDb)
+	logger.LogInfo(ctx, "Database connection info built", "server", postgresServer, "port", portInteger, "database", postgresDb)
 
 	return psqlInfo, nil
 }

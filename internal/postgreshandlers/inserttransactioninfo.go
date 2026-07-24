@@ -7,22 +7,22 @@ import (
 	"time"
 )
 
-func ProcessTransactionInfo(transactionJson transactionclasses.TransactionInfoWithCount) int64 {
+func ProcessTransactionInfo(ctx context.Context, transactionJson transactionclasses.TransactionInfoWithCount) int64 {
 
 	leagueKey := transactionJson.LeagueKey
-	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(leagueKey)
-	logger.LogDebug(context.Background(), "Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate)
-	rowCount := insertTransactionInfo(transactionJson)
-	logger.LogInfo(context.Background(), "Database Last Transaction", "transaction", databaseLastTransaction)
+	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(ctx, leagueKey)
+	logger.LogDebug(ctx, "Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate)
+	rowCount := insertTransactionInfo(ctx, transactionJson)
+	logger.LogInfo(ctx, "Database Last Transaction", "transaction", databaseLastTransaction)
 
 	return rowCount
 }
 
 // Call the database to see if any action is needed.
-func getLastTransactionFromDatabase(leagueKey string) (int64, int64) {
+func getLastTransactionFromDatabase(ctx context.Context, leagueKey string) (int64, int64) {
 
 	getLastTransactionStatement := "SELECT league_latest_transaction, last_transaction_date FROM latest_transaction_id WHERE league_transaction_id = $1"
-	latestTransActionId, latestTransactionDate := ExecuteGetLatestTransactionSelectStatement(getLastTransactionStatement, leagueKey)
+	latestTransActionId, latestTransactionDate := ExecuteGetLatestTransactionSelectStatement(ctx, getLastTransactionStatement, leagueKey)
 
 	return int64(latestTransActionId), int64(latestTransactionDate)
 }
@@ -56,14 +56,14 @@ func getLastTransactionFromDatabase(leagueKey string) (int64, int64) {
 //	return rows
 //}
 
-func insertTransactionInfo(transactionJson transactionclasses.TransactionInfoWithCount) int64 {
+func insertTransactionInfo(ctx context.Context, transactionJson transactionclasses.TransactionInfoWithCount) int64 {
 
 	var totalRows int64 = 0
 	allTransactions := transactionJson.Transactions
 	for counter := 0; counter < len(allTransactions); counter++ {
-		rows, err := insertTransactionDetail(allTransactions[counter])
+		rows, err := insertTransactionDetail(ctx, allTransactions[counter])
 		if err != nil {
-			logger.LogError(context.Background(), "Error inserting transaction info", "error", err)
+			logger.LogError(ctx, "Error inserting transaction info", "error", err)
 		}
 		totalRows += rows
 	}
@@ -71,7 +71,7 @@ func insertTransactionInfo(transactionJson transactionclasses.TransactionInfoWit
 	return totalRows
 }
 
-func insertTransactionDetail(transactionToInsert transactionclasses.TransactionInfo) (int64, error) {
+func insertTransactionDetail(ctx context.Context, transactionToInsert transactionclasses.TransactionInfo) (int64, error) {
 
 	transactionInfoSqlStatement := "INSERT INTO transaction_info (game_id, league_id, transaction_key, transaction_id, transaction_type, transaction_status, transaction_time) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT (transaction_key) DO NOTHING;"
 	var totalRowsAdded int64 = 0
@@ -95,20 +95,20 @@ func insertTransactionDetail(transactionToInsert transactionclasses.TransactionI
 	sqlParams = append(sqlParams, timestamp)
 
 	if gameId == 0 || leagueId == 0 {
-		logger.LogError(context.Background(), "GameId or LeagueId is 0")
+		logger.LogError(ctx, "GameId or LeagueId is 0")
 	}
 
-	rowCount, err := ExecuteSqlStatement(transactionInfoSqlStatement, sqlParams)
+	rowCount, err := ExecuteSqlStatement(ctx, transactionInfoSqlStatement, sqlParams)
 	if err != nil {
-		logger.LogError(context.Background(), "Error inserting transaction info", "error", err)
+		logger.LogError(ctx, "Error inserting transaction info", "error", err)
 		return 0, err
 	}
 
 	if rowCount == 0 {
-		logger.LogInfo(context.Background(), "No rows inserted, record exists", "transactionKey", transactionKey)
+		logger.LogInfo(ctx, "No rows inserted, record exists", "transactionKey", transactionKey)
 		return rowCount, nil
 	}
-	logger.LogInfo(context.Background(), "Rows inserted", "rowCount", rowCount)
+	logger.LogInfo(ctx, "Rows inserted", "rowCount", rowCount)
 
 	players := transactionToInsert.PlayersInvolved
 
@@ -131,9 +131,9 @@ func insertTransactionDetail(transactionToInsert transactionclasses.TransactionI
 
 		playerInsertSqlStatement := "INSERT INTO transaction_player (transaction_key, player_key, player_id, transaction_type, transaction_source, destination_team, destination_team_id) VALUES ($1, $2, $3, $4, $5, $6, $7)"
 
-		rows, err := ExecuteSqlStatement(playerInsertSqlStatement, sqlParams)
+		rows, err := ExecuteSqlStatement(ctx, playerInsertSqlStatement, sqlParams)
 		if err != nil {
-			logger.LogError(context.Background(), "Error inserting transaction player info", "error", err)
+			logger.LogError(ctx, "Error inserting transaction player info", "error", err)
 			return 0, err
 		}
 		totalRowsAdded += rows

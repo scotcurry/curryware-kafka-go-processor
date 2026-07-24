@@ -19,7 +19,7 @@ var (
 // GetDB returns a singleton database connection pool.
 // Returns (*sql.DB, error) so callers can handle connection failures gracefully.
 // If the connection is not yet established, it retries with exponential backoff.
-func GetDB() (*sql.DB, error) {
+func GetDB(ctx context.Context) (*sql.DB, error) {
 	dbMu.Lock()
 	defer dbMu.Unlock()
 
@@ -27,9 +27,9 @@ func GetDB() (*sql.DB, error) {
 		return db, nil
 	}
 
-	psqlInfo, variableError := GetDatabaseInformation()
+	psqlInfo, variableError := GetDatabaseInformation(ctx)
 	if variableError != nil {
-		logger.LogError(context.Background(), "Error getting database information")
+		logger.LogError(ctx, "Error getting database information")
 		return nil, variableError
 	}
 
@@ -41,7 +41,7 @@ func GetDB() (*sql.DB, error) {
 	var lastErr error
 	for attempt := 0; attempt < maxRetries; attempt++ {
 		if attempt > 0 {
-			logger.LogInfo(context.Background(), "Retrying postgres connection",
+			logger.LogInfo(ctx, "Retrying postgres connection",
 				"attempt", attempt+1,
 				"backoff", backoff.String())
 			time.Sleep(backoff)
@@ -50,7 +50,7 @@ func GetDB() (*sql.DB, error) {
 
 		conn, err := sql.Open("postgres", psqlInfo)
 		if err != nil {
-			logger.LogError(context.Background(), "Error opening postgres connection", "error", err.Error())
+			logger.LogError(ctx, "Error opening postgres connection", "error", err.Error())
 			lastErr = err
 			continue
 		}
@@ -62,7 +62,7 @@ func GetDB() (*sql.DB, error) {
 
 		// Test the connection
 		if pingErr := conn.Ping(); pingErr != nil {
-			logger.LogError(context.Background(), "Error pinging postgres connection", "error", pingErr.Error())
+			logger.LogError(ctx, "Error pinging postgres connection", "error", pingErr.Error())
 			_ = conn.Close()
 			lastErr = pingErr
 			continue
@@ -72,7 +72,7 @@ func GetDB() (*sql.DB, error) {
 		return db, nil
 	}
 
-	logger.LogError(context.Background(), "All postgres connection attempts failed", "attempts", maxRetries)
+	logger.LogError(ctx, "All postgres connection attempts failed", "attempts", maxRetries)
 	return nil, lastErr
 }
 

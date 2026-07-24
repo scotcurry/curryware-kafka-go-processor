@@ -1,6 +1,7 @@
 package integration_tests
 
 import (
+	"context"
 	"curryware-kafka-go-processor/internal/fantasyclasses/teamclasses"
 	"curryware-kafka-go-processor/internal/jsonhandlers"
 	"curryware-kafka-go-processor/internal/postgreshandlers"
@@ -18,7 +19,7 @@ func TestInsertTeamRosterInfo(t *testing.T) {
 		t.Fatalf("Error parsing team roster info: %v", err)
 	}
 
-	postgreshandlers.InsertTeamRosterInfo(teamRosterInfo)
+	postgreshandlers.InsertTeamRosterInfo(context.Background(), teamRosterInfo)
 	fmt.Println("Team roster records inserted")
 	t.Log("Test passed")
 }

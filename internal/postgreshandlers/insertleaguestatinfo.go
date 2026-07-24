@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func InsertLeagueStatInfo(leagueStatInfo []leagueclasses.LeagueStatDescriptionInfo) int {
+func InsertLeagueStatInfo(ctx context.Context, leagueStatInfo []leagueclasses.LeagueStatDescriptionInfo) int {
 	sqlStatement := `INSERT INTO league_stat_description (league_stat_key_id, game_id, league_id, stat_id, stat_enabled, stat_name,
                                         stat_display_name, stat_group_display_name, stat_abbreviation, stat_sort_order,
                                         stat_position_type, stat_sort_position)
@@ -16,16 +16,16 @@ func InsertLeagueStatInfo(leagueStatInfo []leagueclasses.LeagueStatDescriptionIn
 	for counter := 0; counter < len(leagueStatInfo); counter++ {
 		stat := leagueStatInfo[counter]
 
-		logger.LogDebug(context.Background(), "Inserting league stat", "league_stat_key_id", stat.LeagueStatKeyId)
-		count, err := ExecStatement(sqlStatement, stat.LeagueStatKeyId, stat.GameId, stat.LeagueId, stat.StatId,
+		logger.LogDebug(ctx, "Inserting league stat", "league_stat_key_id", stat.LeagueStatKeyId)
+		count, err := ExecStatement(ctx, sqlStatement, stat.LeagueStatKeyId, stat.GameId, stat.LeagueId, stat.StatId,
 			stat.StatEnabled, stat.StatName, stat.StatDisplayName, stat.StatGroupDisplayName,
 			stat.StatAbbreviation, stat.StatSortOrder, stat.StatPositionType, stat.StatSortPosition)
 		if err != nil {
-			logger.LogError(context.Background(), "Error inserting league stat record", "error", err.Error())
+			logger.LogError(ctx, "Error inserting league stat record", "error", err.Error())
 			continue
 		}
-		logger.LogInfo(context.Background(), "Rows affected", "count", strconv.Itoa(int(count)))
+		logger.LogInfo(ctx, "Rows affected", "count", strconv.Itoa(int(count)))
 	}
-	logger.LogInfo(context.Background(), "Done inserting league stat records", "total_records", strconv.Itoa(len(leagueStatInfo)))
+	logger.LogInfo(ctx, "Done inserting league stat records", "total_records", strconv.Itoa(len(leagueStatInfo)))
 	return len(leagueStatInfo)
 }

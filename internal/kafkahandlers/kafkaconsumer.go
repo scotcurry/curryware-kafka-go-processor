@@ -74,14 +74,15 @@ func ConsumeMessages(server string) {
 	// This is where all topic handlers get built out.  This makes it easier to add them as they come online.
 	// see the bottom of this file for implementations.
 	topicHandlers := map[string]func(context.Context, *kafka.Message){
-		"AllAvailablePlayersTopic":   processAllAvailablePlayersTopic,
-		"AllLeagueInformationTopic":  processAllLeagueInformationTopic,
-		"AllTeamInformationTopic":    processAllLeagueTeamInformationTopic,
-		"DatadogValidationTopic":     processDatadogValidationTopic,
-		"PlayerTopicDaily":           processPlayerTopicDaily,
-		"StatDescriptionTopic":       processStatDescriptionTopic,
-		"StatisticsTopic":            processStatisticsTopic,
+		"AllAvailablePlayersTopic":  processAllAvailablePlayersTopic,
+		"AllLeagueInformationTopic": processAllLeagueInformationTopic,
+		"AllTeamInformationTopic":   processAllLeagueTeamInformationTopic,
+		"DatadogValidationTopic":    processDatadogValidationTopic,
+		"PlayerTopicDaily":          processPlayerTopicDaily,
+		"StatDescriptionTopic":      processStatDescriptionTopic,
+		//		"StatisticsTopic":            processStatisticsTopic,
 		"TeamRosterInformationTopic": processTeamRosterInformationTopic,
+		"TeamWeeklyStandingsTopic":   processTeamWeeklyStandingsTopic,
 		"TransactionTopic":           processTransactionTopic,
 	}
 
@@ -172,20 +173,20 @@ func processTransactionTopic(ctx context.Context, event *kafka.Message) {
 	logging.LogInfo(ctx, "Transaction package length: ", len(transactionPackage))
 }
 
-func processStatisticsTopic(ctx context.Context, event *kafka.Message) {
-
-	//logging.LogInfo(ctx, "Processing StatisticsTopic")
-	//statsPackage := string(event.Value)
-	//statisticsInfo, err := jsonhandlers.ParseJSON[[]statsclasses.PlayerWeeklyStatsInfo](statsPackage)
-	//if err != nil {
-	//	logging.LogError(ctx, "Error parsing stats info")
-	//	return
-	//}
-
-	//statsCount := postgreshandlers.InsertPlayerWeeklyStats(ctx, statisticsInfo)
-	//logging.LogInfo(ctx, "Player stats inserted", "count", statsCount)
-	//logging.LogInfo(ctx, "Statistics package length", "length", len(statsPackage))
-}
+//func processStatisticsTopic(ctx context.Context, event *kafka.Message) {
+//
+//	logging.LogInfo(ctx, "Processing StatisticsTopic")
+//	statsPackage := string(event.Value)
+//	statisticsInfo, err := jsonhandlers.ParseJSON[[]statsclasses.PlayerWeeklyStatsInfo](statsPackage)
+//	if err != nil {
+//		logging.LogError(ctx, "Error parsing stats info")
+//		return
+//	}
+//
+//	statsCount := postgreshandlers.InsertPlayerWeeklyStats(ctx, statisticsInfo)
+//	logging.LogInfo(ctx, "Player stats inserted", "count", statsCount)
+//	logging.LogInfo(ctx, "Statistics package length", "length", len(statsPackage))
+//}
 
 func processStatDescriptionTopic(ctx context.Context, event *kafka.Message) {
 
@@ -230,6 +231,21 @@ func processTeamRosterInformationTopic(ctx context.Context, event *kafka.Message
 	teamRosterCount := postgreshandlers.InsertTeamRosterInfo(ctx, teamRosterInfo)
 	logging.LogInfo(ctx, "Team roster records inserted", "count", teamRosterCount)
 	logging.LogInfo(ctx, "Team roster package length", "length", len(teamRosterPackage))
+}
+
+func processTeamWeeklyStandingsTopic(ctx context.Context, event *kafka.Message) {
+
+	logging.LogInfo(ctx, "Processing TeamWeeklyStandingsTopic")
+	teamWeeklyStandingsPackage := string(event.Value)
+	teamWeeklyStandingsInfo, err := jsonhandlers.ParseJSON[[]teamclasses.TeamWeeklyStandingsInfo](teamWeeklyStandingsPackage)
+	if err != nil {
+		logging.LogError(ctx, "Error parsing team weekly standings info")
+		return
+	}
+
+	teamWeeklyStandingsCount := postgreshandlers.InsertTeamWeeklyStandingsInfo(ctx, teamWeeklyStandingsInfo)
+	logging.LogInfo(ctx, "Team weekly standings records inserted", "count", teamWeeklyStandingsCount)
+	logging.LogInfo(ctx, "Team weekly standings package length", "length", len(teamWeeklyStandingsPackage))
 }
 
 func processAllLeagueTeamInformationTopic(ctx context.Context, event *kafka.Message) {

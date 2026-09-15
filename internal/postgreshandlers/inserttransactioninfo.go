@@ -12,7 +12,7 @@ func ProcessTransactionInfo(ctx context.Context, transactionJson transactionclas
 	leagueKey := transactionJson.LeagueKey
 	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(ctx, leagueKey)
 	logger.LogDebug(ctx, "Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate)
-	rowCount := insertTransactionInfo(ctx, transactionJson)
+	rowCount := updateLatestTransactions(ctx, transactionJson, lastTransactionDate)
 	logger.LogInfo(ctx, "Database Last Transaction", "transaction", databaseLastTransaction)
 
 	return rowCount
@@ -28,46 +28,48 @@ func getLastTransactionFromDatabase(ctx context.Context, leagueKey string) (int6
 }
 
 // This is to set the pointer so the next time only new transactions are inserted.
-//func updateLatestTransactions(transactionJson fantasyclasses.TransactionInfoWithCount, latestTransaction int, lastTransactionDate int) int64 {
-//
-//	leagueKey := transactionJson.LeagueKey
-//
-//	var rows int64 = 0
-//	for counter := 0; counter < len(transactionJson.Transactions); counter++ {
-//		transactionDate := int(transactionJson.Transactions[counter].TransactionTimestamp)
-//		if transactionDate > lastTransactionDate {
-//			transactionToInsert := transactionJson.Transactions[counter]
-//			rows, err := insertTransactionDetail(transactionToInsert)
-//			if err != nil {
-//				logger.LogError(context.Background(), "Error inserting transaction info: ", err)
-//			}
-//			logger.LogInfo(context.Background(), "Rows inserted: {1}", rows)
-//		}
-//	}
-//
-//	updateLatestTransactionStatement := "UPDATE latest_transaction_id SET league_latest_transaction = $1 WHERE league_transaction_id = $2"
-//	sqlParams := make([]interface{}, 0)
-//	sqlParams = append(sqlParams, latestTransaction)
-//	sqlParams = append(sqlParams, leagueKey)
-//	rows, err := ExecuteSqlStatement(updateLatestTransactionStatement, sqlParams)
-//	if err != nil {
-//		logger.LogError(context.Background(), "Error updating latest transaction id: ", err)
-//	}
-//	return rows
-//}
+func updateLatestTransactions(ctx context.Context, transactionJson transactionclasses.TransactionInfoWithCount, lastTransactionDate int64) int64 {
 
-func insertTransactionInfo(ctx context.Context, transactionJson transactionclasses.TransactionInfoWithCount) int64 {
+	leagueKey := transactionJson.LeagueKey
 
 	var totalRows int64 = 0
-	allTransactions := transactionJson.Transactions
-	for counter := 0; counter < len(allTransactions); counter++ {
-		rows, err := insertTransactionDetail(ctx, allTransactions[counter])
-		if err != nil {
-			logger.LogError(ctx, "Error inserting transaction info", "error", err)
+	latestTransaction := 0
+	latestTransactionDate := lastTransactionDate
+	for counter := 0; counter < len(transactionJson.Transactions); counter++ {
+		transactionToInsert := transactionJson.Transactions[counter]
+		transactionDate := transactionToInsert.TransactionTimestamp
+
+		if transactionToInsert.TransactionId > latestTransaction {
+			latestTransaction = transactionToInsert.TransactionId
 		}
-		totalRows += rows
+		if transactionDate > latestTransactionDate {
+			latestTransactionDate = transactionDate
+		}
+
+		if transactionDate > lastTransactionDate {
+			rows, err := insertTransactionDetail(ctx, transactionToInsert)
+			if err != nil {
+				logger.LogError(ctx, "Error inserting transaction info", "error", err)
+				continue
+			}
+			logger.LogInfo(ctx, "Rows inserted", "rowCount", rows)
+			totalRows += rows
+		}
 	}
 
+	if latestTransaction == 0 {
+		return totalRows
+	}
+
+	updateLatestTransactionStatement := "UPDATE latest_transaction_id SET league_latest_transaction = $1, last_transaction_date = $2 WHERE league_transaction_id = $3"
+	sqlParams := make([]interface{}, 0)
+	sqlParams = append(sqlParams, latestTransaction)
+	sqlParams = append(sqlParams, latestTransactionDate)
+	sqlParams = append(sqlParams, leagueKey)
+	_, err := ExecuteSqlStatement(ctx, updateLatestTransactionStatement, sqlParams)
+	if err != nil {
+		logger.LogError(ctx, "Error updating latest transaction id", "error", err)
+	}
 	return totalRows
 }
 

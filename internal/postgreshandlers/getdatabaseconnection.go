@@ -39,7 +39,7 @@ func GetDB(ctx context.Context) (*sql.DB, error) {
 	backoff := 2 * time.Second
 
 	var lastErr error
-	for attempt := 0; attempt < maxRetries; attempt++ {
+	for attempt := range maxRetries {
 		if attempt > 0 {
 			logger.LogInfo(ctx, "Retrying postgres connection",
 				"attempt", attempt+1,

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	_ "github.com/lib/pq"
+	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
 // db is a global variable that can be used by all the database function calls.
@@ -48,7 +48,7 @@ func GetDB(ctx context.Context) (*sql.DB, error) {
 			backoff *= 2
 		}
 
-		conn, err := sql.Open("postgres", psqlInfo)
+		conn, err := sql.Open("pgx", psqlInfo)
 		if err != nil {
 			logger.LogError(ctx, "Error opening postgres connection", "error", err.Error())
 			lastErr = err

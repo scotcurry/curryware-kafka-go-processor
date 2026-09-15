@@ -9,64 +9,83 @@ import (
 
 func ProcessTransactionInfo(ctx context.Context, transactionJson transactionclasses.TransactionInfoWithCount) int64 {
 
-	leagueKey := transactionJson.LeagueKey
-	databaseLastTransaction, lastTransactionDate := getLastTransactionFromDatabase(ctx, leagueKey)
-	logger.LogDebug(ctx, "Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate)
-	rowCount := updateLatestTransactions(ctx, transactionJson, lastTransactionDate)
-	logger.LogInfo(ctx, "Database Last Transaction", "transaction", databaseLastTransaction)
+	if len(transactionJson.Transactions) == 0 {
+		logger.LogInfo(ctx, "No transactions in payload, nothing to process")
+		return 0
+	}
+
+	gameId := transactionJson.Transactions[0].GameID
+	leagueId := transactionJson.Transactions[0].LeagueID
+
+	databaseLastTransaction, lastTransactionDate, found := getLastTransactionFromDatabase(ctx, gameId, leagueId)
+	logger.LogDebug(ctx, "Database last transaction", "transaction", databaseLastTransaction, "date", lastTransactionDate, "found", found)
+	rowCount := updateLatestTransactions(ctx, transactionJson, gameId, leagueId, databaseLastTransaction, lastTransactionDate, found)
 
 	return rowCount
 }
 
-// Call the database to see if any action is needed.
-func getLastTransactionFromDatabase(ctx context.Context, leagueKey string) (int64, int64) {
+// Call the database to see if any action is needed. found is false when the game_id/league_id
+// combination has no row yet in latest_transaction_id, meaning every transaction in the incoming
+// payload should be treated as new.
+func getLastTransactionFromDatabase(ctx context.Context, gameId int64, leagueId int64) (int, int64, bool) {
 
-	getLastTransactionStatement := "SELECT league_latest_transaction, last_transaction_date FROM latest_transaction_id WHERE league_transaction_id = $1"
-	latestTransActionId, latestTransactionDate := ExecuteGetLatestTransactionSelectStatement(ctx, getLastTransactionStatement, leagueKey)
+	getLastTransactionStatement := "SELECT league_latest_transaction, last_transaction_date FROM latest_transaction_id WHERE game_id = $1 AND league_id = $2"
+	latestTransActionId, latestTransactionDate, found := ExecuteGetLatestTransactionSelectStatement(ctx, getLastTransactionStatement, gameId, leagueId)
 
-	return int64(latestTransActionId), int64(latestTransactionDate)
+	return latestTransActionId, int64(latestTransactionDate), found
 }
 
-// This is to set the pointer so the next time only new transactions are inserted.
-func updateLatestTransactions(ctx context.Context, transactionJson transactionclasses.TransactionInfoWithCount, lastTransactionDate int64) int64 {
+// updateLatestTransactions inserts only the transactions newer than the database's last known transaction
+// (or all of them if the game_id/league_id combination has no row yet), then upserts the pointer row so
+// the next run only picks up transactions past this point.
+func updateLatestTransactions(ctx context.Context, transactionJson transactionclasses.TransactionInfoWithCount, gameId int64, leagueId int64, databaseLastTransaction int, lastTransactionDate int64, found bool) int64 {
 
 	leagueKey := transactionJson.LeagueKey
 
 	var totalRows int64 = 0
-	latestTransaction := 0
+	latestTransaction := databaseLastTransaction
 	latestTransactionDate := lastTransactionDate
+
 	for counter := 0; counter < len(transactionJson.Transactions); counter++ {
 		transactionToInsert := transactionJson.Transactions[counter]
-		transactionDate := transactionToInsert.TransactionTimestamp
+
+		if found && transactionToInsert.TransactionId <= databaseLastTransaction {
+			continue
+		}
+
+		rows, err := insertTransactionDetail(ctx, transactionToInsert)
+		if err != nil {
+			logger.LogError(ctx, "Error inserting transaction info", "error", err)
+			continue
+		}
+		logger.LogInfo(ctx, "Rows inserted", "rowCount", rows)
+		totalRows += rows
 
 		if transactionToInsert.TransactionId > latestTransaction {
 			latestTransaction = transactionToInsert.TransactionId
 		}
-		if transactionDate > latestTransactionDate {
-			latestTransactionDate = transactionDate
-		}
-
-		if transactionDate > lastTransactionDate {
-			rows, err := insertTransactionDetail(ctx, transactionToInsert)
-			if err != nil {
-				logger.LogError(ctx, "Error inserting transaction info", "error", err)
-				continue
-			}
-			logger.LogInfo(ctx, "Rows inserted", "rowCount", rows)
-			totalRows += rows
+		if transactionToInsert.TransactionTimestamp > latestTransactionDate {
+			latestTransactionDate = transactionToInsert.TransactionTimestamp
 		}
 	}
 
-	if latestTransaction == 0 {
+	if totalRows == 0 {
 		return totalRows
 	}
 
-	updateLatestTransactionStatement := "UPDATE latest_transaction_id SET league_latest_transaction = $1, last_transaction_date = $2 WHERE league_transaction_id = $3"
-	sqlParams := make([]interface{}, 0)
+	upsertLatestTransactionStatement := `INSERT INTO latest_transaction_id (game_id, league_id, league_transaction_id, league_latest_transaction, last_transaction_date)
+		VALUES ($1, $2, $3, $4, $5)
+		ON CONFLICT (game_id, league_id) DO UPDATE
+		SET league_transaction_id = EXCLUDED.league_transaction_id,
+		    league_latest_transaction = EXCLUDED.league_latest_transaction,
+		    last_transaction_date = EXCLUDED.last_transaction_date`
+	sqlParams := make([]any, 0)
+	sqlParams = append(sqlParams, gameId)
+	sqlParams = append(sqlParams, leagueId)
+	sqlParams = append(sqlParams, leagueKey)
 	sqlParams = append(sqlParams, latestTransaction)
 	sqlParams = append(sqlParams, latestTransactionDate)
-	sqlParams = append(sqlParams, leagueKey)
-	_, err := ExecuteSqlStatement(ctx, updateLatestTransactionStatement, sqlParams)
+	_, err := ExecuteSqlStatement(ctx, upsertLatestTransactionStatement, sqlParams)
 	if err != nil {
 		logger.LogError(ctx, "Error updating latest transaction id", "error", err)
 	}
@@ -87,7 +106,7 @@ func insertTransactionDetail(ctx context.Context, transactionToInsert transactio
 	transactionTime := transactionToInsert.TransactionTimestamp
 	timestamp := time.Unix(transactionTime, 0)
 
-	sqlParams := make([]interface{}, 0)
+	sqlParams := make([]any, 0)
 	sqlParams = append(sqlParams, gameId)
 	sqlParams = append(sqlParams, leagueId)
 	sqlParams = append(sqlParams, transactionKey)
@@ -114,7 +133,7 @@ func insertTransactionDetail(ctx context.Context, transactionToInsert transactio
 
 	players := transactionToInsert.PlayersInvolved
 
-	for playerCounter := 0; playerCounter < len(players); playerCounter++ {
+	for playerCounter := range players {
 		playerKey := players[playerCounter].PlayerKey
 		playerId := players[playerCounter].PlayerId
 		playerTransactionType := players[playerCounter].DestinationType
@@ -122,7 +141,7 @@ func insertTransactionDetail(ctx context.Context, transactionToInsert transactio
 		playerTransactionDestination := players[playerCounter].DestinationType
 		playerTransactionDestinationTeamId := players[playerCounter].DestinationTeamId
 
-		sqlParams := make([]interface{}, 0)
+		sqlParams := make([]any, 0)
 		sqlParams = append(sqlParams, transactionKey)
 		sqlParams = append(sqlParams, playerKey)
 		sqlParams = append(sqlParams, playerId)

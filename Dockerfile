@@ -2,7 +2,7 @@
 # Run:    podman run --env-file .env curryware-kafka-go-processor:latest
 
 # --- build stage ---
-FROM golang:1.26 AS builder
+FROM golang:1.27 AS builder
 WORKDIR /app
 
 ARG DD_GIT_COMMIT_SHA

@@ -1,0 +1,14 @@
+# Local build output (the image builds its own binary in the builder stage)
+bin/
+/curryware-kafka-go-processor
+
+# VCS, IDE and OS files
+.git/
+.github/
+.idea/
+.vscode/
+**/.DS_Store
+
+# Local env files may hold credentials
+.env
+*.env

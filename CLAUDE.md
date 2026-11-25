@@ -11,8 +11,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Important: After every code change, validate the build succeeds.**
 
 ```bash
-# Build
-go build -o curryware-kafka-go-processor .
+# Build (output always goes to bin/release, never the project root)
+go build -o bin/release/curryware-kafka-go-processor .
 
 # Run all tests
 go test ./...

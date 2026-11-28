@@ -80,6 +80,7 @@ func ConsumeMessages(server string) {
 		"DatadogValidationTopic":    processDatadogValidationTopic,
 		"PlayerTopicDaily":          processPlayerTopicDaily,
 		"StatDescriptionTopic":      processStatDescriptionTopic,
+		"StatValueTopic":            processStatValueTopic,
 		//		"StatisticsTopic":            processStatisticsTopic,
 		"TeamRosterInformationTopic": processTeamRosterInformationTopic,
 		"TeamWeeklyStandingsTopic":   processTeamWeeklyStandingsTopic,
@@ -201,6 +202,24 @@ func processStatDescriptionTopic(ctx context.Context, event *kafka.Message) {
 	statDescriptionCount := postgreshandlers.InsertLeagueStatInfo(ctx, statDescriptions)
 	logging.LogInfo(ctx, "League stat descriptions inserted", "count", statDescriptionCount)
 	logging.LogInfo(ctx, "Stat description package length", "length", len(statDescriptionPackage))
+}
+
+// StatValueTopic: a league's scoring rules, published by the Yahoo API's LoadStatValueInfo.
+func processStatValueTopic(ctx context.Context, event *kafka.Message) {
+
+	logging.LogInfo(ctx, "Processing StatValueTopic")
+	statValues, err := jsonhandlers.ParseJSON[[]leagueclasses.LeagueStatsValueInfo](string(event.Value))
+	if err != nil {
+		logging.LogError(ctx, "Error parsing league stat values", "error", err.Error())
+		return
+	}
+
+	count, err := postgreshandlers.ReplaceLeagueStatValues(ctx, statValues)
+	if err != nil {
+		logging.LogError(ctx, "Error replacing league stat values", "error", err.Error())
+		return
+	}
+	logging.LogInfo(ctx, "League stat values replaced", "count", count)
 }
 
 func processAllLeagueInformationTopic(ctx context.Context, event *kafka.Message) {

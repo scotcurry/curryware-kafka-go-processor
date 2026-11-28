@@ -47,6 +47,7 @@ The consumer runs an infinite event loop dispatching messages to handlers regist
 - `TransactionTopic` → parse transaction JSON → insert transaction info
 - `StatisticsTopic` → parse stats JSON → insert player weekly stats
 - `DatadogValidationTopic` → validation/heartbeat (no DB write)
+- `StatValueTopic` → a league's scoring rules (from the Yahoo API's `LoadStatValueInfo?gameId=&leagueId=`) → `ReplaceLeagueStatValues` replaces that league's rows in `league_scoring_value_information` in one transaction (delete, then insert), so a dropped stat doesn't linger and a failure keeps the old rules. The Java API's best-available endpoint reads this table.
 
 ### Package Structure
 
@@ -59,7 +60,7 @@ The consumer runs an infinite event loop dispatching messages to handlers regist
   - `transactionclasses/` — `TransactionInfo`, `TransactionPlayerInfo`
   - `leagueclasses/` — `LeagueStatDescriptionInfo`, `LeagueStatValues`
 - **`internal/logging/`** — Singleton `slog` logger writing JSON to stdout
-- **`internal/tests/`** — Test files separated from implementation (e.g., `statstests/`)
+- **`internal/tests/`** — Test files separated from implementation (e.g., `statstests/`). `postgrestests/` runs against a throwaway Postgres only when `CURRYWARE_TEST_POSTGRES=1` (setup steps in the file's comment) and refuses `currywarefantasy`. `internal/integration_tests/` doesn't compile (`InsertPlayerWeeklyStats` no longer exists), so `go vet ./...` fails there.
 
 ### SQL Templates
 
